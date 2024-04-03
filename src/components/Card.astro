@@ -1,8 +1,7 @@
 ---
-import type { Post } from '@/sanity.types'
 import { formatDate } from '@/utils'
 import { urlFor } from '@/utils/image'
-// import type { Post } from '@/utils/sanity'
+import type { Post } from '@/utils/sanity'
 import { Image } from 'astro:assets'
 
 interface Props {
@@ -15,15 +14,15 @@ const { post } = Astro.props
 <div class="flex flex-col gap-6 sm:flex-row">
 	{
 		post.mainImage ? (
-			<a class="hover:underline" href={`/post/${post.slug?.current}`}>
+			<a class="hover:underline" href={`/post/${post.slug.current}`}>
 				<Image
 					class="w-full bg-color-placeholder object-cover"
 					src={urlFor(post.mainImage).width(240).height(160).url()}
 					width="240"
 					height="160"
-					alt={post.excerpt}
+					alt={post.excerpt || post.title}
 					loading={'eager'}
-					transition:name={`post-image-${post.slug?.current}`}
+					transition:name={`post-image-${post.slug.current}`}
 				/>
 			</a>
 		) : (
@@ -34,8 +33,8 @@ const { post } = Astro.props
 		<h3 class="text-xl font-black">
 			<a
 				class="hover:underline"
-				href={`/post/${post.slug?.current}`}
-				transition:name={`post-title-${post.slug?.current}`}
+				href={`/post/${post.slug.current}`}
+				transition:name={`post-title-${post.slug.current}`}
 			>
 				{post.title}
 			</a>
