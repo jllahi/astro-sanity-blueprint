@@ -6,11 +6,12 @@ export default {
   trailingComma: 'es5',
   semi: false,
   printWidth: 100,
-  plugins: [
-    'prettier-plugin-astro',
-    'prettier-plugin-organize-imports',
-    'prettier-plugin-tailwindcss',
-  ],
+	plugins: [
+		'prettier-plugin-astro',
+		'prettier-plugin-organize-imports',
+		'prettier-plugin-packagejson',
+		'prettier-plugin-tailwindcss'
+	],
   overrides: [
     {
       files: '*.astro',
@@ -18,5 +19,5 @@ export default {
         parser: 'astro',
       },
     },
-  ],
+  ]
 }

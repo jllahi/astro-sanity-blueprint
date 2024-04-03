@@ -1,17 +1,17 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '@/consts';
+import HeaderLink from './HeaderLink.astro'
+import { SITE_TITLE } from '@/consts'
 ---
 
-<header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
+<header class="w-full bg-[#F03E2F] p-4">
+	<nav class="flex flex-col items-center justify-between gap-4 px-1 md:flex-row">
+		<h2 class="font-sans text-2xl font-black text-white"><a href="/">{SITE_TITLE}</a></h2>
+
+		<div class="flex gap-4 font-heading text-sm text-white">
+			<!-- <HeaderLink href="/" class="hidden md:visible">Home</HeaderLink> -->
+			<HeaderLink href="/">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
-		<div class="social-links">
-		</div>
+		<!-- <div class="social-links">1</div> -->
 	</nav>
 </header>

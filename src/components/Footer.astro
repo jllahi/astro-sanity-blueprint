@@ -1,9 +1,34 @@
 ---
-const today = new Date();
+// import { Image } from 'astro:assets'
+import { SITE_TITLE } from '@/consts'
+const today = new Date()
+// import astroImage from '../../public/astro.svg'
+// import sanityImage from '../../public/sanity.svg'
 ---
 
-<footer>
-	&copy; {today.getFullYear()} Your name here. All rights reserved.
-	<div class="social-links">
+<footer class="mt-8 flex w-full flex-row justify-between bg-[#F03E2F] px-4 py-2 text-sm text-white">
+	<div>
+		&copy; {today.getFullYear()}
+		{SITE_TITLE}
 	</div>
+	<a class="my-auto underline" href="/studio" target="_blank">Enter the Studio</a>
+	<!-- <div class="flex flex-row place-content-center place-items-center">
+		<Image
+			src={astroImage}
+			alt="Astro Logo"
+			class="w-6 rounded border border-black"
+			width="100"
+			height="100"
+			loading={'lazy'}
+		/>
+		<span class="text-xl font-normal">+</span>
+		<Image
+			src={sanityImage}
+			alt="Sanity Logo"
+			class="w-6 rounded border border-black"
+			width="100"
+			height="100"
+			loading={'lazy'}
+		/>
+	</div> -->
 </footer>
