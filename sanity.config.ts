@@ -18,16 +18,16 @@ if (!projectId || !dataset) {
 }
 
 import { defineConfig } from "sanity";
-import { deskTool } from "sanity/desk";
+import { structureTool  } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schema";
 
 export default defineConfig({
-  name: "project-name",
-  title: "Project Name",
+  name: "astro-sanity-blueprint",
+  title: "astro-sanity-blueprint",
   projectId,
   dataset,
-  plugins: [deskTool(), visionTool()],
+  plugins: [structureTool(), visionTool()],
   schema: {
     types: schemaTypes,
   },
