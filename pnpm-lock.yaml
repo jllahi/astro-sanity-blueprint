@@ -9,8 +9,8 @@ dependencies:
     specifier: ^0.5.10
     version: 0.5.10(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.4.3)
   '@astrojs/react':
-    specifier: ^3.1.0
-    version: 3.1.0(@types/react-dom@18.2.23)(@types/react@18.2.74)(react-dom@18.2.0)(react@18.2.0)(vite@5.2.7)
+    specifier: ^3.1.1
+    version: 3.1.1(@types/react-dom@18.2.23)(@types/react@18.2.74)(react-dom@18.2.0)(react@18.2.0)(vite@5.2.7)
   '@astrojs/rss':
     specifier: ^4.0.5
     version: 4.0.5
@@ -19,10 +19,10 @@ dependencies:
     version: 3.1.2
   '@astrojs/tailwind':
     specifier: ^5.1.0
-    version: 5.1.0(astro@4.5.13)(tailwindcss@3.4.3)
+    version: 5.1.0(astro@4.5.14)(tailwindcss@3.4.3)
   '@astrojs/vercel':
     specifier: ^7.5.1
-    version: 7.5.1(astro@4.5.13)(react@18.2.0)
+    version: 7.5.1(astro@4.5.14)(react@18.2.0)
   '@fontsource-variable/inter':
     specifier: ^5.0.17
     version: 5.0.17
@@ -31,12 +31,12 @@ dependencies:
     version: 5.0.18
   '@sanity/astro':
     specifier: ^3.0.0
-    version: 3.0.0(@sanity/client@6.15.9)(astro@4.5.13)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.36.3)(styled-components@6.1.8)
+    version: 3.0.0(@sanity/client@6.15.9)(astro@4.5.14)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.36.3)(styled-components@6.1.8)
   '@sanity/client':
     specifier: ^6.15.9
     version: 6.15.9
   '@sanity/image-url':
-    specifier: 1.0.2
+    specifier: ^1.0.2
     version: 1.0.2
   '@sanity/vision':
     specifier: ^3.36.3
@@ -51,8 +51,8 @@ dependencies:
     specifier: ^18.2.23
     version: 18.2.23
   astro:
-    specifier: ^4.5.13
-    version: 4.5.13(typescript@5.4.3)
+    specifier: ^4.5.14
+    version: 4.5.14(typescript@5.4.3)
   astro-portabletext:
     specifier: ^0.9.7
     version: 0.9.7
@@ -80,10 +80,10 @@ dependencies:
 
 devDependencies:
   '@portabletext/types':
-    specifier: 2.0.11
+    specifier: ^2.0.11
     version: 2.0.11
   '@sanity/types':
-    specifier: 3.36.3
+    specifier: ^3.36.3
     version: 3.36.3
   '@typescript-eslint/eslint-plugin':
     specifier: ^7.5.0
@@ -96,7 +96,7 @@ devDependencies:
     version: 0.16.3
   astro-meta-tags:
     specifier: ^0.2.2
-    version: 0.2.2(astro@4.5.13)
+    version: 0.2.2(astro@4.5.14)
   eslint:
     specifier: ^8.57.0
     version: 8.57.0
@@ -248,8 +248,8 @@ packages:
     dependencies:
       prismjs: 1.29.0
 
-  /@astrojs/react@3.1.0(@types/react-dom@18.2.23)(@types/react@18.2.74)(react-dom@18.2.0)(react@18.2.0)(vite@5.2.7):
-    resolution: {integrity: sha512-KZhZyV+sUDZEjlrmPWNiPGeYowG9uq6/aMbCgVaeKEBlWT4Kg32TNwBOhZk6AcE4LY1l3mIwt3orUGE2JV96/g==}
+  /@astrojs/react@3.1.1(@types/react-dom@18.2.23)(@types/react@18.2.74)(react-dom@18.2.0)(react@18.2.0)(vite@5.2.7):
+    resolution: {integrity: sha512-Uc4zY8UxkZrSKmiFGPyy+0uUKGgVETJSra5c/65Z2ZckJEHtgLYW0ZqGUoItGr0wJFMv+h1g3Z4OJGapGgcUyA==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       '@types/react': ^17.0.50 || ^18.0.21
@@ -282,13 +282,13 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@astrojs/tailwind@5.1.0(astro@4.5.13)(tailwindcss@3.4.3):
+  /@astrojs/tailwind@5.1.0(astro@4.5.14)(tailwindcss@3.4.3):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.5.13(typescript@5.4.3)
+      astro: 4.5.14(typescript@5.4.3)
       autoprefixer: 10.4.17(postcss@8.4.35)
       postcss: 8.4.35
       postcss-load-config: 4.0.2(postcss@8.4.35)
@@ -311,7 +311,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@astrojs/vercel@7.5.1(astro@4.5.13)(react@18.2.0):
+  /@astrojs/vercel@7.5.1(astro@4.5.14)(react@18.2.0):
     resolution: {integrity: sha512-jYGGddRY7QruazIfV+jFrfv0vAYY5tzTfG7YsCGDxZJXx3MOwcNeFjIkv3SJ4C2h+jecxnBiPk7gRxQcVS5KXw==}
     peerDependencies:
       astro: ^4.2.0
@@ -320,7 +320,7 @@ packages:
       '@vercel/analytics': 1.2.2(react@18.2.0)
       '@vercel/edge': 1.1.1
       '@vercel/nft': 0.26.4
-      astro: 4.5.13(typescript@5.4.3)
+      astro: 4.5.14(typescript@5.4.3)
       esbuild: 0.19.12
       fast-glob: 3.3.2
       set-cookie-parser: 2.6.0
@@ -2750,7 +2750,7 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /@sanity/astro@3.0.0(@sanity/client@6.15.9)(astro@4.5.13)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.36.3)(styled-components@6.1.8):
+  /@sanity/astro@3.0.0(@sanity/client@6.15.9)(astro@4.5.14)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.36.3)(styled-components@6.1.8):
     resolution: {integrity: sha512-34k5wv15lExqtWed6lHFSrqZqNdwkwvHXJTifKy9MNSxa7dP6WPHYQm+gmBnZOGiE5a6x/6I4+lO5iroYPFbog==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     peerDependencies:
@@ -2762,7 +2762,7 @@ packages:
     dependencies:
       '@sanity/client': 6.15.9
       '@sanity/ui': 1.9.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
-      astro: 4.5.13(typescript@5.4.3)
+      astro: 4.5.14(typescript@5.4.3)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       sanity: 3.36.3(@types/react@18.2.74)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)
@@ -4006,12 +4006,12 @@ packages:
       - supports-color
     dev: true
 
-  /astro-meta-tags@0.2.2(astro@4.5.13):
+  /astro-meta-tags@0.2.2(astro@4.5.14):
     resolution: {integrity: sha512-7wl4AlklzDJqKU8BIhNVyLvgMKlKk6hJX2auYb2lFujJ4/zu2u1W7VKTx3wZ7WuGsRsZMUj6BvXz17e0KZ3jgw==}
     peerDependencies:
       astro: ^4.0.0
     dependencies:
-      astro: 4.5.13(typescript@5.4.3)
+      astro: 4.5.14(typescript@5.4.3)
     dev: true
 
   /astro-portabletext@0.9.7:
@@ -4031,8 +4031,8 @@ packages:
       - typescript
     dev: false
 
-  /astro@4.5.13(typescript@5.4.3):
-    resolution: {integrity: sha512-vbkiPH0J8dp5OlsvQpW3PcuV36U4vGRcdcL/LxXDwmeVjzVo6DH3Fkv+DAU5UDs7ciYodadomOo4+VZKvi8ylw==}
+  /astro@4.5.14(typescript@5.4.3):
+    resolution: {integrity: sha512-OXQ9Wbcn5e2eEPrNKJjGXeCWnKamNGyvSwORL0B8BB1fp3OO/EYo/RfeQGTR9kxGNxEpokoPZL9JNgFHoVK+wA==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
     dependencies:
