@@ -3,15 +3,12 @@ import HeaderLink from './HeaderLink.astro'
 import { SITE_TITLE } from '@/consts'
 ---
 
-<header class="w-full bg-[#F03E2F] p-4">
+<header class="bg-color-sanity w-full p-4 text-white">
 	<nav class="flex flex-col items-center justify-between gap-4 px-1 md:flex-row">
-		<h2 class="font-sans text-2xl font-black text-white"><a href="/">{SITE_TITLE}</a></h2>
-
-		<div class="flex gap-4 font-heading text-sm text-white">
-			<!-- <HeaderLink href="/" class="hidden md:visible">Home</HeaderLink> -->
+		<h2 class="font-sans text-2xl font-black"><a href="/">{SITE_TITLE}</a></h2>
+		<div class="flex gap-4 font-heading text-sm">
 			<HeaderLink href="/">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
-		<!-- <div class="social-links">1</div> -->
 	</nav>
 </header>
