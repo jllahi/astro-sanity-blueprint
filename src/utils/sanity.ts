@@ -16,12 +16,29 @@ export async function getPost(slug: string): Promise<Post> {
 	})
 }
 
+export async function getPostImage(slug: string): Promise<Post> {
+	return await sanityClient.fetch(
+		groq`*[_type == "post" && slug.current == $slug][0] {
+			mainImage {
+				...,
+				asset->{
+					...,
+					metadata
+				}
+			},
+		}`,
+		{
+			slug,
+		}
+	)
+}
+
 export interface Post {
 	_type: 'post'
 	_createdAt: string
 	title: string
 	slug: Slug
-	excerpt?: string
+	excerpt: string
 	mainImage?: ImageAsset
 	body: PortableTextBlock[]
 }

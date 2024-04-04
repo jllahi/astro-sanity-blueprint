@@ -15,7 +15,7 @@ export default {
 				'color-sanity': '#F03E2F',
 				'color-black': colors.neutral[800],
 				'color-white': colors.neutral[100],
-				'color-placeholder': colors.neutral[300],
+				'color-placeholder': colors.neutral[200],
 			},
 		},
 	},

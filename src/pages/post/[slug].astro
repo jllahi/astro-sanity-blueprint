@@ -27,11 +27,11 @@ const post = await getPost(slug)
 			{
 				post.mainImage ? (
 					<Image
-						src={urlFor(post.mainImage).url()}
+						src={urlFor(post.mainImage).width(640).height(420).url()}
 						alt="Astro + Sanity"
 						class="w-full rounded"
-						width="700"
-						height="500"
+						width={640}
+						height={420}
 						loading={'eager'}
 						transition:name={`post-image-${post.slug.current}`}
 					/>

@@ -26,6 +26,7 @@ export default defineType({
 			title: 'Excerpt',
 			type: 'text',
 			rows: 4,
+			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: 'mainImage',

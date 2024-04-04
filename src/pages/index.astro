@@ -8,8 +8,8 @@ const posts = await getPosts()
 ---
 
 <Layout seo={{ title: 'The official Sanity integration for Astro' }}>
-	<section>
-		<h1 class="mb-8 text-xl font-normal">Blog posts</h1>
+	<section class="flex flex-col gap-8">
+		<h1 class="text-xl font-normal">Blog posts</h1>
 		{posts.length ? posts.map((post) => <Card post={post} />) : <Welcome />}
 	</section>
 </Layout>

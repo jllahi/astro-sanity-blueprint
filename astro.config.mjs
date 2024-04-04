@@ -4,6 +4,7 @@ import tailwind from '@astrojs/tailwind'
 import vercel from '@astrojs/vercel/serverless'
 import sanity from '@sanity/astro'
 import metaTags from 'astro-meta-tags'
+import robotsTxt from 'astro-robots-txt'
 import { defineConfig } from 'astro/config'
 import { loadEnv } from 'vite'
 
@@ -28,7 +29,14 @@ const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET
 export default defineConfig({
 	site: 'https://astro-sanity-blueprint.vercel.app',
 	output: 'hybrid',
-	adapter: vercel(),
+	adapter: vercel({
+		// webAnalytics: {
+		// 	enabled: true
+		// }
+		// imagesConfig: {
+		//   sizes: [320, 640, 1280],
+		// },
+	}),
 	integrations: [
 		react(),
 		tailwind({ applyBaseStyles: false }),
@@ -42,5 +50,6 @@ export default defineConfig({
 		}),
 		metaTags(),
 		sitemap(),
+		robotsTxt(),
 	],
 })

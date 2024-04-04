@@ -3,6 +3,7 @@ import { formatDate } from '@/utils'
 import { urlFor } from '@/utils/image'
 import type { Post } from '@/utils/sanity'
 import { Image } from 'astro:assets'
+import placeholderImage from '@/assets/placeholder-image-square.jpg'
 
 interface Props {
 	post: Post
@@ -16,7 +17,7 @@ const { post } = Astro.props
 		post.mainImage ? (
 			<a class="hover:underline" href={`/post/${post.slug.current}`}>
 				<Image
-					class="w-full bg-color-placeholder object-cover"
+					class="h-40 w-60 border border-color-placeholder bg-color-placeholder object-cover"
 					src={urlFor(post.mainImage).width(240).height(160).url()}
 					width="240"
 					height="160"
@@ -26,7 +27,13 @@ const { post } = Astro.props
 				/>
 			</a>
 		) : (
-			<div class="h-40 w-60 bg-color-placeholder" />
+			<Image
+				class="h-40 w-60 border border-color-placeholder bg-color-placeholder object-cover"
+				src={placeholderImage}
+				alt={post.excerpt || post.title}
+				loading={'eager'}
+				transition:name={`post-image-${post.slug.current}`}
+			/>
 		)
 	}
 	<div class="flex flex-col justify-between gap-4">
