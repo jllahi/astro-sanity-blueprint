@@ -12,7 +12,7 @@ export default {
 				logo: ['Montserrat Variable', ...theme.fontFamily.sans],
 			},
 			colors: {
-				'color-sanity': '#F03E2F',
+				'color-sanity': colors.neutral[800], // '#F03E2F',
 				'color-black': colors.neutral[800],
 				'color-white': colors.neutral[100],
 				'color-placeholder': colors.neutral[200],
