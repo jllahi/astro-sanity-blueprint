@@ -49,7 +49,19 @@ export default defineConfig({
 			apiVersion: '2023-03-20', // Set to date of setup to use the latest API version
 		}),
 		metaTags(),
-		sitemap(),
-		robotsTxt(),
+		sitemap({
+			filter: (page) =>
+				// page !== this.site + this.integrations[sanity].studioBasePath + '/' &&
+				page !== 'https://astro-sanity-blueprint.vercel.app/studio/',
+		}),
+		robotsTxt({
+			policy: [
+				{
+					userAgent: '*',
+					allow: '/',
+					disallow: '/studio',
+				},
+			],
+		}),
 	],
 })
