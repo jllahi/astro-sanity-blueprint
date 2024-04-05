@@ -38,7 +38,7 @@
 		"typescript": "^5.4.3"
 	},
 	"devDependencies": {
-		"@portabletext/types": "^2.0.11",
+		"@portabletext/types": "^2.0.12",
 		"@sanity/types": "^3.36.4",
 		"@typescript-eslint/eslint-plugin": "^7.5.0",
 		"@typescript-eslint/parser": "^7.5.0",
