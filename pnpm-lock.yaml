@@ -80,8 +80,8 @@ dependencies:
 
 devDependencies:
   '@portabletext/types':
-    specifier: ^2.0.11
-    version: 2.0.11
+    specifier: ^2.0.12
+    version: 2.0.12
   '@sanity/types':
     specifier: ^3.36.4
     version: 3.36.4
@@ -2884,7 +2884,7 @@ packages:
       react: ^17 || ^18
     dependencies:
       '@portabletext/toolkit': 2.0.13
-      '@portabletext/types': 2.0.11
+      '@portabletext/types': 2.0.12
       react: 18.2.0
     dev: false
 
@@ -2892,11 +2892,11 @@ packages:
     resolution: {integrity: sha512-RH/jzwlWcsDPnpJBO1xEByUnweVVciD1OVLGyRUA8P++XedAc+fxY3RlUkgi5FyDEyEdisPflKtUU/GAXtMSig==}
     engines: {node: ^14.13.1 || >=16.0.0}
     dependencies:
-      '@portabletext/types': 2.0.11
+      '@portabletext/types': 2.0.12
     dev: false
 
-  /@portabletext/types@2.0.11:
-    resolution: {integrity: sha512-79Bj/tffVOV9mpMzQFLPMrxPpUXh4OKlUBG8eDJBirH/x1o28Qu8Tg2nO84/KAPmlCm4rC/TOGvDxqsP0apg5A==}
+  /@portabletext/types@2.0.12:
+    resolution: {integrity: sha512-dk8CcVDg7Y3DCXhuCdEJeV1GYzIfjCdEgZhrODhIiz+Zd7iXQYsdoRJXoz5lsT5w0UFxYkG+1KhQpIXSlKvyhA==}
     engines: {node: ^14.13.1 || >=16.0.0 || >=18.0.0}
 
   /@rexxars/react-json-inspector@8.0.1(react@18.2.0):
@@ -4309,7 +4309,7 @@ packages:
     resolution: {integrity: sha512-kU2C0FQ+DE2DkoTkPDNbJXH/+V/9ioDy4udQp2uT3qsGqQaKDhVBbkWcVuCVgxB006cq71SUbj6svEtiFzKLCg==}
     dependencies:
       '@portabletext/toolkit': 2.0.13
-      '@portabletext/types': 2.0.11
+      '@portabletext/types': 2.0.12
     dev: false
 
   /astro-robots-txt@1.0.0:
