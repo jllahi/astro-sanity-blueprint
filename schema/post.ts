@@ -32,6 +32,7 @@ export default defineType({
 			name: 'mainImage',
 			title: 'Main image',
 			type: 'image',
+			validation: (Rule) => Rule.required(),
 			options: {
 				hotspot: true,
 			},

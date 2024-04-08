@@ -3,6 +3,7 @@ import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import vercel from '@astrojs/vercel/serverless'
 import sanity from '@sanity/astro'
+import { imageService } from '@unpic/astro/service'
 import metaTags from 'astro-meta-tags'
 import robotsTxt from 'astro-robots-txt'
 import { defineConfig } from 'astro/config'
@@ -37,6 +38,9 @@ export default defineConfig({
 		//   sizes: [320, 640, 1280],
 		// },
 	}),
+	image: {
+		service: imageService(),
+	},
 	integrations: [
 		react(),
 		tailwind({ applyBaseStyles: false }),

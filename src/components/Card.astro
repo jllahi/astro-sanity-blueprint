@@ -2,8 +2,9 @@
 import { formatDate } from '@/utils'
 import { urlFor } from '@/utils/image'
 import type { Post } from '@/utils/sanity'
-import { Image } from 'astro:assets'
+// import { Image } from 'astro:assets'
 import placeholderImage from '@/assets/placeholder-image-square.jpg'
+import { Image } from '@unpic/astro'
 
 interface Props {
 	post: Post
@@ -19,11 +20,13 @@ const { post } = Astro.props
 				<Image
 					class="h-40 w-60 border border-color-placeholder bg-color-placeholder object-cover"
 					src={urlFor(post.mainImage).width(240).height(160).url()}
-					width="240"
-					height="160"
+					width={240}
+					height={160}
 					alt={post.excerpt || post.title}
 					loading={'eager'}
 					transition:name={`post-image-${post.slug.current}`}
+					placeholder={'lqip'}
+					background={post.lqip}
 				/>
 			</a>
 		) : (
