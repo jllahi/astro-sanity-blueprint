@@ -43,7 +43,7 @@
 		"@sanity/types": "^3.36.4",
 		"@typescript-eslint/eslint-plugin": "^7.5.0",
 		"@typescript-eslint/parser": "^7.5.0",
-		"astro-eslint-parser": "^0.16.3",
+		"astro-eslint-parser": "^0.17.0",
 		"astro-meta-tags": "^0.2.2",
 		"astro-robots-txt": "^1.0.0",
 		"eslint": "^8.57.0",
