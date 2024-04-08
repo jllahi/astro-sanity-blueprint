@@ -5,7 +5,8 @@ import Layout from '@/layouts/Layout.astro'
 import { formatDate } from '@/utils'
 import { urlFor } from '@/utils/image'
 import { getPost, getPosts } from '@/utils/sanity'
-import { Image } from 'astro:assets'
+// import { Image } from 'astro:assets'
+import { Image } from '@unpic/astro'
 
 export async function getStaticPaths() {
 	const posts = await getPosts()
@@ -34,6 +35,8 @@ const post = await getPost(slug)
 						height={420}
 						loading={'eager'}
 						transition:name={`post-image-${post.slug.current}`}
+						placeholder={'lqip'}
+						background={post.lqip}
 					/>
 				) : (
 					<div class="hidden" />
