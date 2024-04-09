@@ -63,8 +63,8 @@ dependencies:
     specifier: ^0.8.3
     version: 0.8.3(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.4.4)
   groq:
-    specifier: ^3.36.4
-    version: 3.36.4
+    specifier: ^3.37.0
+    version: 3.37.0
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -6637,11 +6637,6 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /groq@3.36.4:
-    resolution: {integrity: sha512-cIADS9riAJbW0II42klP/UckowwZqRuEae3klWrkr/xkkHMBep6pFEq6KjsHoRnrTSZfN/P3T5YARZJtHvO/Zg==}
-    engines: {node: '>=18'}
     dev: false
 
   /groq@3.37.0:
