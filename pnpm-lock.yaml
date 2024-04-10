@@ -86,8 +86,8 @@ devDependencies:
     specifier: ^2.0.12
     version: 2.0.12
   '@sanity/types':
-    specifier: ^3.37.0
-    version: 3.37.0
+    specifier: ^3.37.2
+    version: 3.37.2
   '@typescript-eslint/eslint-plugin':
     specifier: ^7.5.0
     version: 7.5.0(@typescript-eslint/parser@7.5.0)(eslint@8.57.0)(typescript@5.4.4)
@@ -3307,6 +3307,16 @@ packages:
       '@types/react': 18.2.74
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@sanity/types@3.37.2:
+    resolution: {integrity: sha512-1EfKkNlJ86wIDtc7oFHb79JI8lKDOxKDYrkmwhvuHgJY83GpSABc1kFdbwAtWZfrWVWyqVXUv/KlNwA3b99y/g==}
+    dependencies:
+      '@sanity/client': 6.15.11
+      '@types/react': 18.2.74
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
 
   /@sanity/ui@1.9.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8):
     resolution: {integrity: sha512-AdWEVFaK0Snk6xxP0lGPVP3QQYKwzkfGFpFZnL9d6UtWt8yeuS8BMLVAzmXzg14hrqH50ex9nvNl3eq6a0MWiw==}
