@@ -28,7 +28,7 @@
 		"@types/react": "^18.2.74",
 		"@types/react-dom": "^18.2.24",
 		"@unpic/astro": "^0.0.44",
-		"astro": "^4.5.15",
+		"astro": "^4.5.18",
 		"astro-portabletext": "^0.9.7",
 		"astro-seo": "^0.8.3",
 		"groq": "^3.37.0",
