@@ -42,7 +42,7 @@
 		"@portabletext/types": "^2.0.12",
 		"@sanity/types": "^3.37.0",
 		"@typescript-eslint/eslint-plugin": "^7.5.0",
-		"@typescript-eslint/parser": "^7.5.0",
+		"@typescript-eslint/parser": "^7.6.0",
 		"astro-eslint-parser": "^0.17.0",
 		"astro-meta-tags": "^0.2.2",
 		"astro-robots-txt": "^1.0.0",
