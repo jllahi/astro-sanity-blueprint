@@ -63,8 +63,8 @@ dependencies:
     specifier: ^0.8.3
     version: 0.8.3(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.4.4)
   groq:
-    specifier: ^3.37.0
-    version: 3.37.0
+    specifier: ^3.38.0
+    version: 3.38.0
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -6631,6 +6631,11 @@ packages:
 
   /groq@3.37.0:
     resolution: {integrity: sha512-NFPppE5XrQoKW/L0roItGI498V5fyZQ0EB3qSRw26T9bxs1+7z9viZjilzn1ZGOu3gL5YvlWt8hQsptfzTKGgQ==}
+    engines: {node: '>=18'}
+    dev: false
+
+  /groq@3.38.0:
+    resolution: {integrity: sha512-d8b2HVgY2ATegkrMDkrfiE73i/+KnKXJ/El2GJtQsYHFYk4wkem4RNcbLaqIsw95OpIUZUwzDTJU8nzbHuXX0A==}
     engines: {node: '>=18'}
     dev: false
 
