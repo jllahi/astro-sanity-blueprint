@@ -25,7 +25,7 @@
 		"@sanity/image-url": "^1.0.2",
 		"@sanity/vision": "^3.36.4",
 		"@tailwindcss/typography": "^0.5.12",
-		"@types/react": "^18.2.74",
+		"@types/react": "^18.2.79",
 		"@types/react-dom": "^18.2.24",
 		"@unpic/astro": "^0.0.44",
 		"astro": "^4.5.15",
