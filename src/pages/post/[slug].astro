@@ -24,7 +24,9 @@ const post = await getPost(slug)
 <Layout seo={{ title: post.title! }}>
 	<section class="prose">
 		<div class="w-full">
-			<h1 transition:name={`post-title-${post.slug.current}`}>{post.title}</h1>
+			<h1 transition:name={`post-title-${post.slug.current}`} data-sanity-edit-target>
+				{post.title}
+			</h1>
 			{
 				post.mainImage ? (
 					<Image

@@ -29,21 +29,16 @@ const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://astro-sanity-blueprint.vercel.app',
-	output: 'hybrid',
-	adapter: vercel({
-		// webAnalytics: {
-		// 	enabled: true
-		// }
-		// imagesConfig: {
-		//   sizes: [320, 640, 1280],
-		// },
-	}),
+	output: 'server', // 'hybrid',
+	adapter: vercel(),
 	image: {
 		service: imageService(),
 	},
 	integrations: [
 		react(),
-		tailwind({ applyBaseStyles: false }),
+		tailwind({
+			applyBaseStyles: false,
+		}),
 		sanity({
 			projectId,
 			dataset,
@@ -51,6 +46,7 @@ export default defineConfig({
 			useCdn: false,
 			// `false` if you want to ensure fresh data
 			apiVersion: '2023-03-20', // Set to date of setup to use the latest API version
+			// perspective: 'previewDrafts',
 		}),
 		metaTags(),
 		sitemap({

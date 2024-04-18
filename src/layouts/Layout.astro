@@ -53,5 +53,43 @@ const { seo } = Astro.props
 			</main>
 			<Footer />
 		</div>
+		<script>
+			import { enableVisualEditing } from '@sanity/visual-editing'
+
+			// Enables visual editing overlays
+			// enableVisualEditing()
+			enableVisualEditing({
+				zIndex: 1000,
+			})
+
+			// Integrate with a router that uses the History API
+			enableVisualEditing({
+				history: {
+					subscribe: (navigate) => {
+						// eslint-disable-next-line @typescript-eslint/no-unused-vars
+						const handler = (event: PopStateEvent) => {
+							navigate({
+								type: 'push',
+								url: `${location.pathname}${location.search}`,
+							})
+						}
+						window.addEventListener('popstate', handler)
+						return () => window.removeEventListener('popstate', handler)
+					},
+					update: (update) => {
+						switch (update.type) {
+							case 'push':
+								return window.history.pushState(null, '', update.url)
+							case 'pop':
+								return window.history.back()
+							case 'replace':
+								return window.history.replaceState(null, '', update.url)
+							default:
+								throw new Error(`Unknown update type: ${update.type}`)
+						}
+					},
+				},
+			})
+		</script>
 	</body>
 </html>
