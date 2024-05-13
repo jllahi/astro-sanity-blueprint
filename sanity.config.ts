@@ -17,6 +17,8 @@ if (!projectId || !dataset) {
 
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
+import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
+import { media } from 'sanity-plugin-media'
 import { structureTool } from 'sanity/structure'
 import { schemaTypes } from './schema'
 
@@ -25,7 +27,7 @@ export default defineConfig({
 	title: 'astro-sanity-blueprint',
 	projectId,
 	dataset,
-	plugins: [structureTool(), visionTool()],
+	plugins: [structureTool(), visionTool(), media(), unsplashImageAsset()],
 	schema: {
 		types: schemaTypes,
 	},
