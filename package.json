@@ -31,7 +31,7 @@
 		"@unpic/astro": "^0.0.46",
 		"astro": "^4.9.2",
 		"astro-portabletext": "^0.10.0",
-		"astro-seo": "^0.8.3",
+		"astro-seo": "^0.8.4",
 		"groq": "^3.44.0",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
