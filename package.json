@@ -24,7 +24,7 @@
     "@sanity/astro": "^3.1.4",
     "@sanity/client": "^6.20.1",
     "@sanity/image-url": "^1.0.2",
-    "@sanity/vision": "^3.47.1",
+    "@sanity/vision": "^3.48.1",
     "@tailwindcss/typography": "^0.5.13",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
