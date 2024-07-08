@@ -35,7 +35,7 @@
     "groq": "^3.48.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sanity": "^3.48.1",
+    "sanity": "^3.49.0",
     "sanity-plugin-asset-source-unsplash": "^3.0.1",
     "sanity-plugin-media": "^2.2.5",
     "tailwindcss": "^3.4.4",
