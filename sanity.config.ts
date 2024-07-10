@@ -31,4 +31,7 @@ export default defineConfig({
 	schema: {
 		types: schemaTypes,
 	},
+	scheduledPublishing: {
+		enabled: false,
+	},
 })
