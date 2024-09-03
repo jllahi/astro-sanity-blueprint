@@ -19,19 +19,31 @@ import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import { media } from 'sanity-plugin-media'
+import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
-import { schemaTypes } from './schema'
+import { schemaTypes } from './sanity/schema'
 
 export default defineConfig({
 	name: 'astro-sanity-blueprint',
 	title: 'astro-sanity-blueprint',
 	projectId,
 	dataset,
-	plugins: [structureTool(), visionTool(), media(), unsplashImageAsset()],
+	plugins: [
+		structureTool(),
+		presentationTool({
+			previewUrl: location.origin,
+		}),
+		media(),
+		unsplashImageAsset(),
+		visionTool(),
+	],
 	schema: {
 		types: schemaTypes,
 	},
 	scheduledPublishing: {
+		enabled: false,
+	},
+	tasks: {
 		enabled: false,
 	},
 })

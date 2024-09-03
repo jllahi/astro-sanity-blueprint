@@ -50,7 +50,10 @@ export default defineConfig({
 			studioBasePath: '/studio',
 			useCdn: false,
 			// `false` if you want to ensure fresh data
-			apiVersion: '2023-03-20', // Set to date of setup to use the latest API version
+			apiVersion: '2024-08-10', // Set to date of setup to use the latest API version
+			stega: {
+				studioUrl: '/studio',
+			},
 		}),
 		metaTags(),
 		sitemap({

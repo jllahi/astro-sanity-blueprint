@@ -1,19 +1,22 @@
 ---
 // https://docs.astro.build/en/guides/view-transitions/
 import { ViewTransitions } from 'astro:transitions'
-import '@/styles/global.css'
+import '@/assets/styles/global.css'
 import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 import '@fontsource-variable/inter'
 import '@fontsource-variable/montserrat'
 import { SEO, type Props as SEOProps } from 'astro-seo'
 import { SITE_DESCRIPTION, SITE_IMAGE, SITE_TITLE } from '@/consts'
+import { VisualEditing } from '@sanity/astro/visual-editing'
 
 interface Props {
 	seo?: SEOProps
 }
 
 const { seo } = Astro.props
+
+const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED == 'true'
 ---
 
 <!doctype html>
@@ -53,5 +56,6 @@ const { seo } = Astro.props
 			</main>
 			<Footer />
 		</div>
+		<VisualEditing enabled={visualEditingEnabled} />
 	</body>
 </html>
