@@ -19,9 +19,29 @@ import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import { media } from 'sanity-plugin-media'
-import { presentationTool } from 'sanity/presentation'
+import {
+	defineDocuments,
+	defineLocations,
+	type DocumentLocation,
+	presentationTool,
+} from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
 import { schemaTypes } from './sanity/schema'
+
+const homeLocation = {
+	title: 'Home',
+	href: '/',
+} satisfies DocumentLocation
+
+export function resolveHref(documentType?: string, slug?: string): string | undefined {
+	switch (documentType) {
+		case 'post':
+			return slug ? `/post/${slug}` : undefined
+		default:
+			console.warn('Invalid document type:', documentType)
+			return undefined
+	}
+}
 
 export default defineConfig({
 	name: 'astro-sanity-blueprint',
@@ -31,6 +51,36 @@ export default defineConfig({
 	plugins: [
 		structureTool(),
 		presentationTool({
+			resolve: {
+				mainDocuments: defineDocuments([
+					{
+						route: '/post/:slug',
+						filter: `_type == "post" && slug.current == $slug`,
+					},
+				]),
+				locations: {
+					settings: defineLocations({
+						locations: [homeLocation],
+						message: 'This document is used on all pages',
+						tone: 'caution',
+					}),
+					post: defineLocations({
+						select: {
+							title: 'title',
+							slug: 'slug.current',
+						},
+						resolve: (doc) => ({
+							locations: [
+								{
+									title: doc?.title || 'Untitled',
+									href: resolveHref('post', doc?.slug)!,
+								},
+								homeLocation,
+							],
+						}),
+					}),
+				},
+			},
 			previewUrl: location.origin,
 		}),
 		media(),
