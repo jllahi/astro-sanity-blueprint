@@ -19,13 +19,9 @@ import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import { media } from 'sanity-plugin-media'
-import {
-	defineDocuments,
-	defineLocations,
-	type DocumentLocation,
-	presentationTool,
-} from 'sanity/presentation'
+import { type DocumentLocation, presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
+import { resolve } from './sanity/resolve'
 import { schemaTypes } from './sanity/schema'
 
 const homeLocation = {
@@ -51,36 +47,7 @@ export default defineConfig({
 	plugins: [
 		structureTool(),
 		presentationTool({
-			resolve: {
-				mainDocuments: defineDocuments([
-					{
-						route: '/post/:slug',
-						filter: `_type == "post" && slug.current == $slug`,
-					},
-				]),
-				locations: {
-					settings: defineLocations({
-						locations: [homeLocation],
-						message: 'This document is used on all pages',
-						tone: 'caution',
-					}),
-					post: defineLocations({
-						select: {
-							title: 'title',
-							slug: 'slug.current',
-						},
-						resolve: (doc) => ({
-							locations: [
-								{
-									title: doc?.title || 'Untitled',
-									href: resolveHref('post', doc?.slug)!,
-								},
-								homeLocation,
-							],
-						}),
-					}),
-				},
-			},
+			resolve,
 			previewUrl: location.origin,
 		}),
 		media(),
