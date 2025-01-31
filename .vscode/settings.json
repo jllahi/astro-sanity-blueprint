@@ -1,9 +1,16 @@
 {
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"files.autoSave": "onWindowChange",
-	"editor.tabSize": 2,
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"editor.formatOnSave": true,
-	"files.autoSaveWhenNoErrors": true,
-	"tailwindCSS.emmetCompletions": true
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.autoSave": "onWindowChange",
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "files.autoSaveWhenNoErrors": true,
+  "tailwindCSS.emmetCompletions": true,
+  "files.exclude": {
+    ".vercel": true,
+    ".astro": true,
+    ".github": true,
+    "node_modules": true,
+    "pnpm-lock.yaml": true
+  }
 }

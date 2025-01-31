@@ -3,26 +3,11 @@ import type { PortableTextBlock } from '@portabletext/types'
 import type { ImageAsset, Slug } from '@sanity/types'
 import groq from 'groq'
 import { sanityClient } from 'sanity:client'
+import { loadQuery } from '../../sanity/load-query'
 
 export async function getPosts(): Promise<Post[]> {
-  return await sanityClient.fetch(
-    groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
-			...,
-			'lqip': mainImage.asset->metadata.lqip,
-			mainImage {
-				...,
-				asset->{
-					...,
-					metadata
-				}
-			},
-		}`
-  )
-}
-
-export async function getPost(slug: string): Promise<Post> {
-  return await sanityClient.fetch(
-    groq`*[_type == "post" && slug.current == $slug][0] {
+  return await loadQuery<Array<Post>>({
+    query: `*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
 			...,
 			'lqip': mainImage.asset->metadata.lqip,
 			mainImage {
@@ -33,28 +18,25 @@ export async function getPost(slug: string): Promise<Post> {
 				}
 			},
 		}`,
-    {
-      slug,
-    }
-  )
+  })
 }
 
-// export async function getPostImage(slug: string): Promise<Post> {
-//   return await sanityClient.fetch(
-//     groq`*[_type == "post" && slug.current == $slug][0] {
-// 			mainImage {
-// 				...,
-// 				asset->{
-// 					...,
-// 					metadata
-// 				}
-// 			},
-// 		}`,
-//     {
-//       slug,
-//     }
-//   )
-// }
+export async function getPost(slug: string): Promise<Post> {
+  return await loadQuery<Post>({
+    query: `*[_type == "post" && slug.current == $slug][0] {
+			...,
+			'lqip': mainImage.asset->metadata.lqip,
+			mainImage {
+				...,
+				asset->{
+					...,
+					metadata
+				}
+			},
+		}`,
+    params: { slug },
+  })
+}
 
 // export interface PostPayload {
 //   data: Post

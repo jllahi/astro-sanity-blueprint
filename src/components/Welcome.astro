@@ -1,22 +1,54 @@
 ---
-import { Image } from 'astro:assets'
+// import { Image } from 'astro:assets'
 
-import welcomeImage from '../../public/open-graph.png'
+// import welcomeImage from '../../public/open-graph.png'
 ---
 
-<div
-	class="my-2 flex flex-col place-content-center place-items-center gap-4 text-center text-neutral-800 md:my-14"
->
-	<Image
-		src={welcomeImage}
-		alt="Astro + Sanity"
-		class="w-full px-4 sm:w-1/2"
-		width="350"
-		height="200"
-		loading={'eager'}
-	/>
-	<h1 class="text-2xl font-black">The official Sanity integration for Astro</h1>
-	<a class="my-auto text-sm underline" href="/studio" target="_blank"
-		>Enter the Studio and create some content</a
-	>
-</div>
+<section>
+  <div class="container relative border-b border-gray-200">
+    <div class="mx-auto max-w-2xl pb-24 pt-2 text-center lg:max-w-4xl lg:px-12">
+      <div class="flex flex-col items-center gap-4">
+        <div class="text-md prose uppercase leading-6">A starter template for</div>
+        <h1
+          class="font-display text-5xl font-bold tracking-tighter text-black sm:text-6xl md:text-7xl lg:text-8xl">
+          <a class="text-red-500" href="https://sanity.io/" target="_blank"> Sanity </a>{' '}
+          +{' '}
+          <a class="text-[#000]" href="https://astro.build/" target="_blank"> Astro </a>
+        </h1>
+      </div>
+      <div class="prose mt-6 space-y-6 text-gray-700 sm:prose-lg md:prose-xl lg:prose-2xl">
+        <p>
+          This starter is a statically generated site that uses Astro for the frontend and Sanity to
+          handle its content. It comes with an embeded Sanity Studio that offers features like
+          real-time collaboration, instant side-by-side content previews, and intuitive editing.
+        </p>
+      </div>
+      <div class="flex flex-col items-center gap-4">
+        <!-- <GetStartedCode /> -->
+        <a
+          href="https://www.sanity.io/docs"
+          class="inline-flex text-xs text-red-500 underline hover:text-gray-900 md:text-sm"
+          target="_blank"
+          rel="noopener noreferrer">
+          Sanity Documentation
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="ml-1 inline h-4 w-4"
+            fill="currentColor">
+            <path
+              d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <div class="border-gray-10 border-t">
+    <div class="container">
+      <aside class="py-12 sm:py-20">
+        <Suspense>{await AllPosts()}</Suspense>
+      </aside>
+    </div>
+  </div> -->

@@ -1,57 +1,98 @@
 ---
-export const prerender = true
+export const prerender = false
 
-import type { InferGetStaticParamsType } from 'astro'
-import { PortableText } from 'astro-portabletext'
+// import type { InferGetStaticParamsType } from 'astro'
 import Layout from '@/layouts/Layout.astro'
 import { formatDate } from '@/utils'
-import { urlFor } from '@/utils/image'
-import { getPost, getPosts } from '@/utils/sanity'
-// import { Image } from 'astro:assets'
+import { urlForImage } from '@/utils/image'
+import { type Post } from '@/utils/sanity'
+import type { PortableTextBlock } from '@portabletext/types'
+import type { SanityDocument } from '@sanity/client'
 import { Image } from '@unpic/astro'
+import { PortableText } from 'astro-portabletext'
+import { loadQuery } from '../../../sanity/load-query'
 
 export async function getStaticPaths() {
-	const posts = await getPosts()
-	return posts.map((post) => ({
-		params: { slug: post.slug.current },
-	}))
+  // const posts = await getPosts()
+  const { data: posts } = await loadQuery<SanityDocument[]>({
+    query: `*[_type == "post"]`,
+  })
+
+  // return posts.data.map((post) => ({
+  //   params: { slug: post.slug.current },
+  // }))
+  return posts.map(({ slug }) => {
+    return {
+      params: {
+        slug: slug.current,
+      },
+    }
+  })
 }
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>
-const { slug } = Astro.params as Params
+// type Params = InferGetStaticParamsType<typeof getStaticPaths>
+// const { slug } = Astro.params as Params
+const { params } = Astro
 
-const post = await getPost(slug)
+// const post = await getPost(params.slug as string)
+const { data: post } = await loadQuery<Post>({
+  query: `*[_type == "post" && slug.current == $slug][0]`,
+  params,
+})
 ---
 
 <Layout seo={{ title: post.title! }}>
-	<section class="prose">
-		<div class="w-full">
-			<h1 transition:name={`post-title-${post.slug.current}`}>{post.title}</h1>
-			{
-				post.mainImage ? (
-					<Image
-						src={urlFor(post.mainImage).width(640).height(420).url()}
-						alt="Astro + Sanity"
-						class="w-full rounded"
-						width={640}
-						height={420}
-						loading={'eager'}
-						transition:name={`post-image-${post.slug.current}`}
-						placeholder={'lqip'}
-						background={post.lqip}
-					/>
-				) : (
-					<div class="hidden" />
-				)
-			}
-			<p class="text-xl">{post.excerpt}</p>
+  <article class="grid gap-12">
+    <!-- <div class="container my-12 grid gap-12 lg:my-24"> -->
+    <div>
+      <div class="mb-6 grid gap-6 border-b border-gray-200 pb-6">
+        <div class="flex max-w-3xl flex-col gap-6">
+          <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-7xl">
+            {post.title}
+          </h1>
+        </div>
+        <!-- <div class="flex max-w-3xl items-center gap-4">
+              {
+                post.author && post.author.firstName && post.author.lastName && (
+                  <Avatar person={post.author} date={post.date} />
+                )
+              }
+            </div> -->
+        <p class="text-sm text-black/60">
+          {formatDate(post._createdAt)}
+        </p>
+      </div>
+      <div class="grid max-w-4xl gap-6">
+        <div class="">
+          <Image
+            src={urlForImage(post.mainImage).width(640).height(420).url()}
+            alt="Astro + Sanity"
+            class="w-full rounded-2xl"
+            width={800}
+            height={480}
+            loading={'eager'}
+            transition:name={`post-image-${post.slug.current}`}
+            placeholder={'lqip'}
+            background={post.lqip}
+          />
+        </div>
+        {
+          post.body?.length && (
+            <div class="prose prose-a:text-red-500">
+              <PortableText value={post.body as PortableTextBlock[]} />
+            </div>
+          )
+        }
+      </div>
+    </div>
+    <!-- </div> -->
 
-			<p class="text-sm">
-				{formatDate(post._createdAt)}
-			</p>
-			<div class="text-sans">
-				<PortableText value={post.body} />
-			</div>
-		</div>
-	</section>
+    <!-- <div class="border-t border-gray-100">
+      <div class="container my-12 grid gap-12 lg:my-24">
+        <aside>
+          <Suspense>{await MorePosts({ skip: post._id, limit: 2 })}</Suspense>
+        </aside>
+      </div>
+    </div> -->
+  </article>
 </Layout>

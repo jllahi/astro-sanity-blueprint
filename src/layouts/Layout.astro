@@ -1,17 +1,16 @@
 ---
-// https://docs.astro.build/en/guides/view-transitions/
 import '@/assets/styles/global.css'
 import Footer from '@/components/Footer.astro'
 import Header from '@/components/Header.astro'
-import { SITE_DESCRIPTION, SITE_IMAGE, SITE_TITLE } from '@/consts'
+import { SITE_TITLE } from '@/consts'
 import '@fontsource-variable/inter'
 import '@fontsource-variable/montserrat'
 import { VisualEditing } from '@sanity/astro/visual-editing'
 import { SEO, type Props as SEOProps } from 'astro-seo'
-import { ViewTransitions } from 'astro:transitions'
+import { ClientRouter } from 'astro:transitions'
 
 interface Props {
-	seo?: SEOProps
+  seo?: SEOProps
 }
 
 const { seo } = Astro.props
@@ -21,41 +20,31 @@ const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLE
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="sitemap" href="/sitemap-index.xml" />
-		<link
-			rel="alternate"
-			type="application/rss+xml"
-			title={SITE_TITLE}
-			href={`${Astro.site}rss.xml`}
-		/>
-		<SEO
-			title={seo?.title ?? SITE_TITLE}
-			titleTemplate={`%s — ${SITE_TITLE}`}
-			description={seo?.description ?? SITE_DESCRIPTION}
-			openGraph={{
-				basic: {
-					title: seo?.title || SITE_TITLE,
-					type: 'website', // TODO: https://ogp.me/#types
-					image: SITE_IMAGE || '/open-graph.jpg',
-				},
-			}}
-			{...seo}
-		/>
-		<ViewTransitions />
-	</head>
-	<body class="bg-color-white">
-		<div class="flex h-svh flex-col items-center">
-			<Header />
-			<main class="w-full max-w-2xl flex-grow px-4 py-14">
-				<slot />
-			</main>
-			<Footer />
-		</div>
-		<VisualEditing enabled={visualEditingEnabled} zIndex={1000} />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={SITE_TITLE}
+      href={`${Astro.site}rss.xml`}
+    />
+    <SEO {...seo} />
+    <ClientRouter />
+  </head>
+  <body class="bg-color-white antialiased">
+    <div class="flex h-svh w-full flex-col items-center">
+      <Header />
+      <!-- <main class="w-full max-w-2xl flex-grow px-4 py-14"> -->
+      <main class="container my-44 grid flex-grow gap-12">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+    <VisualEditing enabled={visualEditingEnabled} />
+    <!-- <VisualEditing enabled={visualEditingEnabled} zIndex={1000} /> -->
+  </body>
 </html>

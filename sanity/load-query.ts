@@ -1,3 +1,4 @@
+// load-query.ts
 import { type QueryParams } from 'sanity'
 import { sanityClient } from 'sanity:client'
 
@@ -25,6 +26,7 @@ export async function loadQuery<QueryResponse>({
 		resultSourceMap: visualEditingEnabled ? 'withKeyArraySelector' : false,
 		stega: visualEditingEnabled,
 		...(visualEditingEnabled ? { token } : {}),
+		useCdn: !visualEditingEnabled,
 	})
 
 	return {

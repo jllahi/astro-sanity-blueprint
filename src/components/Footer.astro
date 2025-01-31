@@ -1,14 +1,25 @@
 ---
 import { SITE_TITLE } from '@/consts'
-const today = new Date()
+// const today = new Date()
 ---
 
-<footer
-	class="mt-8 flex w-full flex-row justify-between bg-color-sanity px-4 py-2 text-sm font-medium text-white"
->
-	<div>
-		&copy; {today.getFullYear()}
-		{SITE_TITLE}
-	</div>
-	<a class="my-auto underline" href="/studio" target="_blank">Enter the Studio</a>
+<footer class="w-full border-t border-gray-300 bg-gray-200">
+  <div class="container mx-auto">
+    <div class="flex flex-col items-center py-28 lg:flex-row">
+      <h3
+        class="mb-10 text-center text-4xl font-bold leading-tight tracking-tighter lg:mb-0 lg:w-1/2 lg:pr-4 lg:text-center lg:text-5xl">
+        {SITE_TITLE}
+      </h3>
+      <div class="flex flex-col items-center justify-center gap-3 lg:w-1/2 lg:flex-row lg:pl-4">
+        <a
+          href="https://github.com/sanity-io/sanity-template-nextjs-clean"
+          class="flex items-center gap-2 rounded-full bg-black px-6 py-3 text-white transition-colors duration-200 hover:bg-red-500 focus:bg-cyan-500"
+          target="_blank"
+          rel="noopener noreferrer">
+          View on GitHub
+        </a>
+        <a href="/studio" target="_blank" class="mx-3 hover:underline">Enter the Studio</a>
+      </div>
+    </div>
+  </div>
 </footer>

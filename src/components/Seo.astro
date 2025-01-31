@@ -1,0 +1,23 @@
+---
+import { SITE_DESCRIPTION, SITE_IMAGE, SITE_TITLE } from '@/consts'
+import { SEO, type SEOProps } from 'astro-seo'
+
+interface Props {
+	seo?: SEOProps
+}
+
+const { seo } = Astro.props
+---
+
+<SEO
+	titleTemplate={`%s | ${SITE_TITLE}`}
+	title={seo?.title || SITE_TITLE}
+	description={seo?.description || SITE_DESCRIPTION}
+	openGraph={{
+		basic: {
+			title: seo?.openGraph?.basic.title || seo?.title || SITE_TITLE,
+			type: seo?.openGraph?.basic.type || 'website',
+			image: seo?.openGraph?.basic.image || SITE_IMAGE,
+		},
+	}}
+/>

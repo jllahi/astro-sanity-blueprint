@@ -1,27 +1,58 @@
 ---
-export const prerender = true
+export const prerender = false
 
 import Card from '@/components/Card.astro'
 import Welcome from '@/components/Welcome.astro'
 import Layout from '@/layouts/Layout.astro'
-import { getPosts } from '@/utils/sanity'
+// import { getPosts } from '@/utils/sanity'
+import { loadQuery } from '../../sanity/load-query'
+import type { Post } from '@/utils/sanity'
+import NoPosts from '@/components/NoPosts.astro'
 
-const posts = await getPosts()
+// const posts = await getPosts()
+const { data: posts } = await loadQuery<Post[]>({
+  query: `*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
+			...,
+			'lqip': mainImage.asset->metadata.lqip,
+			mainImage {
+				...,
+				asset->{
+					...,
+					metadata
+				}
+			},
+		}`,
+})
+// console.log('POSTS->', posts.length)
 ---
 
 <Layout seo={{ title: 'The official Sanity integration for Astro' }}>
-	<section class="flex flex-col gap-8">
-		{posts.length ? <h1 class="text-xl font-normal">Blog posts</h1> : null}
-		{
-			posts.length ? (
-				posts.map((post) => (
-					<>
-						<Card post={post} />
-					</>
-				))
-			) : (
-				<Welcome />
-			)
-		}
-	</section>
+  
+    <Welcome />
+  
+  <section class="flex flex-col">
+    {
+      posts.length ? (
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+          Recent Posts
+        </h2>
+        <p class="mt-2 text-lg leading-8 text-gray-600">
+          These {posts.length} blog posts are populated from your Sanity Studio.
+        </p>
+      ) : null
+    }
+    {
+      posts.length ? (
+        <div class="mt-6 space-y-12 border-t border-gray-200 pt-6">
+          {posts.map((post) => (
+          <div class="">
+            <Card post={post} />
+          </div>
+          ))}
+        </div>
+      ) : (
+        <NoPosts />
+      )
+    }
+  </section>
 </Layout>

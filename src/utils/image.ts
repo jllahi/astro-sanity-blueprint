@@ -5,6 +5,6 @@ import { sanityClient } from 'sanity:client'
 
 const builder = imageUrlBuilder(sanityClient)
 
-export function urlFor(source: Image) {
-	return builder.image(source)
+export function urlForImage(source: Image) {
+  return builder.image(source)
 }
