@@ -1,13 +1,14 @@
+import process from 'node:process'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
+import vercel from '@astrojs/vercel'
 import sanity from '@sanity/astro'
 import { imageService } from '@unpic/astro/service'
 import metaTags from 'astro-meta-tags'
 import robotsTxt from 'astro-robots-txt'
 import { defineConfig } from 'astro/config'
 import { loadEnv } from 'vite'
-import vercel from '@astrojs/vercel'
 
 // Loading environment variables from .env files
 // https://docs.astro.build/en/guides/configuring-astro/#environment-variables

@@ -1,13 +1,14 @@
 ---
-import '@/assets/styles/global.css'
+import type { Props as SEOProps } from 'astro-seo'
 import Footer from '@/components/Footer.astro'
 import Header from '@/components/Header.astro'
 import { SITE_TITLE } from '@/consts'
+import { VisualEditing } from '@sanity/astro/visual-editing'
+import { SEO } from 'astro-seo'
+import { ClientRouter } from 'astro:transitions'
+import '@/assets/styles/global.css'
 import '@fontsource-variable/inter'
 import '@fontsource-variable/montserrat'
-import { VisualEditing } from '@sanity/astro/visual-editing'
-import { SEO, type Props as SEOProps } from 'astro-seo'
-import { ClientRouter } from 'astro:transitions'
 
 interface Props {
   seo?: SEOProps
@@ -15,7 +16,7 @@ interface Props {
 
 const { seo } = Astro.props
 
-const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED == 'true'
+const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
 ---
 
 <!doctype html>

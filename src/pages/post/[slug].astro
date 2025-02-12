@@ -1,16 +1,16 @@
 ---
-export const prerender = false
-
+import type { Post } from '@/utils/sanity'
+import type { PortableTextBlock } from '@portabletext/types'
+import type { SanityDocument } from '@sanity/client'
 // import type { InferGetStaticParamsType } from 'astro'
 import Layout from '@/layouts/Layout.astro'
 import { formatDate } from '@/utils'
 import { urlForImage } from '@/utils/image'
-import { type Post } from '@/utils/sanity'
-import type { PortableTextBlock } from '@portabletext/types'
-import type { SanityDocument } from '@sanity/client'
 import { Image } from '@unpic/astro'
 import { PortableText } from 'astro-portabletext'
 import { loadQuery } from '../../../sanity/load-query'
+
+export const prerender = false
 
 export async function getStaticPaths() {
   // const posts = await getPosts()
@@ -36,9 +36,21 @@ const { params } = Astro
 
 // const post = await getPost(params.slug as string)
 const { data: post } = await loadQuery<Post>({
-  query: `*[_type == "post" && slug.current == $slug][0]`,
+  // query: `*[_type == "post" && slug.current == $slug][0]`,
+  query: `*[_type == "post" && slug.current == $slug][0] {
+			...,
+			'lqip': mainImage.asset->metadata.lqip,
+			mainImage {
+				...,
+				asset->{
+					...,
+					metadata
+				}
+			},
+		}`,
   params,
 })
+console.log('🚀 ~ post:', post)
 ---
 
 <Layout seo={{ title: post.title! }}>
@@ -65,7 +77,7 @@ const { data: post } = await loadQuery<Post>({
       <div class="grid max-w-4xl gap-6">
         <div class="">
           <Image
-            src={urlForImage(post.mainImage).width(640).height(420).url()}
+            src={urlForImage(post.mainImage.asset).width(640).height(420).url()}
             alt="Astro + Sanity"
             class="w-full rounded-2xl"
             width={800}
@@ -73,13 +85,13 @@ const { data: post } = await loadQuery<Post>({
             loading={'eager'}
             transition:name={`post-image-${post.slug.current}`}
             placeholder={'lqip'}
-            background={post.lqip}
+            background={post.mainImage.asset?.metadata?.lqip}
           />
         </div>
         {
-          post.body?.length && (
+          post.body && (
             <div class="prose prose-a:text-red-500">
-              <PortableText value={post.body as PortableTextBlock[]} />
+              <PortableText value={post.content as PortableTextBlock[]} />
             </div>
           )
         }

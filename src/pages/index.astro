@@ -1,20 +1,20 @@
 ---
-export const prerender = false
-
+import type { Post } from '@/utils/sanity'
+// import type { Post } from '@/sanity.types'
 import Card from '@/components/Card.astro'
+import NoPosts from '@/components/NoPosts.astro'
 import Welcome from '@/components/Welcome.astro'
 import Layout from '@/layouts/Layout.astro'
-// import { getPosts } from '@/utils/sanity'
 import { loadQuery } from '../../sanity/load-query'
-import type { Post } from '@/utils/sanity'
-import NoPosts from '@/components/NoPosts.astro'
+
+export const prerender = false
 
 // const posts = await getPosts()
 const { data: posts } = await loadQuery<Post[]>({
   query: `*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
 			...,
 			'lqip': mainImage.asset->metadata.lqip,
-			mainImage {
+			coverImage {
 				...,
 				asset->{
 					...,
@@ -27,27 +27,28 @@ const { data: posts } = await loadQuery<Post[]>({
 ---
 
 <Layout seo={{ title: 'The official Sanity integration for Astro' }}>
-  
-    <Welcome />
-  
+  <Welcome />
+
   <section class="flex flex-col">
     {
-      posts.length ? (
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
-          Recent Posts
-        </h2>
-        <p class="mt-2 text-lg leading-8 text-gray-600">
-          These {posts.length} blog posts are populated from your Sanity Studio.
-        </p>
-      ) : null
+      posts.length && (
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+            Recent Posts
+          </h2>
+          <p class="mt-2 text-lg leading-8 text-gray-600">
+            These {posts.length} blog posts are populated from your Sanity Studio.
+          </p>
+        </div>
+      )
     }
     {
       posts.length ? (
         <div class="mt-6 space-y-12 border-t border-gray-200 pt-6">
           {posts.map((post) => (
-          <div class="">
-            <Card post={post} />
-          </div>
+            <div class="">
+              <Card post={post} />
+            </div>
           ))}
         </div>
       ) : (

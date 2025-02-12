@@ -1,5 +1,5 @@
-import {defineField, defineType} from 'sanity'
-import {LinkIcon} from '@sanity/icons'
+import { LinkIcon } from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
 
 /**
  * Link schema object. This link object lets the user first select the type of link and then
@@ -20,9 +20,9 @@ export const link = defineType({
       initialValue: 'url',
       options: {
         list: [
-          {title: 'URL', value: 'href'},
-          {title: 'Page', value: 'page'},
-          {title: 'Post', value: 'post'},
+          { title: 'URL', value: 'href' },
+          { title: 'Page', value: 'page' },
+          { title: 'Post', value: 'post' },
         ],
         layout: 'radio',
       },
@@ -31,7 +31,7 @@ export const link = defineType({
       name: 'href',
       title: 'URL',
       type: 'url',
-      hidden: ({parent}) => parent?.linkType !== 'href',
+      hidden: ({ parent }) => parent?.linkType !== 'href',
       validation: (Rule) =>
         // Custom validation to ensure URL is provided if the link type is 'href'
         Rule.custom((value, context: any) => {
@@ -45,8 +45,8 @@ export const link = defineType({
       name: 'page',
       title: 'Page',
       type: 'reference',
-      to: [{type: 'page'}],
-      hidden: ({parent}) => parent?.linkType !== 'page',
+      to: [{ type: 'page' }],
+      hidden: ({ parent }) => parent?.linkType !== 'page',
       validation: (Rule) =>
         // Custom validation to ensure page reference is provided if the link type is 'page'
         Rule.custom((value, context: any) => {
@@ -60,8 +60,8 @@ export const link = defineType({
       name: 'post',
       title: 'Post',
       type: 'reference',
-      to: [{type: 'post'}],
-      hidden: ({parent}) => parent?.linkType !== 'post',
+      to: [{ type: 'post' }],
+      hidden: ({ parent }) => parent?.linkType !== 'post',
       validation: (Rule) =>
         // Custom validation to ensure post reference is provided if the link type is 'post'
         Rule.custom((value, context: any) => {

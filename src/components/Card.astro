@@ -1,9 +1,9 @@
 ---
+import type { Post } from '@/utils/sanity'
+// import type { Post } from '@/sanity.types'
+import placeholderImage from '@/assets/placeholder-image-square.jpg'
 import { formatDate } from '@/utils'
 import { urlForImage } from '@/utils/image'
-import type { Post } from '@/utils/sanity'
-// import { Image } from 'astro:assets'
-import placeholderImage from '@/assets/placeholder-image-square.jpg'
 import { Image } from '@unpic/astro'
 
 interface Props {
@@ -15,18 +15,18 @@ const { post } = Astro.props
 
 <div class="flex flex-col gap-6 sm:flex-row">
   {
-    post.mainImage ? (
+    post.coverImage?.asset ? (
       <a class="hover:underline" href={`/post/${post.slug.current}`}>
         <Image
           class="h-40 w-60 border border-color-placeholder bg-color-placeholder object-cover"
-          src={urlForImage(post.mainImage).width(240).height(160).url()}
+          src={urlForImage(post.coverImage.asset).width(240).height(160).url()}
           width={240}
           height={160}
           alt={post.excerpt || post.title}
           loading={'eager'}
           transition:name={`post-image-${post.slug.current}`}
           placeholder={'lqip'}
-          background={post.lqip}
+          background={post.coverImage.asset.metadata?.lqip}
         />
       </a>
     ) : (

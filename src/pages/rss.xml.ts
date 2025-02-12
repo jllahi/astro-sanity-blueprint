@@ -1,8 +1,8 @@
+import type { APIContext } from 'astro'
 // import { filterContent } from '@/utils/content'
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts'
-import { getPosts } from '@/utils/sanity'
+import { getPosts } from '@/utils/queries'
 import rss from '@astrojs/rss'
-import type { APIContext } from 'astro'
 
 export async function GET(context: APIContext) {
   // const allPosts = await getCollection('posts')

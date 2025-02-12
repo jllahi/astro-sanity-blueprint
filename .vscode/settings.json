@@ -8,7 +8,7 @@
   "tailwindCSS.emmetCompletions": true,
   "files.exclude": {
     ".vercel": true,
-    ".astro": true,
+    ".astro": false,
     ".github": true,
     "node_modules": true,
     "pnpm-lock.yaml": true

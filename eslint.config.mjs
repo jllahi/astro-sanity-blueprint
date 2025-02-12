@@ -4,11 +4,11 @@ import antfu from '@antfu/eslint-config'
 export default antfu(
   {
     react: true,
-    svelte: true,
+    // svelte: true,
     astro: true,
     stylistic: false,
     // formatters: true,
-    ignores: ['.astro', '.dist', 'pnpm-lock.yaml'],
+    ignores: ['.astro', '.dist', 'pnpm-lock.yaml', 'src/sanity.types.ts'],
   }
 
   // A11y

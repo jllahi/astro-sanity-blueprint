@@ -7,17 +7,17 @@ const { href, class: className, ...props } = Astro.props
 
 const { pathname } = Astro.url
 const subpath = pathname.match(/[^/]+/g)
-const isActive = href === pathname || href === '/' + subpath?.[0]
+const isActive = href === pathname || href === `/${subpath?.[0]}`
 ---
 
 <a href={href} class:list={[className, { active: isActive }]} {...props}>
-	<slot />
+  <slot />
 </a>
 <style>
-	a {
-		@apply inline-block no-underline;
-	}
-	a.active {
-		@apply underline;
-	}
+  a {
+    @apply inline-block no-underline;
+  }
+  a.active {
+    @apply underline;
+  }
 </style>

@@ -1,12 +1,12 @@
+import type { Post } from '@/sanity.types'
 // import { useSanityClient } from "@sanity/astro";
-import type { PortableTextBlock } from '@portabletext/types'
-import type { ImageAsset, Slug } from '@sanity/types'
-import groq from 'groq'
-import { sanityClient } from 'sanity:client'
+// import type { PortableTextBlock } from '@portabletext/types'
+// import groq from 'groq'
+// import { sanityClient } from 'sanity:client'
 import { loadQuery } from '../../sanity/load-query'
 
 export async function getPosts(): Promise<Post[]> {
-  return await loadQuery<Array<Post>>({
+  return await loadQuery<Array<PostPayload>>({
     query: `*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
 			...,
 			'lqip': mainImage.asset->metadata.lqip,
@@ -22,7 +22,7 @@ export async function getPosts(): Promise<Post[]> {
 }
 
 export async function getPost(slug: string): Promise<Post> {
-  return await loadQuery<Post>({
+  return await loadQuery<PostPayload>({
     query: `*[_type == "post" && slug.current == $slug][0] {
 			...,
 			'lqip': mainImage.asset->metadata.lqip,
@@ -38,26 +38,26 @@ export async function getPost(slug: string): Promise<Post> {
   })
 }
 
-// export interface PostPayload {
-//   data: Post
-//   sourceMap: Record<string, any>
-//   perspective: 'published' | 'previewDrafts'
+export interface PostPayload {
+  data: Post
+  sourceMap: Record<string, any>
+  perspective: 'published' | 'previewDrafts'
+}
+// export interface Post {
+//   _type: 'post'
+//   _createdAt: string
+//   title: string
+//   slug: Slug
+//   excerpt: string
+//   mainImage: ImageAsset
+//   body: PortableTextBlock[]
+//   lqip: string
 // }
-export interface Post {
-  _type: 'post'
-  _createdAt: string
-  title: string
-  slug: Slug
-  excerpt: string
-  mainImage: ImageAsset
-  body: PortableTextBlock[]
-  lqip: string
-}
 
-export interface Image {
-  asset: {
-    metadata: {
-      lqip: string
-    }
-  }
-}
+// export interface Image {
+//   asset: {
+//     metadata: {
+//       lqip: string
+//     }
+//   }
+// }
