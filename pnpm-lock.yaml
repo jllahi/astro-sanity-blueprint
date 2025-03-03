@@ -75,8 +75,8 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       groq:
-        specifier: ^3.75.0
-        version: 3.75.0
+        specifier: ^3.77.2
+        version: 3.77.2
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -427,6 +427,11 @@ packages:
 
   '@babel/parser@7.26.8':
     resolution: {integrity: sha512-TZIQ25pkSoaKEYYaHbbxkfL36GNsQ6iFiBbeuzAkLnXayKR1yP1zFe+NxuZWWsUyvt8icPU9CCq0sgWGXR1GEw==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
+  '@babel/parser@7.26.9':
+    resolution: {integrity: sha512-81NWa1njQblgZbQHxWHpxxCzNsa3ZwvFqpUg7P+NNUU6f3UU2jBEg4OlF/J6rl8+PQGh1q6/zWScd001YwcA5A==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -883,6 +888,10 @@ packages:
     resolution: {integrity: sha512-eUuWapzEGWFEpHFxgEaBG8e3n6S8L3MSu0oda755rOfabWPnh0Our1AozNFVUxGFIhbKgd1ksprsoDGMinTOTA==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/types@7.26.9':
+    resolution: {integrity: sha512-Y3IR1cRnOxOCDvMmNiym7XpXQ93iGDDPHx+Zj+NM+rg0fBaShfQLkg+hKPaZCEvg5N/LeCo4+Rj/i3FuJsIQaw==}
+    engines: {node: '>=6.9.0'}
+
   '@clack/core@0.4.1':
     resolution: {integrity: sha512-Pxhij4UXg8KSr7rPek6Zowm+5M22rbd2g1nfojHJkxp5YkFqiZ2+YLEM/XGVIzvGOcM0nqjIFxrpDwWRZYWYjA==}
 
@@ -904,6 +913,9 @@ packages:
   '@codemirror/lint@6.8.4':
     resolution: {integrity: sha512-u4q7PnZlJUojeRe8FJa/njJcMctISGgPQ4PnWsd9268R4ZTtU+tfFYmwkBvgcrK2+QQ8tYFVALVb5fVJykKc5A==}
 
+  '@codemirror/search@6.5.10':
+    resolution: {integrity: sha512-RMdPdmsrUf53pb2VwflKGHEe1XVM07hI7vV2ntgw1dmqhimpatSJKva4VA9h4TLUDOD4EIF02201oZurpnEFsg==}
+
   '@codemirror/search@6.5.9':
     resolution: {integrity: sha512-7DdQ9aaZMMxuWB1u6IIFWWuK9NocVZwvo4nG8QjJTS6oZGvteoLSiXw3EbVZVlO08Ri2ltO89JVInMpfcJxhtg==}
 
@@ -915,6 +927,9 @@ packages:
 
   '@codemirror/view@6.36.2':
     resolution: {integrity: sha512-DZ6ONbs8qdJK0fdN7AB82CgI6tYXf4HWk1wSVa0+9bhVznCuuvhQtX8bFBoy3dv8rZSQqUd8GvhVAcielcidrA==}
+
+  '@codemirror/view@6.36.4':
+    resolution: {integrity: sha512-ZQ0V5ovw/miKEXTvjgzRyjnrk9TwriUB1k4R5p7uNnHR9Hus+D1SXHGdJshijEzPFjU25xea/7nhIeSqYFKdbA==}
 
   '@csstools/color-helpers@5.0.1':
     resolution: {integrity: sha512-MKtmkA0BX87PKaO1NFRTFH+UnkgnmySQOvNxJubsadusqPEC2aJ9MOQiMceZJJ6oitUl/i0L6u0M1IrmAOmgBA==}
@@ -4405,6 +4420,10 @@ packages:
     resolution: {integrity: sha512-ouCfZyR7hXN+mG6Sb8SBKle4GhHMa++tVMuZ4UXM9roqMkhJQ/EaAjMvlmGWsEHFrnPCkexWjMM8FGCK+OqCIA==}
     engines: {node: '>=18'}
 
+  groq@3.77.2:
+    resolution: {integrity: sha512-cuyOru3Bu2zdp+5MXGa9NBohhD028ykEaURByvY45VA0+rF3aTLMkzGpcyogAzoLQJGD8m2yB+uLZA58XhSHWw==}
+    engines: {node: '>=18'}
+
   gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
     hasBin: true
@@ -5891,6 +5910,10 @@ packages:
     resolution: {integrity: sha512-MjOadfU3Ys9KYoX0AdkBlFEF1Vx37uCCeN4ZHnmwm9FfpbsGWMZeBLMmmpY+6Ocqod7mkdZ0DT31OlbsFrLlkA==}
     engines: {node: ^10 || ^12 || >=14}
 
+  postcss@8.5.3:
+    resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
+    engines: {node: ^10 || ^12 || >=14}
+
   preferred-pm@4.1.1:
     resolution: {integrity: sha512-rU+ZAv1Ur9jAUZtGPebQVQPzdGhNzaEiQ7VL9+cjsAWPHFYOccNXPNiev1CCDSOg/2j7UujM7ojNhpkuILEVNQ==}
     engines: {node: '>=18.12'}
@@ -6517,6 +6540,7 @@ packages:
   sanity@3.75.0:
     resolution: {integrity: sha512-Ys2QK8amH9dhxjzaRrluN6nJYR2DceF6xcozHcp+UxoOucuByH7Lse+a7mxjT9CmpeoF7u8G56Ycdb9K745lcA==}
     engines: {node: '>=18'}
+    deprecated: This version is using an experimental version of the Sanity HTTP API and we strongly recommend upgrading to latest
     hasBin: true
     peerDependencies:
       react: ^18 || ^19.0.0
@@ -8232,6 +8256,10 @@ snapshots:
     dependencies:
       '@babel/types': 7.26.8
 
+  '@babel/parser@7.26.9':
+    dependencies:
+      '@babel/types': 7.26.9
+
   '@babel/plugin-bugfix-firefox-class-in-computed-class-key@7.25.9(@babel/core@7.26.8)':
     dependencies:
       '@babel/core': 7.26.8
@@ -8807,6 +8835,11 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
+  '@babel/types@7.26.9':
+    dependencies:
+      '@babel/helper-string-parser': 7.25.9
+      '@babel/helper-validator-identifier': 7.25.9
+
   '@clack/core@0.4.1':
     dependencies:
       picocolors: 1.1.1
@@ -8857,6 +8890,12 @@ snapshots:
       '@codemirror/view': 6.36.2
       crelt: 1.0.6
 
+  '@codemirror/search@6.5.10':
+    dependencies:
+      '@codemirror/state': 6.5.2
+      '@codemirror/view': 6.36.4
+      crelt: 1.0.6
+
   '@codemirror/search@6.5.9':
     dependencies:
       '@codemirror/state': 6.5.2
@@ -8871,10 +8910,16 @@ snapshots:
     dependencies:
       '@codemirror/language': 6.10.8
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.36.2
+      '@codemirror/view': 6.36.4
       '@lezer/highlight': 1.2.1
 
   '@codemirror/view@6.36.2':
+    dependencies:
+      '@codemirror/state': 6.5.2
+      style-mod: 4.1.2
+      w3c-keyname: 2.2.8
+
+  '@codemirror/view@6.36.4':
     dependencies:
       '@codemirror/state': 6.5.2
       style-mod: 4.1.2
@@ -10917,7 +10962,7 @@ snapshots:
 
   '@vue/compiler-core@3.5.13':
     dependencies:
-      '@babel/parser': 7.26.8
+      '@babel/parser': 7.26.9
       '@vue/shared': 3.5.13
       entities: 4.5.0
       estree-walker: 2.0.2
@@ -10930,14 +10975,14 @@ snapshots:
 
   '@vue/compiler-sfc@3.5.13':
     dependencies:
-      '@babel/parser': 7.26.8
+      '@babel/parser': 7.26.9
       '@vue/compiler-core': 3.5.13
       '@vue/compiler-dom': 3.5.13
       '@vue/compiler-ssr': 3.5.13
       '@vue/shared': 3.5.13
       estree-walker: 2.0.2
       magic-string: 0.30.17
-      postcss: 8.5.2
+      postcss: 8.5.3
       source-map-js: 1.2.1
 
   '@vue/compiler-ssr@3.5.13':
@@ -11565,9 +11610,9 @@ snapshots:
       '@codemirror/commands': 6.8.0
       '@codemirror/language': 6.10.8
       '@codemirror/lint': 6.8.4
-      '@codemirror/search': 6.5.9
+      '@codemirror/search': 6.5.10
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.36.2
+      '@codemirror/view': 6.36.4
 
   color-convert@1.9.3:
     dependencies:
@@ -13068,6 +13113,8 @@ snapshots:
       - supports-color
 
   groq@3.75.0: {}
+
+  groq@3.77.2: {}
 
   gunzip-maybe@1.4.2:
     dependencies:
@@ -14750,6 +14797,12 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
+  postcss@8.5.3:
+    dependencies:
+      nanoid: 3.3.8
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
+
   preferred-pm@4.1.1:
     dependencies:
       find-up-simple: 1.0.0
@@ -15436,7 +15489,7 @@ snapshots:
       copy-to-clipboard: 3.3.3
       date-fns: 2.30.0
       filesize: 9.0.11
-      groq: 3.75.0
+      groq: 3.77.2
       is-hotkey: 0.2.0
       nanoid: 3.3.8
       npm-run-all: 4.1.5
