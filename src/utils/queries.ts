@@ -4,10 +4,11 @@ import type { Post } from '@/sanity.types'
 // import groq from 'groq'
 // import { sanityClient } from 'sanity:client'
 import { loadQuery } from '../../sanity/load-query'
+import type { ContentSourceMap } from '@sanity/client';
 
-export async function getPosts(): Promise<Post[]> {
-  return await loadQuery<Array<PostPayload>>({
-    query: `*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
+export async function getPosts(): Promise<{ data: Post[]; sourceMap: ContentSourceMap | undefined; perspective: string; }> {
+	return await loadQuery({
+		query: `*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
 			...,
 			'lqip': mainImage.asset->metadata.lqip,
 			mainImage {
@@ -18,12 +19,12 @@ export async function getPosts(): Promise<Post[]> {
 				}
 			},
 		}`,
-  })
+	})
 }
 
-export async function getPost(slug: string): Promise<Post> {
-  return await loadQuery<PostPayload>({
-    query: `*[_type == "post" && slug.current == $slug][0] {
+export async function getPost(slug: string): Promise<{ data: Post; sourceMap: ContentSourceMap | undefined; perspective: string; }> {
+	return await loadQuery({
+		query: `*[_type == "post" && slug.current == $slug][0] {
 			...,
 			'lqip': mainImage.asset->metadata.lqip,
 			mainImage {
@@ -34,14 +35,14 @@ export async function getPost(slug: string): Promise<Post> {
 				}
 			},
 		}`,
-    params: { slug },
-  })
+		params: { slug },
+	})
 }
 
 export interface PostPayload {
-  data: Post
-  sourceMap: Record<string, any>
-  perspective: 'published' | 'previewDrafts'
+	data: Post
+	sourceMap: ContentSourceMap | undefined
+	perspective: 'published' | 'drafts'
 }
 // export interface Post {
 //   _type: 'post'

@@ -1,9 +1,9 @@
 import process from 'node:process'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
-import tailwind from '@astrojs/tailwind'
 import vercel from '@astrojs/vercel'
 import sanity from '@sanity/astro'
+import tailwindcss from '@tailwindcss/vite'
 import { imageService } from '@unpic/astro/service'
 import metaTags from 'astro-meta-tags'
 import robotsTxt from 'astro-robots-txt'
@@ -37,7 +37,6 @@ export default defineConfig({
   },
   integrations: [
     react(),
-    tailwind({ applyBaseStyles: false }),
     sanity({
       projectId,
       dataset,
@@ -64,9 +63,10 @@ export default defineConfig({
       ],
     }),
   ],
-  // vite: {
-  // 	optimizeDeps: {
-  // 		exclude: ['@sanity/astro'],
-  // 	},
-  // },
+  vite: {
+    plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ['date-fns', '@sanity/icons'],
+    },
+  },
 })

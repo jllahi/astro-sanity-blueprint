@@ -13,7 +13,7 @@ export async function GET(context: APIContext) {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     site: context.site as URL,
-    items: posts.map((post) => ({
+    items: posts.data.map((post) => ({
       // ...post.data,
       title: post.title,
       // pubDate: post._createdAt,

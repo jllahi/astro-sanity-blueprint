@@ -1,6 +1,6 @@
 ---
-import type { Post } from '@/utils/sanity'
-// import type { Post } from '@/sanity.types'
+// import type { Post } from '@/utils/sanity'
+import type { Post } from '@/sanity.types'
 import Card from '@/components/Card.astro'
 import NoPosts from '@/components/NoPosts.astro'
 import Welcome from '@/components/Welcome.astro'
@@ -13,7 +13,7 @@ export const prerender = false
 const { data: posts } = await loadQuery<Post[]>({
   query: `*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
 			...,
-			'lqip': mainImage.asset->metadata.lqip,
+			'lqip': coverImage.asset->metadata.lqip,
 			coverImage {
 				...,
 				asset->{
@@ -45,7 +45,7 @@ const { data: posts } = await loadQuery<Post[]>({
     {
       posts.length ? (
         <div class="mt-6 space-y-12 border-t border-gray-200 pt-6">
-          {posts.map((post) => (
+          {posts.map((post: Post) => (
             <div class="">
               <Card post={post} />
             </div>
