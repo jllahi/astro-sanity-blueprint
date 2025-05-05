@@ -26,7 +26,7 @@
     "@fontsource-variable/inter": "^5.2.5",
     "@fontsource-variable/montserrat": "^5.2.5",
     "@sanity/astro": "^3.2.6",
-    "@sanity/client": "^6.28.4",
+    "@sanity/client": "^7.0.0",
     "@sanity/icons": "^3.7.0",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.82.0",
