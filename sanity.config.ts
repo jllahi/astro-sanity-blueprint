@@ -21,8 +21,8 @@ import { media } from 'sanity-plugin-media'
 import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
 // import { loadEnv } from 'vite'
-import { resolve } from './sanity/resolve'
-import { schemaTypes } from './sanity/schema'
+import { resolve } from './src/sanity/resolve'
+import { schemaTypes } from './src/sanity/schema'
 // const env = loadEnv('', process.cwd(), 'PUBLIC')
 
 // Different environments use different variables

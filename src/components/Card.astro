@@ -27,7 +27,7 @@ const { post } = Astro.props
           loading={'eager'}
           transition:name={`post-image-${post.slug.current}`}
           placeholder={'lqip'}
-          background={post.coverImage.asset.metadata?.lqip}
+          background={post.coverImage.asset?.metadata?.lqip}
         />
       </a>
     ) : (
