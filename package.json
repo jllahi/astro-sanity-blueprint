@@ -12,8 +12,8 @@
     "preview": "astro preview",
     "start": "astro dev",
     "extract-types": "sanity schema extract --enforce-required-fields",
-    "prebuild": "pnpm run typegen",
-    "predev": "pnpm run typegen",
+    "prebuild": "bun run typegen",
+    "predev": "bun run typegen",
     "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate"
   },
   "dependencies": {
@@ -37,7 +37,6 @@
     "astro": "^5.6.2",
     "astro-portabletext": "^0.11.1",
     "astro-seo": "^0.8.4",
-    "date-fns": "^4.1.0",
     "groq": "^3.82.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -74,13 +73,7 @@
     "typescript-eslint": "^8.29.1",
     "vite": "^6.2.7"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "scrollmirror",
-      "sharp",
-      "unrs-resolver",
-      "yarn"
-    ]
-  }
+  "trustedDependencies": [
+    "@tailwindcss/oxide"
+  ]
 }

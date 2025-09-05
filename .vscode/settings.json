@@ -7,10 +7,17 @@
   "files.autoSaveWhenNoErrors": true,
   "tailwindCSS.emmetCompletions": true,
   "files.exclude": {
-    ".vercel": true,
+    "**/.ruby-lsp": false,
+    ".vercel": false,
     ".astro": false,
-    ".github": true,
-    "node_modules": true,
-    "pnpm-lock.yaml": true
+    ".github": false,
+    "node_modules": false,
+    "pnpm-lock.yaml": false,
+    "bun.lock": false,
+    "pnpm-workspace.yaml": false,
+    ".prettierignore": false,
+    ".gitignore": false,
+    ".vscode": false,
+    "schema.json": false
   }
 }

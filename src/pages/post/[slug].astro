@@ -11,7 +11,7 @@ import { PortableText } from 'astro-portabletext'
 import { loadQuery } from '../../../sanity/load-query'
 import type { Post } from '@/sanity.types'
 
-export const prerender = false
+export const prerender = true
 
 export async function getStaticPaths() {
   // const posts = await getPosts()
@@ -40,8 +40,9 @@ const { data: post } = await loadQuery<Post>({
   // query: `*[_type == "post" && slug.current == $slug][0]`,
   query: `*[_type == "post" && slug.current == $slug][0] {
 			...,
+			body,
 			'lqip': mainImage.asset->metadata.lqip,
-			mainImage {
+			coverImage {
 				...,
 				asset->{
 					...,
@@ -51,7 +52,7 @@ const { data: post } = await loadQuery<Post>({
 		}`,
   params,
 })
-console.log('🚀 ~ post:', post.coverImage)
+// console.log('🚀 ~ post:', post.coverImage)
 ---
 
 <Layout seo={{ title: post.title! }}>

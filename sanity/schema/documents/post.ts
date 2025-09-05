@@ -1,5 +1,5 @@
 import { DocumentTextIcon } from '@sanity/icons'
-import { format, parseISO } from 'date-fns'
+// import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 
 /**
@@ -92,10 +92,11 @@ export const post = defineType({
       date: 'date',
       media: 'coverImage',
     },
-    prepare({ title, media, authorFirstName, authorLastName, date }) {
+    // prepare({ title, media, authorFirstName, authorLastName, date }) {
+    prepare({ title, media, authorFirstName, authorLastName }) {
       const subtitles = [
         authorFirstName && authorLastName && `by ${authorFirstName} ${authorLastName}`,
-        date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
+        // date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)
 
       return { title, media, subtitle: subtitles.join(' ') }

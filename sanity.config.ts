@@ -13,14 +13,14 @@
 //     )}`
 //   )
 // }
-import process from 'node:process'
+// import process from 'node:process'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import { media } from 'sanity-plugin-media'
 import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
-import { loadEnv } from 'vite'
+// import { loadEnv } from 'vite'
 import { resolve } from './sanity/resolve'
 import { schemaTypes } from './sanity/schema'
 // const env = loadEnv('', process.cwd(), 'PUBLIC')
@@ -29,15 +29,19 @@ import { schemaTypes } from './sanity/schema'
 // const projectId = env.PUBLIC_SANITY_STUDIO_PROJECT_ID! || env.PUBLIC_SANITY_PROJECT_ID!
 // const dataset = env.PUBLIC_SANITY_STUDIO_DATASET! || env.PUBLIC_SANITY_DATASET!
 
-const {
-  PUBLIC_SANITY_STUDIO_PROJECT_ID,
-  PUBLIC_SANITY_STUDIO_DATASET,
-  PUBLIC_SANITY_PROJECT_ID,
-  PUBLIC_SANITY_DATASET,
-} = loadEnv('', process.cwd(), '')
+// const {
+//   PUBLIC_SANITY_STUDIO_PROJECT_ID,
+//   PUBLIC_SANITY_STUDIO_DATASET,
+//   PUBLIC_SANITY_PROJECT_ID,
+//   PUBLIC_SANITY_DATASET,
+// } = loadEnv('', process.cwd(), '')
 // } = loadEnv(import.meta.env.MODE, process.cwd(), '')
-const projectId = PUBLIC_SANITY_STUDIO_PROJECT_ID || PUBLIC_SANITY_PROJECT_ID
-const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET
+
+const projectId = '3q0ng9ao'
+const dataset = 'production'
+
+// const projectId = PUBLIC_SANITY_STUDIO_PROJECT_ID || PUBLIC_SANITY_PROJECT_ID
+// const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET
 
 // const homeLocation = {
 // 	title: 'Home',

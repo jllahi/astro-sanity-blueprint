@@ -1,4 +1,4 @@
-import process from 'node:process'
+// import process from 'node:process'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import vercel from '@astrojs/vercel'
@@ -8,21 +8,24 @@ import { imageService } from '@unpic/astro/service'
 import metaTags from 'astro-meta-tags'
 import robotsTxt from 'astro-robots-txt'
 import { defineConfig } from 'astro/config'
-import { loadEnv } from 'vite'
+// import { loadEnv } from 'vite'
 
 // Loading environment variables from .env files
 // https://docs.astro.build/en/guides/configuring-astro/#environment-variables
 
-const {
-  PUBLIC_SANITY_STUDIO_PROJECT_ID,
-  PUBLIC_SANITY_STUDIO_DATASET,
-  PUBLIC_SANITY_PROJECT_ID,
-  PUBLIC_SANITY_DATASET,
-} = loadEnv(import.meta.env.MODE, process.cwd(), '')
+// const {
+//   PUBLIC_SANITY_STUDIO_PROJECT_ID,
+//   PUBLIC_SANITY_STUDIO_DATASET,
+//   PUBLIC_SANITY_PROJECT_ID,
+//   PUBLIC_SANITY_DATASET,
+// } = loadEnv(import.meta.env.MODE, process.cwd(), '')
 
 // Different environments use different variables
-const projectId = PUBLIC_SANITY_STUDIO_PROJECT_ID || PUBLIC_SANITY_PROJECT_ID
-const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET
+// const projectId = PUBLIC_SANITY_STUDIO_PROJECT_ID || PUBLIC_SANITY_PROJECT_ID
+// const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET
+
+const projectId = '3q0ng9ao'
+const dataset = 'production'
 
 // Change this depending on your hosting provider (Vercel, Netlify etc)
 // https://docs.astro.build/en/guides/server-side-rendering/#adding-an-adapter
@@ -66,7 +69,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
-      exclude: ['date-fns', '@sanity/icons'],
+      exclude: ['@sanity/icons'],
     },
   },
 })
