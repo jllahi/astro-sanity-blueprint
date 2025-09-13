@@ -1,29 +1,22 @@
 ---
 // import type { Post } from '@/utils/sanity'
-import type { Post } from '@/sanity.types'
+import type { Post, POST_QUERYResult, POSTS_QUERYResult } from '@/sanity.types'
 import Card from '@/components/Card.astro'
 import NoPosts from '@/components/NoPosts.astro'
 import Welcome from '@/components/Welcome.astro'
 import Layout from '@/layouts/Layout.astro'
-import { loadQuery } from '../sanity/load-query'
+import { loadQuery } from '@/sanity/load-query'
+import { POSTS_QUERY } from '@/sanity/queries'
 
-export const prerender = false
+export const prerender = true
 
 // const posts = await getPosts()
-const { data: posts } = await loadQuery<Post[]>({
-  query: `*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
-			...,
-			'lqip': coverImage.asset->metadata.lqip,
-			coverImage {
-				...,
-				asset->{
-					...,
-					metadata
-				}
-			},
-		}`,
+const { data: posts } = await loadQuery<POSTS_QUERYResult>({
+  query: POSTS_QUERY,
 })
-// console.log('POSTS->', posts.length)
+
+// console.log('POSTS->', posts[0].coverImage.asset)
+// console.log(posts[0].coverImage.asset.metadata.palette.dominant.background)
 ---
 
 <Layout seo={{ title: 'The official Sanity integration for Astro' }}>
@@ -45,7 +38,7 @@ const { data: posts } = await loadQuery<Post[]>({
     {
       posts.length ? (
         <div class="mt-6 space-y-12 border-t border-gray-200 pt-6">
-          {posts.map((post: Post) => (
+          {posts.map((post: POST_QUERYResult) => (
             <div class="">
               <Card post={post} />
             </div>

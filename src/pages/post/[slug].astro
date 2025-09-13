@@ -2,31 +2,37 @@
 // import type { Post } from '@/utils/sanity'
 import type { PortableTextBlock } from '@portabletext/types'
 import type { SanityDocument } from '@sanity/client'
-import type { Post } from '@/sanity.types'
+import type {
+  Post,
+  POST_QUERYResult,
+  POSTS_QUERYResult,
+  POSTS_SLUGS_QUERYResult,
+} from '@/sanity.types'
 import { Image } from '@unpic/astro'
 import { PortableText } from 'astro-portabletext'
 // import type { InferGetStaticParamsType } from 'astro'
 import Layout from '@/layouts/Layout.astro'
+import { loadQuery } from '@/sanity/load-query'
+import { POST_QUERY, POSTS_QUERY, POSTS_SLUGS_QUERY } from '@/sanity/queries'
 import { formatDate } from '@/utils'
 import { urlForImage } from '@/utils/image'
-import { loadQuery } from '@/sanity/load-query'
 
 export const prerender = true
 
 export async function getStaticPaths() {
   // const posts = await getPosts()
-  const { data: posts } = await loadQuery<SanityDocument[]>({
-    query: `*[_type == "post"]`,
+  const { data: posts } = await loadQuery<POSTS_SLUGS_QUERYResult>({
+    query: POSTS_SLUGS_QUERY,
   })
 
   // return posts.data.map((post) => ({
   //   params: { slug: post.slug.current },
   // }))
   return posts.map(({ slug }) => {
+    // const slug = page.slug.current === '/' ? undefined : page.slug.current;
     return {
-      params: {
-        slug: slug.current,
-      },
+      params: { slug: slug.current },
+      props: { slug: slug.current },
     }
   })
 }
@@ -36,28 +42,20 @@ export async function getStaticPaths() {
 const { params } = Astro
 
 // const post = await getPost(params.slug as string)
-const { data: post } = await loadQuery<Post>({
-  // query: `*[_type == "post" && slug.current == $slug][0]`,
-  query: `*[_type == "post" && slug.current == $slug][0] {
-			...,
-			body,
-			'lqip': mainImage.asset->metadata.lqip,
-			coverImage {
-				...,
-				asset->{
-					...,
-					metadata
-				}
-			},
-		}`,
+const { data: post } = await loadQuery<POST_QUERYResult>({
+  query: POST_QUERY,
   params,
 })
-// console.log('🚀 ~ post:', post.coverImage)
+
+const assetImg = post?.coverImage.asset?.metadata?.lqip
+console.log('🚀 ~ post:', post?.coverImage)
+console.log('🚀 ~ post-img:', assetImg)
+console.log('🚀 ~ lqip:', post?.lqip)
+console.log('🚀 ~ coverImage-lqip:', post?.coverImage.asset?.metadata?.lqip)
 ---
 
-<Layout seo={{ title: post.title! }}>
+<Layout seo={{ title: post ? post.title : 'Post Not Found' }}>
   <article class="grid gap-12">
-    <!-- <div class="container my-12 grid gap-12 lg:my-24"> -->
     <div>
       <div class="mb-6 grid gap-6 border-b border-gray-200 pb-6">
         <div class="flex max-w-3xl flex-col gap-6">
@@ -65,49 +63,36 @@ const { data: post } = await loadQuery<Post>({
             {post.title}
           </h1>
         </div>
-        <!-- <div class="flex max-w-3xl items-center gap-4">
-              {
-                post.author && post.author.firstName && post.author.lastName && (
-                  <Avatar person={post.author} date={post.date} />
-                )
-              }
-            </div> -->
         <p class="text-sm text-black/60">
-          {formatDate(post._createdAt)}
+          {post._createdAt ? formatDate(post._createdAt) : ''}
         </p>
       </div>
       <div class="grid max-w-4xl gap-6">
-        <div class="">
-          <Image
-            src={urlForImage(post.mainImage?.asset).width(640).height(420).url()}
-            alt="Astro + Sanity"
-            class="w-full rounded-2xl"
-            width={800}
-            height={480}
-            loading={'eager'}
-            transition:name={`post-image-${post.slug.current}`}
-            placeholder={'lqip'}
-            background={post.mainImage.asset?.metadata?.lqip}
-          />
-        </div>
-        <code><pre>{JSON.stringify(post)}</pre></code>
+        {
+          post.coverImage && post.coverImage.asset && (
+            <div class="">
+              <Image
+                src={urlForImage(post.coverImage).width(640).height(420).url()}
+                alt={post.title || 'Astro + Sanity'}
+                class="w-full rounded-2xl"
+                width={800}
+                height={480}
+                loading={'eager'}
+                transition:name={`post-image-${post.slug.current}`}
+                placeholder={'lqip'}
+                background={post.coverImage.asset?.metadata?.lqip}
+              />
+            </div>
+          )
+        }
+        <code>
+          <pre>{JSON.stringify(post)}</pre>
+        </code>
       </div>
-      {
-        post.body && (
-          <div class="prose prose-a:text-red-500">
-            <PortableText value={post.body as PortableTextBlock[]} />
-          </div>
-        )
-      }
+
+      <div class="prose prose-a:text-red-500">
+        <PortableText value={post.body as PortableTextBlock[]} />
+      </div>
     </div>
   </article>
-  <!-- </div> -->
-
-  <!-- <div class="border-t border-gray-100">
-      <div class="container my-12 grid gap-12 lg:my-24">
-        <aside>
-          <Suspense>{await MorePosts({ skip: post._id, limit: 2 })}</Suspense>
-        </aside>
-      </div>
-    </div> -->
 </Layout>

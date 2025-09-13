@@ -47,6 +47,14 @@ export const post = defineType({
       type: 'image',
       options: {
         hotspot: true,
+        // metadata: [
+        //   'blurhash', // Default: included
+        //   'lqip', // Default: included
+        //   'palette', // Default: included
+        //   'image', // Default: not included
+        //   'exif', // Default: not included
+        //   'location', // Default: not included
+        // ],
         // aiAssist: {
         //   imageDescriptionField: 'alt',
         // },

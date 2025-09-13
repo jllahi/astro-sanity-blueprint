@@ -257,25 +257,25 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: 'sanity.imageDimensions'
-  height?: number
-  width?: number
-  aspectRatio?: number
+  height: number
+  width: number
+  aspectRatio: number
 }
 
 export type SanityImageHotspot = {
   _type: 'sanity.imageHotspot'
-  x?: number
-  y?: number
-  height?: number
-  width?: number
+  x: number
+  y: number
+  height: number
+  width: number
 }
 
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop'
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
+  top: number
+  bottom: number
+  left: number
+  right: number
 }
 
 export type SanityFileAsset = {
@@ -376,3 +376,140 @@ export type AllSanitySchemaTypes =
   | Slug
   | SanityAssetSourceData
 export declare const internalGroqTypeReferenceTo: unique symbol
+// Source: src/sanity/queries.ts
+// Variable: POSTS_SLUGS_QUERY
+// Query: *[_type == "post" && defined(slug.current)] | order(_createdAt desc) {    slug,    title,  }
+export type POSTS_SLUGS_QUERYResult = Array<{
+  slug: Slug
+  title: string
+}>
+// Variable: POSTS_QUERY
+// Query: *[_type == "post" && defined(slug.current)] | order(_createdAt desc) {    ...,    'lqip': coverImage.asset->metadata.lqip,    coverImage {      ...,      asset->{        ...,        metadata {          ...,          blurhash,          lqip,          palette,        }      }    },  }
+export type POSTS_QUERYResult = Array<{
+  _id: string
+  _type: 'post'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: string
+  slug: Slug
+  content?: BlockContent
+  excerpt?: string
+  coverImage: {
+    asset: {
+      _id: string
+      _type: 'sanity.imageAsset'
+      _createdAt: string
+      _updatedAt: string
+      _rev: string
+      originalFilename?: string
+      label?: string
+      title?: string
+      description?: string
+      altText?: string
+      sha1hash?: string
+      extension?: string
+      mimeType?: string
+      size?: number
+      assetId?: string
+      uploadId?: string
+      path?: string
+      url?: string
+      metadata: {
+        _type: 'sanity.imageMetadata'
+        location?: Geopoint
+        dimensions?: SanityImageDimensions
+        palette: SanityImagePalette | null
+        lqip: string | null
+        blurHash?: string
+        hasAlpha?: boolean
+        isOpaque?: boolean
+        blurhash: null
+      } | null
+      source?: SanityAssetSourceData
+    } | null
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  date?: string
+  author?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'person'
+  }
+  lqip: string | null
+}>
+// Variable: POST_QUERY
+// Query: *[_type == "post" && slug.current == $slug][0] {    ...,    body,    coverImage {      ...,      asset->{        ...,        metadata {          ...,          blurhash,          lqip,          palette,        }      }    },  }
+export type POST_QUERYResult = {
+  _id: string
+  _type: 'post'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: string
+  slug: Slug
+  content?: BlockContent
+  excerpt?: string
+  coverImage: {
+    asset: {
+      _id: string
+      _type: 'sanity.imageAsset'
+      _createdAt: string
+      _updatedAt: string
+      _rev: string
+      originalFilename?: string
+      label?: string
+      title?: string
+      description?: string
+      altText?: string
+      sha1hash?: string
+      extension?: string
+      mimeType?: string
+      size?: number
+      assetId?: string
+      uploadId?: string
+      path?: string
+      url?: string
+      metadata: {
+        _type: 'sanity.imageMetadata'
+        location?: Geopoint
+        dimensions?: SanityImageDimensions
+        palette: SanityImagePalette | null
+        lqip: string | null
+        blurHash?: string
+        hasAlpha?: boolean
+        isOpaque?: boolean
+        blurhash: null
+      } | null
+      source?: SanityAssetSourceData
+    } | null
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  date?: string
+  author?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'person'
+  }
+  body: null
+} | null
+
+// Query TypeMap
+import '@sanity/client'
+declare module '@sanity/client' {
+  interface SanityQueries {
+    '*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {\n    slug,\n    title,\n  }': POSTS_SLUGS_QUERYResult
+    '*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {\n    ...,\n    \'lqip\': coverImage.asset->metadata.lqip,\n    coverImage {\n      ...,\n      asset->{\n        ...,\n        metadata {\n          ...,\n          blurhash,\n          lqip,\n          palette,\n        }\n      }\n    },\n  }': POSTS_QUERYResult
+    '*[_type == "post" && slug.current == $slug][0] {\n    ...,\n    body,\n    coverImage {\n      ...,\n      asset->{\n        ...,\n        metadata {\n          ...,\n          blurhash,\n          lqip,\n          palette,\n        }\n      }\n    },\n  }': POST_QUERYResult
+  }
+}
