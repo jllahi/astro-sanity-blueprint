@@ -1,23 +1,15 @@
 ---
-// import type { Post } from '@/utils/sanity'
 import type { PortableTextBlock } from '@portabletext/types'
-import type { SanityDocument } from '@sanity/client'
-import type {
-  Post,
-  POST_QUERYResult,
-  POSTS_QUERYResult,
-  POSTS_SLUGS_QUERYResult,
-} from '@/sanity.types'
+import type { POST_QUERYResult, POSTS_SLUGS_QUERYResult } from '@/sanity/types'
 import { Image } from '@unpic/astro'
 import { PortableText } from 'astro-portabletext'
-// import type { InferGetStaticParamsType } from 'astro'
 import Layout from '@/layouts/Layout.astro'
+import { urlForImage } from '@/sanity/image'
 import { loadQuery } from '@/sanity/load-query'
-import { POST_QUERY, POSTS_QUERY, POSTS_SLUGS_QUERY } from '@/sanity/queries'
+import { POST_QUERY, POSTS_SLUGS_QUERY } from '@/sanity/queries'
 import { formatDate } from '@/utils'
-import { urlForImage } from '@/utils/image'
 
-export const prerender = true
+// export const prerender = true
 
 export async function getStaticPaths() {
   // const posts = await getPosts()
@@ -47,52 +39,56 @@ const { data: post } = await loadQuery<POST_QUERYResult>({
   params,
 })
 
-const assetImg = post?.coverImage.asset?.metadata?.lqip
-console.log('🚀 ~ post:', post?.coverImage)
-console.log('🚀 ~ post-img:', assetImg)
-console.log('🚀 ~ lqip:', post?.lqip)
-console.log('🚀 ~ coverImage-lqip:', post?.coverImage.asset?.metadata?.lqip)
+// const assetImg = post?.coverImage.asset?.metadata?.lqip
+// console.log('🚀 ~ post:', post?.coverImage)
+// console.log('🚀 ~ post-img:', assetImg)
+// console.log('🚀 ~ lqip:', post?.lqip)
+// console.log('🚀 ~ coverImage-lqip:', post?.coverImage.asset?.metadata?.lqip)
+
+// if (!post) return Astro.redirect('/404')
 ---
 
 <Layout seo={{ title: post ? post.title : 'Post Not Found' }}>
-  <article class="grid gap-12">
-    <div>
-      <div class="mb-6 grid gap-6 border-b border-gray-200 pb-6">
-        <div class="flex max-w-3xl flex-col gap-6">
-          <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-7xl">
-            {post.title}
-          </h1>
-        </div>
-        <p class="text-sm text-black/60">
-          {post._createdAt ? formatDate(post._createdAt) : ''}
-        </p>
-      </div>
-      <div class="grid max-w-4xl gap-6">
-        {
-          post.coverImage && post.coverImage.asset && (
-            <div class="">
-              <Image
-                src={urlForImage(post.coverImage).width(640).height(420).url()}
-                alt={post.title || 'Astro + Sanity'}
-                class="w-full rounded-2xl"
-                width={800}
-                height={480}
-                loading={'eager'}
-                transition:name={`post-image-${post.slug.current}`}
-                placeholder={'lqip'}
-                background={post.coverImage.asset?.metadata?.lqip}
-              />
+  {
+    post && (
+      <article class="grid gap-12">
+        <div>
+          <div class="mb-6 grid gap-6 border-b border-gray-200 pb-6">
+            <div class="flex max-w-3xl flex-col gap-6">
+              <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-7xl">
+                {post.title}
+              </h1>
             </div>
-          )
-        }
-        <code>
-          <pre>{JSON.stringify(post)}</pre>
-        </code>
-      </div>
+            <p class="text-sm text-black/60">
+              {post._createdAt ? formatDate(post._createdAt) : ''}
+            </p>
+          </div>
+          <div class="grid max-w-4xl gap-6">
+            {post.coverImage && post.coverImage.asset && (
+              <div class="">
+                <Image
+                  src={urlForImage(post.coverImage.asset).width(640).height(420).url()}
+                  alt={post.title || 'Astro + Sanity'}
+                  class="w-full rounded-2xl"
+                  width={800}
+                  height={480}
+                  loading={'eager'}
+                  transition:name={`post-image-${post.slug.current}`}
+                  placeholder={'lqip'}
+                  background={post.coverImage.asset?.metadata?.lqip!}
+                />
+              </div>
+            )}
+            <code>
+              <pre>{JSON.stringify(post)}</pre>
+            </code>
+          </div>
 
-      <div class="prose prose-a:text-red-500">
-        <PortableText value={post.body as PortableTextBlock[]} />
-      </div>
-    </div>
-  </article>
+          <div class="prose prose-a:text-red-500">
+            <PortableText value={post.content! as PortableTextBlock[]} />
+          </div>
+        </div>
+      </article>
+    )
+  }
 </Layout>

@@ -1,6 +1,5 @@
 ---
-// import type { Post } from '@/utils/sanity'
-import type { Post, POST_QUERYResult, POSTS_QUERYResult } from '@/sanity.types'
+import type { POSTS_QUERYResult } from '@/sanity/types'
 import Card from '@/components/Card.astro'
 import NoPosts from '@/components/NoPosts.astro'
 import Welcome from '@/components/Welcome.astro'
@@ -8,7 +7,7 @@ import Layout from '@/layouts/Layout.astro'
 import { loadQuery } from '@/sanity/load-query'
 import { POSTS_QUERY } from '@/sanity/queries'
 
-export const prerender = true
+// export const prerender = true
 
 // const posts = await getPosts()
 const { data: posts } = await loadQuery<POSTS_QUERYResult>({
@@ -38,7 +37,7 @@ const { data: posts } = await loadQuery<POSTS_QUERYResult>({
     {
       posts.length ? (
         <div class="mt-6 space-y-12 border-t border-gray-200 pt-6">
-          {posts.map((post: POST_QUERYResult) => (
+          {posts.map((post) => (
             <div class="">
               <Card post={post} />
             </div>

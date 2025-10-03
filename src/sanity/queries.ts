@@ -29,7 +29,6 @@ export const POSTS_QUERY = defineQuery(
 export const POST_QUERY = defineQuery(
   `*[_type == "post" && slug.current == $slug][0] {
     ...,
-    body,
     coverImage {
       ...,
       asset->{
