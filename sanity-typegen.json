@@ -1,6 +1,6 @@
 {
   "path": "./**/*.{ts,tsx,js,jsx,astro}",
-  "schema": "./schema.json",
+  "schema": "./src/sanity/schema.json",
   "generates": "./src/sanity/types.ts",
   "overloadClientMethods": true
 }

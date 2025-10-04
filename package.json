@@ -11,10 +11,10 @@
     "lint": "eslint --fix .",
     "preview": "astro preview",
     "start": "astro dev",
-    "extract-types": "sanity schema extract --enforce-required-fields",
+    "extract-types": "sanity schema extract --enforce-required-fields --path ./src/sanity/schema.json",
     "prebuild": "bun run typegen",
     "predev": "bun run typegen",
-    "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate"
+    "typegen": "bun run extract-types && sanity typegen generate"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

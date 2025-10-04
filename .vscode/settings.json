@@ -7,17 +7,20 @@
   "files.autoSaveWhenNoErrors": true,
   "tailwindCSS.emmetCompletions": true,
   "files.exclude": {
-    "**/.ruby-lsp": false,
-    ".vercel": false,
-    ".astro": false,
-    ".github": false,
-    "node_modules": false,
-    "pnpm-lock.yaml": false,
-    "bun.lock": false,
-    "pnpm-workspace.yaml": false,
-    ".prettierignore": false,
-    ".gitignore": false,
-    ".vscode": false,
-    "schema.json": false
+    "**/.ruby-lsp": true,
+    ".vercel": true,
+    ".astro": true,
+    ".github": true,
+    "node_modules": true,
+    "pnpm-lock.yaml": true,
+    "bun.lock": true,
+    "pnpm-workspace.yaml": true,
+    ".prettierignore": true,
+    ".gitignore": true,
+    ".vscode": true,
+    "schema.json": true,
+    "eslint.config.mjs": true,
+    "prettier.config.mjs": true,
+    "tsconfig.json": true
   }
 }

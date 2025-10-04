@@ -8,7 +8,7 @@ export default antfu(
     astro: true,
     stylistic: false,
     // formatters: true,
-    ignores: ['.astro', '.dist', 'pnpm-lock.yaml', 'bun.lock', 'src/sanity.types.ts'],
+    ignores: ['.astro', '.dist', 'pnpm-lock.yaml', 'bun.lock', 'src/sanity/types.ts'],
   }
 
   // A11y
