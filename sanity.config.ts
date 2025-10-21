@@ -22,7 +22,7 @@ import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
 // import { loadEnv } from 'vite'
 import { resolve } from './src/sanity/resolve'
-import { schemaTypes } from './src/sanity/schema'
+import { schemaTypes } from './src/sanity/schemas'
 // const env = loadEnv('', process.cwd(), 'PUBLIC')
 
 // Different environments use different variables
