@@ -2,14 +2,14 @@
 // import type { Post } from '@/utils/sanity'
 import type { PortableTextBlock } from '@portabletext/types'
 import type { SanityDocument } from '@sanity/client'
+import type { Post } from '@/sanity.types'
+import { Image } from '@unpic/astro'
+import { PortableText } from 'astro-portabletext'
 // import type { InferGetStaticParamsType } from 'astro'
 import Layout from '@/layouts/Layout.astro'
 import { formatDate } from '@/utils'
 import { urlForImage } from '@/utils/image'
-import { Image } from '@unpic/astro'
-import { PortableText } from 'astro-portabletext'
 import { loadQuery } from '../../../sanity/load-query'
-import type { Post } from '@/sanity.types'
 
 export const prerender = false
 
@@ -51,7 +51,7 @@ const { data: post } = await loadQuery<Post>({
 		}`,
   params,
 })
-console.log('🚀 ~ post:', post.coverImage)
+// console.log('🚀 ~ post:', post.coverImage)
 ---
 
 <Layout seo={{ title: post.title! }}>

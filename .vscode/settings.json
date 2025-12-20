@@ -7,10 +7,10 @@
   "files.autoSaveWhenNoErrors": true,
   "tailwindCSS.emmetCompletions": true,
   "files.exclude": {
-    ".vercel": true,
+    ".vercel": false,
     ".astro": false,
-    ".github": true,
-    "node_modules": true,
-    "pnpm-lock.yaml": true
+    ".github": false,
+    "node_modules": false,
+    "pnpm-lock.yaml": false
   }
 }

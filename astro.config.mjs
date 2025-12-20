@@ -41,7 +41,7 @@ export default defineConfig({
       projectId,
       dataset,
       useCdn: true, // `false` if you want to ensure fresh data
-      apiVersion: '2024-08-10', // Set to date of setup to use the latest API version
+      apiVersion: '2025-08-10', // Set to date of setup to use the latest API version
       studioBasePath: '/studio',
       stega: {
         studioUrl: '/studio',

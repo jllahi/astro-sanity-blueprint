@@ -1,6 +1,6 @@
 // import { useSanityClient } from "@sanity/astro";
 // import type { PortableTextBlock } from '@portabletext/types'
-import type { BlockContent, Post } from '@/sanity.types'
+import type { Post } from '@/sanity.types'
 // import type { ImageAsset, PortableTextBlock, Slug } from '@sanity/types'
 import groq from 'groq'
 import { sanityClient } from 'sanity:client'
