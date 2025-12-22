@@ -1,6 +1,8 @@
-import type { Post } from '../types'
+import type { QueryAllPostsResult, QueryPostBySlugResult, QuerySlugsAllPostsResult } from '../types'
 import { defineQuery } from 'groq'
 import { loadQuery } from '../load-query'
+
+// Groq queries
 
 export const queryAllPosts =
   defineQuery(`*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
@@ -33,26 +35,28 @@ export const queryPostBySlug = defineQuery(`*[_type == "post" && slug.current ==
 			},
 		}`)
 
+// Load queries
+
 export async function getAllPosts() {
-  const { data: posts } = await loadQuery<Post[]>({
+  const { data: posts } = await loadQuery<QueryAllPostsResult>({
     query: queryAllPosts,
   })
-  return posts
+  return posts!
 }
 
 export async function getSlugsAllPosts() {
-  const { data: posts } = await loadQuery<Post[]>({
+  const { data: posts } = await loadQuery<QuerySlugsAllPostsResult>({
     query: querySlugsAllPosts,
   })
-  return posts
+  return posts!
 }
 
 export async function getPostBySlug(slug: string) {
-  const { data: post } = await loadQuery<Post>({
+  const { data: post } = await loadQuery<QueryPostBySlugResult>({
     query: queryPostBySlug,
     params: {
       slug,
     },
   })
-  return post
+  return post!
 }

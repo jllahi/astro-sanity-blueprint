@@ -388,49 +388,10 @@ export type QueryAllPostsResult = Array<{
 
 // Source: src/sanity/queries/post.groq.ts
 // Variable: querySlugsAllPosts
-// Query: *[_type == "post" && defined(slug.current)] | order(_createdAt desc) {			...,			'lqip': coverImage.asset->metadata.lqip,			coverImage {				...,				asset->{					...,					metadata				}			},		}
+// Query: *[_type == "post" && defined(slug.current)] | order(_createdAt desc) {			title,			slug		}
 export type QuerySlugsAllPostsResult = Array<{
-  _id: string
-  _type: 'post'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
   title: string
   slug: Slug
-  content?: BlockContent
-  excerpt?: string
-  coverImage: {
-    asset: {
-      _id: string
-      _type: 'sanity.imageAsset'
-      _createdAt: string
-      _updatedAt: string
-      _rev: string
-      originalFilename?: string
-      label?: string
-      title?: string
-      description?: string
-      altText?: string
-      sha1hash?: string
-      extension?: string
-      mimeType?: string
-      size?: number
-      assetId?: string
-      uploadId?: string
-      path?: string
-      url?: string
-      metadata: SanityImageMetadata | null
-      source?: SanityAssetSourceData
-    } | null
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  }
-  date?: string
-  author?: PersonReference
-  lqip: string | null
 }>
 
 // Source: src/sanity/queries/post.groq.ts
@@ -484,9 +445,8 @@ export type QueryPostBySlugResult = {
 import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {\n\t\t\t...,\n\t\t\t\'lqip\': coverImage.asset->metadata.lqip,\n\t\t\tcoverImage {\n\t\t\t\t...,\n\t\t\t\tasset->{\n\t\t\t\t\t...,\n\t\t\t\t\tmetadata\n\t\t\t\t}\n\t\t\t},\n\t\t}':
-      | QueryAllPostsResult
-      | QuerySlugsAllPostsResult
+    '*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {\n\t\t\t...,\n\t\t\t\'lqip\': coverImage.asset->metadata.lqip,\n\t\t\tcoverImage {\n\t\t\t\t...,\n\t\t\t\tasset->{\n\t\t\t\t\t...,\n\t\t\t\t\tmetadata\n\t\t\t\t}\n\t\t\t},\n\t\t}': QueryAllPostsResult
+    '*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {\n\t\t\ttitle,\n\t\t\tslug\n\t\t}': QuerySlugsAllPostsResult
     '*[_type == "post" && slug.current == $slug][0] {\n\t\t\t...,\n\t\t\t\'lqip\': coverImage.asset->metadata.lqip,\n\t\t\tcoverImage {\n\t\t\t\t...,\n\t\t\t\tasset->{\n\t\t\t\t\t...,\n\t\t\t\t\tmetadata\n\t\t\t\t}\n\t\t\t},\n\t\t}': QueryPostBySlugResult
   }
 }
