@@ -57,7 +57,7 @@ const post = await getPostBySlug(params.slug as string)
     <div class="grid max-w-4xl gap-2">
       <div class="">
         <Image
-          src={urlForImage(post.coverImage?.asset).width(800).height(480).url()}
+          src={urlForImage(post.coverImage).width(800).height(480).url()}
           alt={post.coverImage.alt}
           class="w-full rounded-2xl"
           width={800}
