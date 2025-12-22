@@ -12,7 +12,7 @@ import { defineArrayMember, defineField, defineType } from 'sanity'
  *
  * Learn more: https://www.sanity.io/docs/block-content
  */
-export const blockContent = defineType({
+export const blockContentCopy = defineType({
   title: 'Block Content',
   name: 'blockContent',
   type: 'array',

@@ -1,5 +1,6 @@
 ---
 import { createImageUrlBuilder } from '@sanity/image-url'
+import { Image } from '@unpic/astro'
 import { sanityClient } from 'sanity:client'
 
 const builder = createImageUrlBuilder(sanityClient)
@@ -12,10 +13,14 @@ let image: ReturnType<typeof builder.image> | undefined
 // presenting images, and https://www.sanity.io/docs/image-url for specifics on
 // this builder API
 try {
-  image = node && node.asset && builder.image(node).width(width).fit('max').auto('format')
+  image =
+    node &&
+    node.image &&
+    node.image.asset &&
+    builder.image(node.image).width(width).fit('max').auto('format')
 } catch (error) {
   console.error(error)
 }
 ---
 
-{image && <img src={image.url()} alt={node.alt || ''} title={node.alt} />}
+{image && <Image src={image.url()} alt={node.alt || ''} title={node.alt} />}

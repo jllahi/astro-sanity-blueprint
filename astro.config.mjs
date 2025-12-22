@@ -30,8 +30,11 @@ import { defineConfig } from 'astro/config'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://astro-sanity-blueprint.vercel.app',
+  trailingSlash: 'never',
+
   output: 'static',
   adapter: vercel(),
+
   image: {
     service: imageService(),
   },
@@ -56,9 +59,10 @@ export default defineConfig({
     robotsTxt({
       policy: [
         {
-          userAgent: '*',
-          allow: '/',
-          disallow: '/studio',
+          userAgent: ['*'],
+          allow: ['/'],
+          disallow: ['/studio'],
+          crawlDelay: 15,
         },
       ],
     }),

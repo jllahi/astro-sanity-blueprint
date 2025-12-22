@@ -1,0 +1,6 @@
+---
+import { YouTube as YouTubeEmbed } from 'astro-embed'
+const { id, title, posterQuality = 'high' } = Astro.props.node
+---
+
+<YouTubeEmbed {id} {title} posterQuality={posterQuality} />

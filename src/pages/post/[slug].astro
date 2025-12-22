@@ -1,7 +1,7 @@
 ---
-import type { PortableTextBlock } from '@portabletext/types'
 import { Image } from '@unpic/astro'
-import { PortableText } from 'astro-portabletext'
+import PortableText from '@/components/content/PortableText.astro'
+import Prose from '@/components/content/Prose.astro'
 import Debug from '@/components/Debug.astro'
 // import type { InferGetStaticParamsType } from 'astro'
 import Layout from '@/layouts/Layout.astro'
@@ -71,9 +71,9 @@ const post = await getPostBySlug(params.slug as string)
     </div>
     {
       post.content && (
-        <div class="prose prose-a:text-blue-500 mt-2">
-          <PortableText value={post.content as PortableTextBlock[]} />
-        </div>
+        <Prose>
+          <PortableText value={post.content} />
+        </Prose>
       )
     }
   </article>

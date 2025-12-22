@@ -12,5 +12,9 @@
     ".github": true,
     "node_modules": true,
     "pnpm-lock.yaml": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+    // "source.organizeImports": "explicit"
   }
 }
