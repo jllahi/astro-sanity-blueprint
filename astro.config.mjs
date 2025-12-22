@@ -1,4 +1,4 @@
-import process from 'node:process'
+// import process from 'node:process'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import vercel from '@astrojs/vercel'
@@ -8,21 +8,21 @@ import { imageService } from '@unpic/astro/service'
 import metaTags from 'astro-meta-tags'
 import robotsTxt from 'astro-robots-txt'
 import { defineConfig } from 'astro/config'
-import { loadEnv } from 'vite'
+// import { loadEnv } from 'vite'
 
 // Loading environment variables from .env files
 // https://docs.astro.build/en/guides/configuring-astro/#environment-variables
 
-const {
-  PUBLIC_SANITY_STUDIO_PROJECT_ID,
-  PUBLIC_SANITY_STUDIO_DATASET,
-  PUBLIC_SANITY_PROJECT_ID,
-  PUBLIC_SANITY_DATASET,
-} = loadEnv(import.meta.env.MODE, process.cwd(), '')
+// const {
+//   PUBLIC_SANITY_STUDIO_PROJECT_ID,
+//   PUBLIC_SANITY_STUDIO_DATASET,
+//   PUBLIC_SANITY_PROJECT_ID,
+//   PUBLIC_SANITY_DATASET,
+// } = loadEnv(import.meta.env.MODE, process.cwd(), '')
 
 // Different environments use different variables
-const projectId = PUBLIC_SANITY_STUDIO_PROJECT_ID || PUBLIC_SANITY_PROJECT_ID
-const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET
+// const projectId = PUBLIC_SANITY_STUDIO_PROJECT_ID || PUBLIC_SANITY_PROJECT_ID
+// const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET
 
 // Change this depending on your hosting provider (Vercel, Netlify etc)
 // https://docs.astro.build/en/guides/server-side-rendering/#adding-an-adapter
@@ -30,7 +30,7 @@ const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET
 // https://astro.build/config
 export default defineConfig({
   site: 'https://astro-sanity-blueprint.vercel.app',
-  output: 'server',
+  output: 'static',
   adapter: vercel(),
   image: {
     service: imageService(),
@@ -38,10 +38,10 @@ export default defineConfig({
   integrations: [
     react(),
     sanity({
-      projectId,
-      dataset,
+      projectId: '3q0ng9ao',
+      dataset: 'development',
       useCdn: true, // `false` if you want to ensure fresh data
-      apiVersion: '2024-08-10', // Set to date of setup to use the latest API version
+      apiVersion: '2025-08-10', // Set to date of setup to use the latest API version
       studioBasePath: '/studio',
       stega: {
         studioUrl: '/studio',
@@ -65,8 +65,8 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
-    optimizeDeps: {
-      exclude: ['date-fns', '@sanity/icons'],
-    },
+    // optimizeDeps: {
+    //   exclude: ['date-fns', '@sanity/icons', 'lightningcss', 'fsevents', '@sanity/astro', 'sanity', 'sanity/structure'],
+    // },
   },
 })

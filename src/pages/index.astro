@@ -1,37 +1,35 @@
 ---
 // import type { Post } from '@/utils/sanity'
-import type { Post } from '@/sanity.types'
+import type { Post } from '@/sanity/types'
 import Card from '@/components/Card.astro'
 import NoPosts from '@/components/NoPosts.astro'
 import Welcome from '@/components/Welcome.astro'
 import Layout from '@/layouts/Layout.astro'
-import { loadQuery } from '../../sanity/load-query'
+import { loadQuery } from '@/sanity/load-query'
+import { queryAllPosts } from '@/sanity/queries/post.groq'
 
-export const prerender = false
+export const prerender = true
 
 // const posts = await getPosts()
 const { data: posts } = await loadQuery<Post[]>({
-  query: `*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
-			...,
-			'lqip': coverImage.asset->metadata.lqip,
-			coverImage {
-				...,
-				asset->{
-					...,
-					metadata
-				}
-			},
-		}`,
+  query: queryAllPosts,
+  params: {
+    type: 'post',
+  },
 })
 // console.log('POSTS->', posts.length)
 ---
 
-<Layout seo={{ title: 'The official Sanity integration for Astro' }}>
+<Layout
+  seo={{
+    title: 'The official Sanity integration for Astro',
+    description: 'These blog posts are populated from your Sanity Studio.',
+  }}>
   <Welcome />
 
   <section class="flex flex-col">
     {
-      posts.length && (
+      posts.length > 0 && (
         <div>
           <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
             Recent Posts
@@ -43,12 +41,10 @@ const { data: posts } = await loadQuery<Post[]>({
       )
     }
     {
-      posts.length ? (
+      posts.length > 0 ? (
         <div class="mt-6 space-y-12 border-t border-gray-200 pt-6">
           {posts.map((post: Post) => (
-            <div class="">
-              <Card post={post} />
-            </div>
+            <Card post={post} />
           ))}
         </div>
       ) : (

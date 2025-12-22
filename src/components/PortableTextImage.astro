@@ -1,11 +1,10 @@
 ---
-// ./src/components/PortableTextImage.astro
-import { urlForImage } from '../utils/image'
+import { urlForImage } from '@/sanity/image'
 
-const { asset, alt } = Astro.props.node
+const { asset, alt, width = 960 } = Astro.props.node
 
 const url = urlForImage(asset).url()
-const webpUrl = urlForImage(asset).format('webp').url()
+const webpUrl = urlForImage(asset).width(width).fit('max').auto('format').url()
 ---
 
 <picture>

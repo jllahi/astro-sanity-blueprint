@@ -13,58 +13,58 @@
 //     )}`
 //   )
 // }
-import process from 'node:process'
+// import process from 'node:process'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import { media } from 'sanity-plugin-media'
-import { presentationTool } from 'sanity/presentation'
+// import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
-import { loadEnv } from 'vite'
-import { resolve } from './sanity/resolve'
-import { schemaTypes } from './sanity/schema'
+// import { loadEnv } from 'vite'
+// import { resolve } from './src/sanity/resolve'
+import { schemaTypes } from '@/sanity/schemas'
 // const env = loadEnv('', process.cwd(), 'PUBLIC')
 
 // Different environments use different variables
 // const projectId = env.PUBLIC_SANITY_STUDIO_PROJECT_ID! || env.PUBLIC_SANITY_PROJECT_ID!
 // const dataset = env.PUBLIC_SANITY_STUDIO_DATASET! || env.PUBLIC_SANITY_DATASET!
 
-const {
-  PUBLIC_SANITY_STUDIO_PROJECT_ID,
-  PUBLIC_SANITY_STUDIO_DATASET,
-  PUBLIC_SANITY_PROJECT_ID,
-  PUBLIC_SANITY_DATASET,
-} = loadEnv('', process.cwd(), '')
-// } = loadEnv(import.meta.env.MODE, process.cwd(), '')
-const projectId = PUBLIC_SANITY_STUDIO_PROJECT_ID || PUBLIC_SANITY_PROJECT_ID
-const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET
+// const {
+//   PUBLIC_SANITY_STUDIO_PROJECT_ID,
+//   PUBLIC_SANITY_STUDIO_DATASET,
+//   PUBLIC_SANITY_PROJECT_ID,
+//   PUBLIC_SANITY_DATASET,
+// } = loadEnv('', process.cwd(), '')
+// // } = loadEnv(import.meta.env.MODE, process.cwd(), '')
+// const projectId = PUBLIC_SANITY_STUDIO_PROJECT_ID || PUBLIC_SANITY_PROJECT_ID
+// const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET
 
 // const homeLocation = {
 // 	title: 'Home',
 // 	href: '/',
 // } satisfies DocumentLocation
 
-export function resolveHref(documentType?: string, slug?: string): string | undefined {
-  switch (documentType) {
-    case 'post':
-      return slug ? `/post/${slug}` : undefined
-    default:
-      console.warn('Invalid document type:', documentType)
-      return undefined
-  }
-}
+// export function resolveHref(documentType?: string, slug?: string): string | undefined {
+//   switch (documentType) {
+//     case 'post':
+//       return slug ? `/post/${slug}` : undefined
+//     default:
+//       console.warn('Invalid document type:', documentType)
+//       return undefined
+//   }
+// }
 
 export default defineConfig({
   name: 'astro-sanity-blueprint',
-  title: 'astro-sanity-blueprint',
-  projectId,
-  dataset,
+  title: 'Astro Sanity Blueprint',
+  projectId: '3q0ng9ao',
+  dataset: 'development',
   plugins: [
     structureTool(),
-    presentationTool({
-      resolve,
-      previewUrl: location.origin,
-    }),
+    // presentationTool({
+    //   resolve,
+    //   previewUrl: location.origin,
+    // }),
     unsplashImageAsset(),
     visionTool(),
     media(),

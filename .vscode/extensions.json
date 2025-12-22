@@ -2,8 +2,7 @@
   "recommendations": [
     "astro-build.astro-vscode",
     "bradlc.vscode-tailwindcss",
-    "sanity-io.vscode-sanity",
-    "sguerri.simple-hide-files"
+    "sanity-io.vscode-sanity"
   ],
   "unwantedRecommendations": []
 }

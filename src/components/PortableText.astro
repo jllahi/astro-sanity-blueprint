@@ -1,14 +1,20 @@
 ---
-// ./src/components/PortableText.astro
 import { PortableText as PortableTextInternal } from 'astro-portabletext'
-import PortableTextImage from './PortableTextImage.astro'
+import SanityImage from './SanityImage.astro'
+import YouTube from './YouTube.astro'
 
 const { portableText } = Astro.props
 
 const components = {
   type: {
-    image: PortableTextImage,
+    image: SanityImage,
+    youtube: YouTube,
+    // callToActionBox: CallToActionBox,
+    // code: Code,
   },
+  // mark: {
+  //   internalLink: InternalLink,
+  // },
 }
 ---
 

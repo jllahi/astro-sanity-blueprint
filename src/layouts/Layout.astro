@@ -1,11 +1,11 @@
 ---
 import type { Props as SEOProps } from 'astro-seo'
+// import { VisualEditing } from '@sanity/astro/visual-editing'
+import { SEO } from 'astro-seo'
+import { ClientRouter } from 'astro:transitions'
 import Footer from '@/components/Footer.astro'
 import Header from '@/components/Header.astro'
 import { SITE_TITLE } from '@/consts'
-import { VisualEditing } from '@sanity/astro/visual-editing'
-import { SEO } from 'astro-seo'
-import { ClientRouter } from 'astro:transitions'
 import '@/assets/styles/global.css'
 import '@fontsource-variable/inter'
 import '@fontsource-variable/montserrat'
@@ -16,7 +16,7 @@ interface Props {
 
 const { seo } = Astro.props
 
-const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
+// const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
 ---
 
 <!doctype html>
@@ -39,13 +39,11 @@ const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLE
   <body class="bg-color-white antialiased">
     <div class="flex h-svh w-full flex-col items-center">
       <Header />
-      <!-- <main class="w-full max-w-2xl grow px-4 py-14"> -->
       <main class="container my-44 grid grow gap-12">
         <slot />
       </main>
       <Footer />
     </div>
-    <VisualEditing enabled={visualEditingEnabled} />
-    <!-- <VisualEditing enabled={visualEditingEnabled} zIndex={1000} /> -->
+    {/* <VisualEditing enabled={visualEditingEnabled} zIndex={1000} /> */}
   </body>
 </html>

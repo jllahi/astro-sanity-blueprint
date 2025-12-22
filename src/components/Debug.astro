@@ -1,0 +1,7 @@
+{
+  import.meta.env.MODE === 'development' && (
+    <code>
+      <pre class="text-xs">{JSON.stringify(Astro.props, null, 2)}</pre>
+    </code>
+  )
+}

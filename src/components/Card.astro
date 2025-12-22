@@ -1,17 +1,17 @@
 ---
 // import type { Post } from '@/utils/sanity'
-import type { Post } from '@/sanity.types'
-import placeholderImage from '@/assets/placeholder-image-square.jpg'
-import { formatDate } from '@/utils'
-import { urlForImage } from '@/utils/image'
+import type { Post } from '@/sanity/types'
 import { Image } from '@unpic/astro'
+import placeholderImage from '@/assets/placeholder-image-square.jpg'
+import { urlForImage } from '@/sanity/image'
+import { formatDate } from '@/utils'
 
 interface Props {
   post: Post
 }
 
 const { post } = Astro.props
-console.log('🚀 ~ post:', post.coverImage)
+// console.log('🚀 ~ post:', post.coverImage)
 ---
 
 <div class="flex flex-col gap-6 sm:flex-row">
