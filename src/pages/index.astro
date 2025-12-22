@@ -1,22 +1,13 @@
 ---
-// import type { Post } from '@/utils/sanity'
-import type { Post } from '@/sanity/types'
 import Card from '@/components/Card.astro'
 import NoPosts from '@/components/NoPosts.astro'
 import Welcome from '@/components/Welcome.astro'
 import Layout from '@/layouts/Layout.astro'
-import { loadQuery } from '@/sanity/load-query'
-import { queryAllPosts } from '@/sanity/queries/post.groq'
+import { getAllPosts } from '@/sanity/queries/post.groq'
 
 export const prerender = true
 
-// const posts = await getPosts()
-const { data: posts } = await loadQuery<Post[]>({
-  query: queryAllPosts,
-  params: {
-    type: 'post',
-  },
-})
+const posts = await getAllPosts()
 // console.log('POSTS->', posts.length)
 ---
 
@@ -43,7 +34,7 @@ const { data: posts } = await loadQuery<Post[]>({
     {
       posts.length > 0 ? (
         <div class="mt-6 space-y-12 border-t border-gray-200 pt-6">
-          {posts.map((post: Post) => (
+          {posts.map((post) => (
             <Card post={post} />
           ))}
         </div>

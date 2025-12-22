@@ -1,13 +1,12 @@
 ---
-// import type { Post } from '@/utils/sanity'
-import type { Post } from '@/sanity/types'
+import type { QueryPostBySlugResult } from '@/sanity/types'
 import { Image } from '@unpic/astro'
 import placeholderImage from '@/assets/placeholder-image-square.jpg'
 import { urlForImage } from '@/sanity/image'
 import { formatDate } from '@/utils'
 
 interface Props {
-  post: Post
+  post: NonNullable<QueryPostBySlugResult>
 }
 
 const { post } = Astro.props
@@ -20,7 +19,7 @@ const { post } = Astro.props
       <a class="hover:underline" href={`/post/${post.slug.current}`}>
         <Image
           class="border-color-placeholder bg-color-placeholder h-40 w-60 border object-cover"
-          src={urlForImage(post.coverImage).width(240).height(160).url()}
+          src={urlForImage(post.coverImage.asset).width(240).height(160).url()}
           width={240}
           height={160}
           alt={post.excerpt || post.title}
