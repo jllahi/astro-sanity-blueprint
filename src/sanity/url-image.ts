@@ -1,3 +1,4 @@
+import type { SanityImageSource } from '@sanity/image-url'
 // import type { SanityAsset } from '@sanity/image-url/lib/types/types'
 // import type { Image } from '@/sanity/types'
 import { createImageUrlBuilder } from '@sanity/image-url'
@@ -11,6 +12,6 @@ import { sanityClient } from 'sanity:client'
 
 const builder = createImageUrlBuilder(sanityClient)
 
-export function urlForImage(source) {
+export function urlForImage(source: SanityImageSource) {
   return builder.image(source).auto('format')
 }
