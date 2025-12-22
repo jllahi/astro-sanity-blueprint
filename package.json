@@ -2,6 +2,7 @@
   "name": "astro-sanity-blueprint",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@10.20.0",
   "scripts": {
     "astro": "astro",
     "build": "astro check && astro build",
