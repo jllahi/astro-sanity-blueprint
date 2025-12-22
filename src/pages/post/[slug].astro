@@ -65,7 +65,7 @@ const post = await getPostBySlug(params.slug as string)
           loading={'eager'}
           transition:name={`post-image-${post.slug.current}`}
           placeholder={'lqip'}
-          background={post.coverImage?.asset?.lqip}
+          background={post.coverImage?.lqip}
         />
       </div>
     </div>
