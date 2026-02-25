@@ -13,6 +13,32 @@
  */
 
 // Source: src/sanity/schema.json
+export type SanityImageAssetReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+}
+
+export type ImagePicture = {
+  _type: 'imagePicture'
+  image: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  alt: string
+}
+
+export type Youtube = {
+  _type: 'youtube'
+  title: string
+  id: string
+  posterQuality?: 'max' | 'high' | 'default' | 'low'
+}
+
 export type PageReference = {
   _ref: string
   _type: 'reference'
@@ -51,55 +77,32 @@ export type InfoSection = {
   content?: BlockContent
 }
 
-export type BlockContent = Array<{
-  children?: Array<{
-    marks?: Array<string>
-    text?: string
-    _type: 'span'
-    _key: string
-  }>
-  style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-  listItem?: 'bullet' | 'number'
-  markDefs?: Array<{
-    linkType?: 'href' | 'page' | 'post'
-    href?: string
-    page?: PageReference
-    post?: PostReference
-    openInNewTab?: boolean
-    _type: 'link'
-    _key: string
-  }>
-  level?: number
-  _type: 'block'
-  _key: string
-}>
-
-export type Page = {
-  _id: string
-  _type: 'page'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name: string
-  slug: Slug
-  heading: string
-  subheading?: string
-  pageBuilder?: Array<
-    | ({
+export type BlockContent = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
         _key: string
-      } & CallToAction)
-    | ({
+      }>
+      style?: 'normal' | 'h2' | 'h3' | 'h4' | 'blockquote'
+      listItem?: 'bullet'
+      markDefs?: Array<{
+        href?: string
+        _type: 'link'
         _key: string
-      } & InfoSection)
-  >
-}
-
-export type SanityImageAssetReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-}
+      }>
+      level?: number
+      _type: 'block'
+      _key: string
+    }
+  | ({
+      _key: string
+    } & Youtube)
+  | ({
+      _key: string
+    } & ImagePicture)
+>
 
 export type PersonReference = {
   _ref: string
@@ -168,6 +171,26 @@ export type Slug = {
   _type: 'slug'
   current: string
   source?: string
+}
+
+export type Page = {
+  _id: string
+  _type: 'page'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name: string
+  slug: Slug
+  heading: string
+  subheading?: string
+  pageBuilder?: Array<
+    | ({
+        _key: string
+      } & CallToAction)
+    | ({
+        _key: string
+      } & InfoSection)
+  >
 }
 
 export type Settings = {
@@ -312,20 +335,22 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | SanityImageAssetReference
+  | ImagePicture
+  | Youtube
   | PageReference
   | PostReference
   | Link
   | CallToAction
   | InfoSection
   | BlockContent
-  | Page
-  | SanityImageAssetReference
   | PersonReference
   | Post
   | Person
   | SanityImageCrop
   | SanityImageHotspot
   | Slug
+  | Page
   | Settings
   | MediaTag
   | SanityImagePaletteSwatch
