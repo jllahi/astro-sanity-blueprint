@@ -6,12 +6,23 @@
   "files.autoSaveWhenNoErrors": true,
   "tailwindCSS.emmetCompletions": true,
   "files.exclude": {
+    ".claude": true,
+    ".vscode": true,
     ".vercel": true,
-    ".astro": false,
+    ".astro": true,
     ".github": true,
     "node_modules": true,
     "pnpm-lock.yaml": true,
-    ".agents": true
+    ".agents": true,
+    ".junie": true,
+    ".kiro": true,
+    ".prettierignore": true,
+    "pnpm-workspace.yaml": true,
+    ".gitignore": true,
+    "skills-lock.json": true,
+    "prettier.config.mjs": true,
+    "eslint.config.mjs": true,
+    ".env.local": true
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
