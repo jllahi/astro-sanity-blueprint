@@ -3,7 +3,6 @@
   "files.autoSave": "onWindowChange",
   "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
   "files.autoSaveWhenNoErrors": true,
   "tailwindCSS.emmetCompletions": true,
   "files.exclude": {
@@ -11,7 +10,8 @@
     ".astro": false,
     ".github": true,
     "node_modules": true,
-    "pnpm-lock.yaml": true
+    "pnpm-lock.yaml": true,
+    ".agents": true
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
@@ -20,12 +20,6 @@
   // Disable the default formatter, use eslint instead
   "prettier.enable": false,
   "editor.formatOnSave": false,
-
-  // Auto fix
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "never"
-  },
 
   // Silent the stylistic rules in your IDE, but still auto fix them
   "eslint.rules.customizations": [
