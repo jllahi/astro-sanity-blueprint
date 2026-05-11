@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { imageService } from '@unpic/astro/service'
 import metaTags from 'astro-meta-tags'
 import robotsTxt from 'astro-robots-txt'
-import { defineConfig } from 'astro/config'
+import { defineConfig, fontProviders } from 'astro/config'
 // import { loadEnv } from 'vite'
 
 // Loading environment variables from .env files
@@ -38,6 +38,7 @@ export default defineConfig({
   image: {
     service: imageService(),
   },
+
   integrations: [
     react(),
     sanity({
@@ -67,6 +68,21 @@ export default defineConfig({
       ],
     }),
   ],
+
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: 'Inter',
+      cssVariable: '--font-inter',
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'Montserrat',
+      cssVariable: '--font-montserrat',
+      weights: [400, 500, 600, 700, 900, 'bold'],
+    },
+  ],
+
   vite: {
     plugins: [tailwindcss()],
     // optimizeDeps: {

@@ -3,12 +3,11 @@ import type { Props as SEOProps } from 'astro-seo'
 // import { VisualEditing } from '@sanity/astro/visual-editing'
 import { SEO } from 'astro-seo'
 import { ClientRouter } from 'astro:transitions'
+import Fonts from '@/components/theme/Fonts.astro'
 import Footer from '@/components/theme/Footer.astro'
 import Header from '@/components/theme/Header.astro'
 import { SITE_TITLE } from '@/consts'
 import '@/assets/styles/global.css'
-import '@fontsource-variable/inter'
-import '@fontsource-variable/montserrat'
 
 interface Props {
   seo?: SEOProps
@@ -34,6 +33,7 @@ const { seo } = Astro.props
       href={`${Astro.site}rss.xml`}
     />
     <SEO {...seo} />
+    <Fonts />
     <ClientRouter />
   </head>
   <body class="bg-color-white antialiased">
