@@ -25,6 +25,15 @@ export const person = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'firstName',
+        maxLength: 96,
+      },
+    }),
+    defineField({
       name: 'picture',
       title: 'Picture',
       type: 'image',
@@ -37,7 +46,8 @@ export const person = defineType({
           validation: (rule) => {
             // Custom validation to ensure alt text is provided if the image is present. https://www.sanity.io/docs/validation
             return rule.custom((alt, context) => {
-              if ((context.document?.picture as any)?.asset?._ref && !alt) {
+              const picture = context.document?.picture as { asset?: { _ref?: string } } | undefined
+              if (picture?.asset?._ref && !alt) {
                 return 'Required'
               }
               return true
