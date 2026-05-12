@@ -11,7 +11,18 @@
     ".astro": false,
     ".github": true,
     "node_modules": true,
-    "pnpm-lock.yaml": true
+    "pnpm-lock.yaml": true,
+    ".agents": true,
+    ".junie": true,
+    ".kiro": true,
+    ".prettierignore": true,
+    "pnpm-workspace.yaml": true,
+    ".gitignore": true,
+    "skills-lock.json": true,
+    "prettier.config.mjs": true,
+    "eslint.config.mjs": true,
+    ".env.local": true,
+    ".gga": true
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
