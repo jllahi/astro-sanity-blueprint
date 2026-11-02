@@ -12,6 +12,7 @@
     "lint": "eslint --fix .",
     "preview": "astro preview",
     "start": "astro dev",
+    "test": "node --test tests/",
     "extract-types": "sanity schema extract --enforce-required-fields",
     "predev-off": "pnpm run typegen",
     "typegen": "sanity schema extract --enforce-required-fields --force --path ./src/sanity/schema.json && sanity typegen generate"

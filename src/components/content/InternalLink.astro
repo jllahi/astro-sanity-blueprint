@@ -1,14 +1,18 @@
 ---
-import { sanityClient } from 'sanity:client'
+import { loadQuery } from '@/sanity/load-query'
 const { node } = Astro.props
 const { markDef } = node
 
-// Only deal with posts links for this example
+// Only deal with posts links for this example.
+// Goes through `loadQuery` so the link resolves draft targets in preview mode too.
 const destination =
   markDef._ref &&
-  (await sanityClient.fetch(`* [_type == "post" && _id == $id] {slug {current}}[0]`, {
-    id: markDef._ref,
-  }))
+  (
+    await loadQuery<{ slug: { current: string } } | null>({
+      query: `* [_type == "post" && _id == $id] {slug {current}}[0]`,
+      params: { id: markDef._ref },
+    })
+  ).data
 
 const linkText = node.children.map((c: any) => c.text).join(' ')
 ---

@@ -8,6 +8,7 @@ import { imageService } from '@unpic/astro/service'
 import metaTags from 'astro-meta-tags'
 import robotsTxt from 'astro-robots-txt'
 import { defineConfig } from 'astro/config'
+import { previewRoutes } from './integrations/preview-routes.mjs'
 // import { loadEnv } from 'vite'
 
 // Loading environment variables from .env files
@@ -39,6 +40,7 @@ export default defineConfig({
     service: imageService(),
   },
   integrations: [
+    previewRoutes(),
     react(),
     sanity({
       projectId: '3q0ng9ao',

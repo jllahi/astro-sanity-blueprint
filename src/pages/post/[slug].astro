@@ -29,6 +29,12 @@ const { params } = Astro
 
 const post = await getPostBySlug(params.slug as string)
 // console.log('🚀 ~ post:', post.coverImage)
+
+// A draft can be listed on the home before it has a published counterpart, and a
+// slug can be renamed while the page is open. Render a 404 instead of crashing.
+if (!post) {
+  return new Response(null, { status: 404, statusText: 'Not found' })
+}
 ---
 
 <Layout seo={{ title: post.title, description: post.excerpt }}>
@@ -55,19 +61,21 @@ const post = await getPostBySlug(params.slug as string)
       </p>
     </div>
     <div class="grid max-w-4xl gap-2">
-      <div class="">
-        <Image
-          src={urlForImage(post.coverImage).width(800).height(480).url()}
-          alt={post.coverImage.alt}
-          class="w-full rounded-2xl"
-          width={800}
-          height={480}
-          loading={'eager'}
-          transition:name={`post-image-${post.slug.current}`}
-          placeholder={'lqip'}
-          background={post.coverImage?.asset?.metadata?.lqip}
-        />
-      </div>
+      {post.coverImage?.asset && (
+        <div class="">
+          <Image
+            src={urlForImage(post.coverImage).width(800).height(480).url()}
+            alt={post.coverImage.alt ?? post.title}
+            class="w-full rounded-2xl"
+            width={800}
+            height={480}
+            loading={'eager'}
+            transition:name={`post-image-${post.slug.current}`}
+            placeholder={'lqip'}
+            background={post.coverImage.asset.metadata?.lqip}
+          />
+        </div>
+      )}
     </div>
     {
       post.content && (

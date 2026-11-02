@@ -9,6 +9,9 @@ export async function GET(context: APIContext) {
   // const posts = await queryAllPosts()
   const { data: posts } = await loadQuery<Post[]>({
     query: queryAllPosts,
+    // The feed is public and crawlers read it: it must never contain drafts,
+    // even when preview mode is enabled.
+    perspective: 'published',
   })
 
   return rss({
