@@ -1,6 +1,6 @@
 ---
 import type { Props as SEOProps } from 'astro-seo'
-// import { VisualEditing } from '@sanity/astro/visual-editing'
+import { VisualEditing } from '@sanity/astro/visual-editing'
 import { SEO } from 'astro-seo'
 import { ClientRouter } from 'astro:transitions'
 import Footer from '@/components/theme/Footer.astro'
@@ -16,7 +16,7 @@ interface Props {
 
 const { seo } = Astro.props
 
-// const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
+const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
 ---
 
 <!doctype html>
@@ -44,6 +44,6 @@ const { seo } = Astro.props
       </main>
       <Footer />
     </div>
-    {/* <VisualEditing enabled={visualEditingEnabled} zIndex={1000} /> */}
+    <VisualEditing enabled={visualEditingEnabled} zIndex={1000} />
   </body>
 </html>

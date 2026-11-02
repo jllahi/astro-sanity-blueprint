@@ -32,7 +32,7 @@ export default defineConfig({
   site: 'https://astro-sanity-blueprint.vercel.app',
   trailingSlash: 'never',
 
-  output: 'static',
+  output: 'server',
   adapter: vercel(),
 
   image: {

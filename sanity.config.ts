@@ -18,11 +18,11 @@ import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import { media } from 'sanity-plugin-media'
-// import { presentationTool } from 'sanity/presentation'
+import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
-// import { loadEnv } from 'vite'
-// import { resolve } from './src/sanity/resolve'
 import { schemaTypes } from '@/sanity/schemas'
+import { resolve } from './src/sanity/resolve'
+// import { loadEnv } from 'vite'
 // const env = loadEnv('', process.cwd(), 'PUBLIC')
 
 // Different environments use different variables
@@ -61,10 +61,10 @@ export default defineConfig({
   dataset: 'development',
   plugins: [
     structureTool(),
-    // presentationTool({
-    //   resolve,
-    //   previewUrl: location.origin,
-    // }),
+    presentationTool({
+      resolve,
+      previewUrl: location.origin,
+    }),
     unsplashImageAsset(),
     visionTool(),
     media(),
