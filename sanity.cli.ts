@@ -1,3 +1,4 @@
+import path from 'node:path'
 import process from 'node:process'
 /**
  * Sanity CLI Configuration
@@ -19,14 +20,14 @@ export default defineCliConfig({
     },
     resolve: {
       alias: {
-        '@': __dirname,
+        '@': path.resolve(__dirname, 'src'),
       },
     },
   },
   // studioHost: process.env.SANITY_STUDIO_STUDIO_HOST || process.env.SANITY_STUDIO_HOST || '', // Visit https://www.sanity.io/docs/environment-variables to leanr more about using environment variables for local & production.
   // autoUpdates: true,
   typegen: {
-    path: './**/*.{ts,tsx,js,jsx}',
+    path: './src/**/*.{ts,tsx,js,jsx}',
     schema: './src/sanity/schema.json',
     generates: './src/sanity/types.ts',
     overloadClientMethods: true,

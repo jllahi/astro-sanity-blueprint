@@ -17,7 +17,7 @@ export const link = defineType({
       name: 'linkType',
       title: 'Link Type',
       type: 'string',
-      initialValue: 'url',
+      initialValue: 'href',
       options: {
         list: [
           { title: 'URL', value: 'href' },
@@ -26,6 +26,7 @@ export const link = defineType({
         ],
         layout: 'radio',
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'href',

@@ -8,17 +8,28 @@ interface Props {
 }
 
 const { seo } = Astro.props
+
+// Open Graph and Twitter need absolute URLs for the preview image.
+const title = seo?.title || SITE_TITLE
+const description = seo?.description || SITE_DESCRIPTION
+const image = new URL(seo?.openGraph?.basic.image ?? SITE_IMAGE, Astro.site ?? Astro.url).href
 ---
 
 <SEO
   titleTemplate={`%s | ${SITE_TITLE}`}
-  title={seo?.title || SITE_TITLE}
-  description={seo?.description || SITE_DESCRIPTION}
+  title={title}
+  description={description}
   openGraph={{
     basic: {
-      title: seo?.openGraph?.basic.title || seo?.title || SITE_TITLE,
+      title: seo?.openGraph?.basic.title || title,
       type: seo?.openGraph?.basic.type || 'website',
-      image: seo?.openGraph?.basic.image || SITE_IMAGE,
+      image,
     },
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: seo?.twitter?.title || title,
+    description: seo?.twitter?.description || description,
+    image,
   }}
 />

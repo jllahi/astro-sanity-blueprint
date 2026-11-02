@@ -52,14 +52,12 @@ export default defineConfig({
     }),
     metaTags(),
     sitemap({
-      filter: (page) =>
-        // page !== this.site + this.integrations[sanity].studioBasePath + '/' &&
-        page !== 'https://astro-sanity-blueprint.vercel.app/studio/',
+      filter: (page) => !new URL(page).pathname.startsWith('/studio'),
     }),
     robotsTxt({
       policy: [
         {
-          userAgent: ['*'],
+          userAgent: '*',
           allow: ['/'],
           disallow: ['/studio'],
           crawlDelay: 15,

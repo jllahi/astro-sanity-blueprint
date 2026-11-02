@@ -28,10 +28,10 @@ export const infoSection = defineType({
       title: 'heading',
       subtitle: 'subheading',
     },
-    prepare({ title }) {
+    prepare({ title, subtitle }) {
       return {
         title: title || 'Untitled Info Section',
-        subtitle: 'Info Section',
+        subtitle: subtitle || 'Info Section',
       }
     },
   },

@@ -23,7 +23,7 @@ const { post } = Astro.props
           width={240}
           height={160}
           alt={post.excerpt || post.title}
-          loading={'eager'}
+          loading={'lazy'}
           transition:name={`post-image-${post.slug.current}`}
           placeholder={'lqip'}
           background={post.coverImage.asset.metadata?.lqip}
@@ -34,7 +34,7 @@ const { post } = Astro.props
         class="border-color-placeholder bg-color-placeholder h-40 w-60 border object-cover"
         src={placeholderImage}
         alt={post.excerpt || post.title}
-        loading={'eager'}
+        loading={'lazy'}
         transition:name={`post-image-${post.slug.current}`}
       />
     )
@@ -50,7 +50,7 @@ const { post } = Astro.props
     </h3>
     <p class="text-base">{post.excerpt}</p>
     <p class="text-sm text-black/60">
-      {formatDate(post._createdAt)}
+      {formatDate(post.date ?? post._createdAt)}
     </p>
   </div>
 </div>

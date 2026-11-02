@@ -51,7 +51,7 @@ const post = await getPostBySlug(params.slug as string)
        */
       }
       <p class="text-sm text-black/60">
-        {formatDate(post._createdAt)}
+        {formatDate(post.date ?? post._createdAt)}
       </p>
     </div>
     <div class="grid max-w-4xl gap-2">
