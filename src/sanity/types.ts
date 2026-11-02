@@ -12,6 +12,8 @@
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol
+
 // Source: src/sanity/schema.json
 export type SanityImageAssetReference = {
   _ref: string
@@ -55,7 +57,7 @@ export type PostReference = {
 
 export type Link = {
   _type: 'link'
-  linkType?: 'href' | 'page' | 'post'
+  linkType: 'href' | 'page' | 'post'
   href?: string
   page?: PageReference
   post?: PostReference
@@ -229,6 +231,23 @@ export type Settings = {
   }
 }
 
+export type MediaFolderReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'media.folder'
+}
+
+export type MediaFolder = {
+  _id: string
+  _type: 'media.folder'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  parent?: MediaFolderReference
+}
+
 export type MediaTag = {
   _id: string
   _type: 'media.tag'
@@ -271,6 +290,7 @@ export type SanityImageMetadata = {
   palette?: SanityImagePalette
   lqip?: string
   blurHash?: string
+  thumbHash?: string
   hasAlpha?: boolean
   isOpaque?: boolean
 }
@@ -286,14 +306,14 @@ export type SanityFileAsset = {
   title?: string
   description?: string
   altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
+  sha1hash: string
+  extension: string
+  mimeType: string
+  size: number
+  assetId: string
   uploadId?: string
-  path?: string
-  url?: string
+  path: string
+  url: string
   source?: SanityAssetSourceData
 }
 
@@ -315,14 +335,14 @@ export type SanityImageAsset = {
   title?: string
   description?: string
   altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
+  sha1hash: string
+  extension: string
+  mimeType: string
+  size: number
+  assetId: string
   uploadId?: string
-  path?: string
-  url?: string
+  path: string
+  url: string
   metadata?: SanityImageMetadata
   source?: SanityAssetSourceData
 }
@@ -352,6 +372,8 @@ export type AllSanitySchemaTypes =
   | Slug
   | Page
   | Settings
+  | MediaFolderReference
+  | MediaFolder
   | MediaTag
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -361,8 +383,6 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint
-
-export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: src/sanity/queries/post.groq.ts
 // Variable: queryAllPosts
@@ -389,14 +409,14 @@ export type QueryAllPostsResult = Array<{
       title?: string
       description?: string
       altText?: string
-      sha1hash?: string
-      extension?: string
-      mimeType?: string
-      size?: number
-      assetId?: string
+      sha1hash: string
+      extension: string
+      mimeType: string
+      size: number
+      assetId: string
       uploadId?: string
-      path?: string
-      url?: string
+      path: string
+      url: string
       metadata: SanityImageMetadata | null
       source?: SanityAssetSourceData
     } | null
@@ -444,14 +464,14 @@ export type QueryPostBySlugResult = {
       title?: string
       description?: string
       altText?: string
-      sha1hash?: string
-      extension?: string
-      mimeType?: string
-      size?: number
-      assetId?: string
+      sha1hash: string
+      extension: string
+      mimeType: string
+      size: number
+      assetId: string
       uploadId?: string
-      path?: string
-      url?: string
+      path: string
+      url: string
       metadata: SanityImageMetadata | null
       source?: SanityAssetSourceData
     } | null
@@ -467,11 +487,14 @@ export type QueryPostBySlugResult = {
 } | null
 
 // Query TypeMap
-import '@sanity/client'
-declare module '@sanity/client' {
+declare global {
   interface SanityQueries {
     '*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {\n\t\t\t...,\n\t\t\t\'lqip\': coverImage.asset->metadata.lqip,\n\t\t\tcoverImage {\n\t\t\t\t...,\n\t\t\t\tasset->{\n\t\t\t\t\t...,\n\t\t\t\t\tmetadata\n\t\t\t\t}\n\t\t\t},\n\t\t}': QueryAllPostsResult
     '*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {\n\t\t\ttitle,\n\t\t\tslug\n\t\t}': QuerySlugsAllPostsResult
     '*[_type == "post" && slug.current == $slug][0] {\n\t\t\t...,\n\t\t\t\'lqip\': coverImage.asset->metadata.lqip,\n\t\t\tcoverImage {\n\t\t\t\t...,\n\t\t\t\tasset->{\n\t\t\t\t\t...,\n\t\t\t\t\tmetadata\n\t\t\t\t}\n\t\t\t},\n\t\t}': QueryPostBySlugResult
   }
+}
+// Lets @sanity/client releases that predate the global registry read it too
+declare module '@sanity/client' {
+  interface SanityQueries extends globalThis.SanityQueries {}
 }

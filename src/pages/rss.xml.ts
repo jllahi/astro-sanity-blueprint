@@ -19,7 +19,7 @@ export async function GET(context: APIContext) {
       title: post.title,
       pubDate: new Date(post._updatedAt),
       description: post.excerpt,
-      link: `/post/${post.slug.current}/`,
+      link: `/post/${post.slug.current}`,
     })),
   })
 }

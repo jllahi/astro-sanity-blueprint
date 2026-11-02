@@ -7,7 +7,15 @@ export default antfu(
     astro: true,
     stylistic: false,
     // formatters: true,
-    ignores: ['.astro', '.dist', 'pnpm-lock.yaml', 'src/sanity/types.ts'],
+    ignores: ['.astro', 'dist', 'pnpm-lock.yaml', 'src/sanity/types.ts'],
+  },
+
+  // `pnpm/yaml-enforce-settings` wants `trustPolicy: no-downgrade`, but that
+  // policy rejects the current lockfile (many transitive deps resolve "down"),
+  // so `pnpm install` fails. Keep the workspace file minimal on purpose.
+  {
+    files: ['pnpm-workspace.yaml'],
+    rules: { 'pnpm/yaml-enforce-settings': 'off' },
   }
 
   // A11y
