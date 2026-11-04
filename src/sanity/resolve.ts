@@ -1,7 +1,13 @@
 import type { PresentationPluginOptions } from 'sanity/presentation'
-import { defineLocations } from 'sanity/presentation'
+import { defineLocations, defineDocuments } from 'sanity/presentation'
 
 export const resolve: PresentationPluginOptions['resolve'] = {
+  mainDocuments: defineDocuments([
+    {
+      route: '/post/:slug',
+      filter: `_type == "post" && slug.current == $slug`,
+    },
+  ]),
   locations: {
     // Add more locations for other post types
     post: defineLocations({
