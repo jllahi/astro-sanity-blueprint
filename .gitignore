@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # Typescript
 *.tsbuildinfo
+
+# IA
+.atl/
