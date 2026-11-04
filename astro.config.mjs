@@ -1,4 +1,5 @@
 // import process from 'node:process'
+import { existsSync, realpathSync } from 'node:fs'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import vercel from '@astrojs/vercel'
@@ -26,6 +27,15 @@ import { defineConfig } from 'astro/config'
 
 // Change this depending on your hosting provider (Vercel, Netlify etc)
 // https://docs.astro.build/en/guides/server-side-rendering/#adding-an-adapter
+
+// `@sanity/astro` renders the visual editing island from inside its own
+// `dist/`. This resolves that file so Vite can scan it (see `optimizeDeps`
+// below). Missing on an unexpected package layout, in which case scanning is
+// skipped instead of breaking the dev server.
+const visualEditingIsland = new URL(
+  './node_modules/@sanity/astro/dist/visual-editing/visual-editing-component.tsx',
+  import.meta.url
+)
 
 // https://astro.build/config
 export default defineConfig({
@@ -69,6 +79,26 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      // Astro only scans `src/` for dependencies to pre-bundle, so the client
+      // island shipped by `@sanity/astro` is never scanned. Its module graph
+      // imports several CommonJS packages (`react-compiler-runtime`,
+      // `lodash/*`, `get-it/middleware`, `@sanity/eventsource`, ...) that the
+      // browser cannot load as ESM. Vite never discovers them on demand either,
+      // because discovery is skipped for importers inside `node_modules`. When
+      // they are served raw, hydration fails with "does not provide an export
+      // named ..." and the Studio's Presentation tool times out with "Unable to
+      // connect to visual editing".
+      // Adding the island as a scan entry lets Vite crawl its whole graph and
+      // pre-bundle every dependency, including future ones. The path must be
+      // absolute: Vite's scanner ignores relative matches under `dist/`, and
+      // this package ships the island inside `dist/`. It is also realpath'd
+      // because pnpm symlinks the package.
+      entries: [
+        'src/**/*.{jsx,tsx,vue,svelte,html}',
+        ...(existsSync(visualEditingIsland) ? [realpathSync(visualEditingIsland)] : []),
+      ],
+    },
     // optimizeDeps: {
     //   exclude: ['date-fns', '@sanity/icons', 'lightningcss', 'fsevents', '@sanity/astro', 'sanity', 'sanity/structure'],
     // },
