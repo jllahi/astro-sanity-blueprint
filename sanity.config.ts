@@ -81,6 +81,6 @@ export default defineConfig({
     enabled: false,
   },
   releases: {
-    enabled: true,
+    enabled: false,
   },
 });
