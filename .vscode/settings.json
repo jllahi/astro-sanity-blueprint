@@ -8,10 +8,23 @@
   "tailwindCSS.emmetCompletions": true,
   "files.exclude": {
     ".vercel": true,
-    ".astro": false,
+    ".astro": true,
     ".github": true,
     "node_modules": true,
-    "pnpm-lock.yaml": true
+    "pnpm-lock.yaml": true,
+    "pnpm-workspace.yaml": true,
+    ".vite-hooks": true,
+    ".cursor": true,
+    ".atl": true,
+    ".vscode": true,
+    "tsconfig.json": true,
+    "vite.config.ts": true,
+    "sanity.cli.ts": true,
+    "sanity.config.ts": true,
+    "GEMINI.md": true,
+    ".gitignore": true,
+    ".env.local": true,
+    "src/env.d.ts": true
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
