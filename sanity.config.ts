@@ -83,4 +83,7 @@ export default defineConfig({
   releases: {
     enabled: false,
   },
+  scheduledDrafts: {
+    enabled: false,
+  },
 });
