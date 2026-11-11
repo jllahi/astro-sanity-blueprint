@@ -2,7 +2,8 @@
   "recommendations": [
     "astro-build.astro-vscode",
     "bradlc.vscode-tailwindcss",
-    "sanity-io.vscode-sanity"
+    "sanity-io.vscode-sanity",
+    "VoidZero.vite-plus-extension-pack"
   ],
   "unwantedRecommendations": []
 }
