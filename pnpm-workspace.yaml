@@ -1,5 +1,2 @@
-allowBuilds:
-  esbuild: true
-  sharp: true
 minimumReleaseAgeExclude:
   - prettier@3.10.0
