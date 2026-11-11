@@ -1,33 +1,34 @@
 ---
-import { Image } from '@unpic/astro'
-import PortableText from '@/components/content/PortableText.astro'
-import Prose from '@/components/content/Prose.astro'
-import Debug from '@/components/Debug.astro'
-// import type { InferGetStaticParamsType } from 'astro'
-import Layout from '@/layouts/Layout.astro'
-import { getPostBySlug, getSlugsAllPosts } from '@/sanity/queries/post.groq'
-import { urlForImage } from '@/sanity/url-image'
-import { formatDate } from '@/utils'
+import { Image } from "@unpic/astro";
 
-export const prerender = true
+import PortableText from "@/components/content/PortableText.astro";
+import Prose from "@/components/content/Prose.astro";
+import Debug from "@/components/Debug.astro";
+// import type { InferGetStaticParamsType } from 'astro'
+import Layout from "@/layouts/Layout.astro";
+import { getPostBySlug, getSlugsAllPosts } from "@/sanity/queries/post.groq";
+import { urlForImage } from "@/sanity/url-image";
+import { formatDate } from "@/utils";
+
+export const prerender = true;
 
 export async function getStaticPaths() {
-  const posts = await getSlugsAllPosts()
+  const posts = await getSlugsAllPosts();
 
   return posts.map(({ slug }) => {
     return {
       params: {
         slug: slug.current,
       },
-    }
-  })
+    };
+  });
 }
 
 // type Params = InferGetStaticParamsType<typeof getStaticPaths>
 // const { slug } = Astro.params as Params
-const { params } = Astro
+const { params } = Astro;
 
-const post = await getPostBySlug(params.slug as string)
+const post = await getPostBySlug(params.slug as string);
 // console.log('🚀 ~ post:', post.coverImage)
 ---
 
@@ -39,8 +40,7 @@ const post = await getPostBySlug(params.slug as string)
           {post.title}
         </h1>
       </div>
-      {
-        /*
+      {/*
       <div class="flex max-w-3xl items-center gap-4">
         {
           post.author && post.author.firstName && post.author.lastName && (
@@ -48,11 +48,8 @@ const post = await getPostBySlug(params.slug as string)
           )
         }
       </div>
-       */
-      }
-      <p class="text-sm text-black/60">
-        {formatDate(post._createdAt)}
-      </p>
+       */}
+      <p class="text-sm text-black/60">{formatDate(post._createdAt)}</p>
     </div>
     <div class="grid max-w-4xl gap-2">
       <div class="">
@@ -62,20 +59,18 @@ const post = await getPostBySlug(params.slug as string)
           class="w-full rounded-2xl"
           width={800}
           height={480}
-          loading={'eager'}
+          loading={"eager"}
           transition:name={`post-image-${post.slug.current}`}
-          placeholder={'lqip'}
+          placeholder={"lqip"}
           background={post.coverImage?.asset?.metadata?.lqip}
         />
       </div>
     </div>
-    {
-      post.content && (
-        <Prose>
-          <PortableText value={post.content} />
-        </Prose>
-      )
-    }
+    {post.content && (
+      <Prose>
+        <PortableText value={post.content} />
+      </Prose>
+    )}
   </article>
   <Debug {...post} />
 </Layout>

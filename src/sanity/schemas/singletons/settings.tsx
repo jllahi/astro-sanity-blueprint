@@ -1,7 +1,7 @@
-import { CogIcon } from '@sanity/icons/Cog'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import { CogIcon } from "@sanity/icons/Cog";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
-import * as demo from '../initial-values'
+import * as demo from "../initial-values";
 
 /**
  * Settings schema Singleton.  Singletons are single documents that are displayed not in a collection, handy for things like site settings and other global configurations.
@@ -9,29 +9,29 @@ import * as demo from '../initial-values'
  */
 
 export const settings = defineType({
-  name: 'settings',
-  title: 'Settings',
-  type: 'document',
+  name: "settings",
+  title: "Settings",
+  type: "document",
   icon: CogIcon,
   fields: [
     defineField({
-      name: 'title',
-      description: 'This field is the title of your blog.',
-      title: 'Title',
-      type: 'string',
+      name: "title",
+      description: "This field is the title of your blog.",
+      title: "Title",
+      type: "string",
       initialValue: demo.title,
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'description',
-      description: 'Used both for the <meta> description tag for SEO, and the blog subheader.',
-      title: 'Description',
-      type: 'array',
+      name: "description",
+      description: "Used both for the <meta> description tag for SEO, and the blog subheader.",
+      title: "Description",
+      type: "array",
       initialValue: demo.description,
       of: [
         // Define a minified block content field for the description. https://www.sanity.io/docs/block-content
         defineArrayMember({
-          type: 'block',
+          type: "block",
           options: {},
           styles: [],
           lists: [],
@@ -39,13 +39,13 @@ export const settings = defineType({
             decorators: [],
             annotations: [
               defineField({
-                type: 'object',
-                name: 'link',
+                type: "object",
+                name: "link",
                 fields: [
                   {
-                    type: 'string',
-                    name: 'href',
-                    title: 'URL',
+                    type: "string",
+                    name: "href",
+                    title: "URL",
                     validation: (rule) => rule.required(),
                   },
                 ],
@@ -56,10 +56,10 @@ export const settings = defineType({
       ],
     }),
     defineField({
-      name: 'ogImage',
-      title: 'Open Graph Image',
-      type: 'image',
-      description: 'Displayed on social cards and search engine results.',
+      name: "ogImage",
+      title: "Open Graph Image",
+      type: "image",
+      description: "Displayed on social cards and search engine results.",
       options: {
         hotspot: true,
         // aiAssist: {
@@ -68,26 +68,27 @@ export const settings = defineType({
       },
       fields: [
         defineField({
-          name: 'alt',
-          description: 'Important for accessibility and SEO.',
-          title: 'Alternative text',
-          type: 'string',
+          name: "alt",
+          description: "Important for accessibility and SEO.",
+          title: "Alternative text",
+          type: "string",
           validation: (rule) => {
             return rule.custom((alt, context) => {
               if ((context.document?.ogImage as any)?.asset?._ref && !alt) {
-                return 'Required'
+                return "Required";
               }
-              return true
-            })
+              return true;
+            });
           },
         }),
         defineField({
-          name: 'metadataBase',
-          type: 'url',
+          name: "metadataBase",
+          type: "url",
           description: (
             <a
               href="https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase"
-              rel="noreferrer noopener">
+              rel="noreferrer noopener"
+            >
               More information
             </a>
           ),
@@ -98,8 +99,8 @@ export const settings = defineType({
   preview: {
     prepare() {
       return {
-        title: 'Settings',
-      }
+        title: "Settings",
+      };
     },
   },
-})
+});

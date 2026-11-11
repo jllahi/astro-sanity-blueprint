@@ -1,46 +1,43 @@
 ---
-import NoPosts from '@/components/NoPosts.astro'
-import Card from '@/components/ui/Card.astro'
-import Welcome from '@/components/Welcome.astro'
-import Layout from '@/layouts/Layout.astro'
-import { getAllPosts } from '@/sanity/queries/post.groq'
+import NoPosts from "@/components/NoPosts.astro";
+import Card from "@/components/ui/Card.astro";
+import Welcome from "@/components/Welcome.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getAllPosts } from "@/sanity/queries/post.groq";
 
-export const prerender = true
+export const prerender = true;
 
-const posts = await getAllPosts()
+const posts = await getAllPosts();
 // console.log('POSTS->', posts.length)
 ---
 
 <Layout
   seo={{
-    title: 'The official Sanity integration for Astro',
-    description: 'These blog posts are populated from your Sanity Studio.',
-  }}>
+    title: "The official Sanity integration for Astro",
+    description: "These blog posts are populated from your Sanity Studio.",
+  }}
+>
   <Welcome />
 
   <section class="flex flex-col">
-    {
-      posts.length > 0 && (
-        <div>
-          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
-            Recent Posts
-          </h2>
-          <p class="mt-2 text-lg leading-8 text-gray-600">
-            These {posts.length} blog posts are populated from your Sanity Studio.
-          </p>
-        </div>
-      )
-    }
-    {
-      posts.length > 0 ? (
-        <div class="mt-6 space-y-12 border-t border-gray-200 pt-6">
-          {posts.map((post) => (
-            <Card post={post} />
-          ))}
-        </div>
-      ) : (
-        <NoPosts />
-      )
-    }
+    {posts.length > 0 && (
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+          Recent Posts
+        </h2>
+        <p class="mt-2 text-lg leading-8 text-gray-600">
+          These {posts.length} blog posts are populated from your Sanity Studio.
+        </p>
+      </div>
+    )}
+    {posts.length > 0 ? (
+      <div class="mt-6 space-y-12 border-t border-gray-200 pt-6">
+        {posts.map((post) => (
+          <Card {post} />
+        ))}
+      </div>
+    ) : (
+      <NoPosts />
+    )}
   </section>
 </Layout>

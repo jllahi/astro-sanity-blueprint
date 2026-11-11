@@ -1,5 +1,5 @@
-import { DocumentIcon } from '@sanity/icons/Document'
-import { defineField, defineType } from 'sanity'
+import { DocumentIcon } from "@sanity/icons/Document";
+import { defineField, defineType } from "sanity";
 
 /**
  * Page schema.  Define and edit the fields for the 'page' content type.
@@ -7,50 +7,50 @@ import { defineField, defineType } from 'sanity'
  */
 
 export const page = defineType({
-  name: 'page',
-  title: 'Page',
-  type: 'document',
+  name: "page",
+  title: "Page",
+  type: "document",
   icon: DocumentIcon,
   fields: [
     defineField({
-      name: 'name',
-      title: 'Name',
-      type: 'string',
+      name: "name",
+      title: "Name",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
 
     defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
+      name: "slug",
+      title: "Slug",
+      type: "slug",
       validation: (Rule) => Rule.required(),
       options: {
-        source: 'name',
+        source: "name",
         maxLength: 96,
       },
     }),
     defineField({
-      name: 'heading',
-      title: 'Heading',
-      type: 'string',
+      name: "heading",
+      title: "Heading",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'subheading',
-      title: 'Subheading',
-      type: 'string',
+      name: "subheading",
+      title: "Subheading",
+      type: "string",
     }),
     defineField({
-      name: 'pageBuilder',
-      title: 'Page builder',
-      type: 'array',
-      of: [{ type: 'callToAction' }, { type: 'infoSection' }],
+      name: "pageBuilder",
+      title: "Page builder",
+      type: "array",
+      of: [{ type: "callToAction" }, { type: "infoSection" }],
       options: {
         insertMenu: {
           // Configure the "Add Item" menu to display a thumbnail preview of the content type. https://www.sanity.io/docs/array-type#efb1fe03459d
           views: [
             {
-              name: 'grid',
+              name: "grid",
               previewImageUrl: (schemaTypeName) =>
                 `/static/page-builder-thumbnails/${schemaTypeName}.webp`,
             },
@@ -59,4 +59,4 @@ export const page = defineType({
       },
     }),
   ],
-})
+});

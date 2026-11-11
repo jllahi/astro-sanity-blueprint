@@ -1,11 +1,11 @@
-import type { Image } from '@sanity/types'
-import { createImageUrlBuilder } from '@sanity/image-url'
+import { createImageUrlBuilder } from "@sanity/image-url";
+import type { Image } from "@sanity/types";
 // import { useSanityClient } from "@sanity/astro";
 // import { sanityClient } from '@/sanity/client'
-import { sanityClient } from 'sanity:client'
+import { sanityClient } from "sanity:client";
 
-const builder = createImageUrlBuilder(sanityClient)
+const builder = createImageUrlBuilder(sanityClient);
 
 export function urlForImage(source: Image) {
-  return builder.image(source)
+  return builder.image(source);
 }

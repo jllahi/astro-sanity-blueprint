@@ -1,5 +1,5 @@
-import { UserIcon } from '@sanity/icons/User'
-import { defineField, defineType } from 'sanity'
+import { UserIcon } from "@sanity/icons/User";
+import { defineField, defineType } from "sanity";
 
 /**
  * Person schema.  Define and edit the fields for the 'person' content type.
@@ -7,41 +7,41 @@ import { defineField, defineType } from 'sanity'
  */
 
 export const person = defineType({
-  name: 'person',
-  title: 'Person',
+  name: "person",
+  title: "Person",
   icon: UserIcon,
-  type: 'document',
+  type: "document",
   fields: [
     defineField({
-      name: 'firstName',
-      title: 'First Name',
-      type: 'string',
+      name: "firstName",
+      title: "First Name",
+      type: "string",
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'lastName',
-      title: 'Last Name',
-      type: 'string',
+      name: "lastName",
+      title: "Last Name",
+      type: "string",
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'picture',
-      title: 'Picture',
-      type: 'image',
+      name: "picture",
+      title: "Picture",
+      type: "image",
       fields: [
         defineField({
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
-          description: 'Important for SEO and accessibility.',
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+          description: "Important for SEO and accessibility.",
           validation: (rule) => {
             // Custom validation to ensure alt text is provided if the image is present. https://www.sanity.io/docs/validation
             return rule.custom((alt, context) => {
               if ((context.document?.picture as any)?.asset?._ref && !alt) {
-                return 'Required'
+                return "Required";
               }
-              return true
-            })
+              return true;
+            });
           },
         }),
       ],
@@ -57,16 +57,16 @@ export const person = defineType({
   // List preview configuration. https://www.sanity.io/docs/previews-list-views
   preview: {
     select: {
-      firstName: 'firstName',
-      lastName: 'lastName',
-      picture: 'picture',
+      firstName: "firstName",
+      lastName: "lastName",
+      picture: "picture",
     },
     prepare(selection) {
       return {
         title: `${selection.firstName} ${selection.lastName}`,
-        subtitle: 'Person',
+        subtitle: "Person",
         media: selection.picture,
-      }
+      };
     },
   },
-})
+});

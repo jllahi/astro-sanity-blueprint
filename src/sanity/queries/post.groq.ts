@@ -1,6 +1,11 @@
-import type { QueryAllPostsResult, QueryPostBySlugResult, QuerySlugsAllPostsResult } from '../types'
-import { defineQuery } from 'groq'
-import { loadQuery } from '../load-query'
+import { defineQuery } from "groq";
+
+import { loadQuery } from "../load-query";
+import type {
+  QueryAllPostsResult,
+  QueryPostBySlugResult,
+  QuerySlugsAllPostsResult,
+} from "../types";
 
 // Groq queries
 
@@ -15,13 +20,13 @@ export const queryAllPosts =
 					metadata
 				}
 			},
-		}`)
+		}`);
 
 export const querySlugsAllPosts =
   defineQuery(`*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
 			title,
 			slug
-		}`)
+		}`);
 
 export const queryPostBySlug = defineQuery(`*[_type == "post" && slug.current == $slug][0] {
 			...,
@@ -33,22 +38,22 @@ export const queryPostBySlug = defineQuery(`*[_type == "post" && slug.current ==
 					metadata
 				}
 			},
-		}`)
+		}`);
 
 // Load queries
 
 export async function getAllPosts() {
   const { data: posts } = await loadQuery<QueryAllPostsResult>({
     query: queryAllPosts,
-  })
-  return posts!
+  });
+  return posts!;
 }
 
 export async function getSlugsAllPosts() {
   const { data: posts } = await loadQuery<QuerySlugsAllPostsResult>({
     query: querySlugsAllPosts,
-  })
-  return posts!
+  });
+  return posts!;
 }
 
 export async function getPostBySlug(slug: string) {
@@ -57,6 +62,6 @@ export async function getPostBySlug(slug: string) {
     params: {
       slug,
     },
-  })
-  return post!
+  });
+  return post!;
 }

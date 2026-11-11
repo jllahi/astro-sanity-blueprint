@@ -1,5 +1,5 @@
-import { VideoIcon } from '@sanity/icons/Video'
-import { defineField, defineType } from 'sanity'
+import { VideoIcon } from "@sanity/icons/Video";
+import { defineField, defineType } from "sanity";
 
 /**
  * Call to action schema object.  Objects are reusable schema structures document.
@@ -7,9 +7,9 @@ import { defineField, defineType } from 'sanity'
  */
 
 export const youtube = defineType({
-  name: 'youtube',
-  title: 'YouTube',
-  type: 'object',
+  name: "youtube",
+  title: "YouTube",
+  type: "object",
   icon: VideoIcon,
   // validation: (Rule) =>
   //   // This is a custom validation rule that requires both 'buttonText' and 'link' to be set, or neither to be set
@@ -22,9 +22,9 @@ export const youtube = defineType({
   //   }),
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
+      name: "title",
+      title: "Title",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     // defineField({
@@ -33,38 +33,38 @@ export const youtube = defineType({
     //   type: 'text',
     // }),
     defineField({
-      name: 'id',
-      title: 'ID',
-      type: 'string',
+      name: "id",
+      title: "ID",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'posterQuality',
-      title: 'Poster Quality',
-      type: 'string',
+      name: "posterQuality",
+      title: "Poster Quality",
+      type: "string",
       options: {
         list: [
-          { title: 'Max (1280px)', value: 'max' },
-          { title: 'High (640px)', value: 'high' },
-          { title: 'Default (480px)', value: 'default' },
-          { title: 'Low (120px)', value: 'low' },
+          { title: "Max (1280px)", value: "max" },
+          { title: "High (640px)", value: "high" },
+          { title: "Default (480px)", value: "default" },
+          { title: "Low (120px)", value: "low" },
         ],
-        layout: 'dropdown',
+        layout: "dropdown",
       },
-      initialValue: 'high',
+      initialValue: "high",
     }),
   ],
   preview: {
     select: {
-      title: 'title',
+      title: "title",
     },
     prepare(selection) {
-      const { title } = selection
+      const { title } = selection;
 
       return {
         title,
-        subtitle: 'YouTube',
-      }
+        subtitle: "YouTube",
+      };
     },
   },
-})
+});

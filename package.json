@@ -1,8 +1,7 @@
 {
   "name": "astro-sanity-blueprint",
-  "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@12.18.0",
+  "type": "module",
   "scripts": {
     "astro": "astro",
     "build": "astro check && astro build",
@@ -64,5 +63,6 @@
     "eslint-plugin-astro": "^3.2.1",
     "sharp": "^0.35.5",
     "vite-plus": "catalog:"
-  }
+  },
+  "packageManager": "pnpm@12.18.0"
 }

@@ -1,13 +1,14 @@
 ---
-import type { SEOProps } from 'astro-seo'
-import { SEO } from 'astro-seo'
-import { SITE_DESCRIPTION, SITE_IMAGE, SITE_TITLE } from '@/consts'
+import type { SEOProps } from "astro-seo";
+import { SEO } from "astro-seo";
+
+import { SITE_DESCRIPTION, SITE_IMAGE, SITE_TITLE } from "@/consts";
 
 interface Props {
-  seo?: SEOProps
+  seo?: SEOProps;
 }
 
-const { seo } = Astro.props
+const { seo } = Astro.props;
 ---
 
 <SEO
@@ -17,7 +18,7 @@ const { seo } = Astro.props
   openGraph={{
     basic: {
       title: seo?.openGraph?.basic.title || seo?.title || SITE_TITLE,
-      type: seo?.openGraph?.basic.type || 'website',
+      type: seo?.openGraph?.basic.type || "website",
       image: seo?.openGraph?.basic.image || SITE_IMAGE,
     },
   }}

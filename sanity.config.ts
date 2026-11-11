@@ -14,14 +14,16 @@
 //   )
 // }
 // import process from 'node:process'
-import { visionTool } from '@sanity/vision'
-import { defineConfig } from 'sanity'
-import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
-import { media } from 'sanity-plugin-media'
-import { presentationTool } from 'sanity/presentation'
-import { structureTool } from 'sanity/structure'
-import { schemaTypes } from '@/sanity/schemas'
-import { resolve } from './src/sanity/resolve'
+import { visionTool } from "@sanity/vision";
+import { defineConfig } from "sanity";
+import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
+import { media } from "sanity-plugin-media";
+import { presentationTool } from "sanity/presentation";
+import { structureTool } from "sanity/structure";
+
+import { schemaTypes } from "@/sanity/schemas";
+
+import { resolve } from "./src/sanity/resolve";
 // import { loadEnv } from 'vite'
 // const env = loadEnv('', process.cwd(), 'PUBLIC')
 
@@ -55,10 +57,10 @@ import { resolve } from './src/sanity/resolve'
 // }
 
 export default defineConfig({
-  name: 'astro-sanity-blueprint',
-  title: 'Astro Sanity Blueprint',
-  projectId: '3q0ng9ao',
-  dataset: 'development',
+  name: "astro-sanity-blueprint",
+  title: "Astro Sanity Blueprint",
+  projectId: "3q0ng9ao",
+  dataset: "development",
   plugins: [
     structureTool(),
     presentationTool({
@@ -78,4 +80,4 @@ export default defineConfig({
   tasks: {
     enabled: false,
   },
-})
+});

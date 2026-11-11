@@ -1,5 +1,5 @@
-import { ImageIcon } from '@sanity/icons/Image'
-import { defineField, defineType } from 'sanity'
+import { ImageIcon } from "@sanity/icons/Image";
+import { defineField, defineType } from "sanity";
 
 /**
  * Call to action schema object.  Objects are reusable schema structures document.
@@ -7,9 +7,9 @@ import { defineField, defineType } from 'sanity'
  */
 
 export const imagePicture = defineType({
-  name: 'imagePicture',
-  title: 'Image',
-  type: 'object',
+  name: "imagePicture",
+  title: "Image",
+  type: "object",
   icon: ImageIcon,
   // validation: (Rule) =>
   //   // This is a custom validation rule that requires both 'buttonText' and 'link' to be set, or neither to be set
@@ -22,31 +22,31 @@ export const imagePicture = defineType({
   //   }),
   fields: [
     defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
+      name: "image",
+      title: "Image",
+      type: "image",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'alt',
-      title: 'Alt Text',
-      type: 'string',
+      name: "alt",
+      title: "Alt Text",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
     select: {
-      title: 'alt',
-      media: 'image',
+      title: "alt",
+      media: "image",
     },
     prepare(selection) {
-      const { title, media } = selection
+      const { title, media } = selection;
 
       return {
         title,
-        subtitle: 'Image',
+        subtitle: "Image",
         media,
-      }
+      };
     },
   },
-})
+});

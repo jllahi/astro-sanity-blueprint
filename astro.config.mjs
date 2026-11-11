@@ -1,14 +1,15 @@
 // import process from 'node:process'
-import { existsSync, realpathSync } from 'node:fs'
-import react from '@astrojs/react'
-import sitemap from '@astrojs/sitemap'
-import vercel from '@astrojs/vercel'
-import sanity from '@sanity/astro'
-import tailwindcss from '@tailwindcss/vite'
-import { imageService } from '@unpic/astro/service'
-import metaTags from 'astro-meta-tags'
-import robotsTxt from 'astro-robots-txt'
-import { defineConfig } from 'astro/config'
+import { existsSync, realpathSync } from "node:fs";
+
+import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
+import vercel from "@astrojs/vercel";
+import sanity from "@sanity/astro";
+import tailwindcss from "@tailwindcss/vite";
+import { imageService } from "@unpic/astro/service";
+import metaTags from "astro-meta-tags";
+import robotsTxt from "astro-robots-txt";
+import { defineConfig } from "astro/config";
 // import { loadEnv } from 'vite'
 
 // Loading environment variables from .env files
@@ -33,16 +34,16 @@ import { defineConfig } from 'astro/config'
 // below). Missing on an unexpected package layout, in which case scanning is
 // skipped instead of breaking the dev server.
 const visualEditingIsland = new URL(
-  './node_modules/@sanity/astro/dist/visual-editing/visual-editing-component.tsx',
-  import.meta.url
-)
+  "./node_modules/@sanity/astro/dist/visual-editing/visual-editing-component.tsx",
+  import.meta.url,
+);
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://astro-sanity-blueprint.vercel.app',
-  trailingSlash: 'never',
+  site: "https://astro-sanity-blueprint.vercel.app",
+  trailingSlash: "never",
 
-  output: 'server',
+  output: "server",
   adapter: vercel(),
 
   image: {
@@ -51,27 +52,27 @@ export default defineConfig({
   integrations: [
     react(),
     sanity({
-      projectId: '3q0ng9ao',
-      dataset: 'development',
+      projectId: "3q0ng9ao",
+      dataset: "development",
       useCdn: true, // `false` if you want to ensure fresh data
-      apiVersion: '2025-08-10', // Set to date of setup to use the latest API version
-      studioBasePath: '/studio',
+      apiVersion: "2025-08-10", // Set to date of setup to use the latest API version
+      studioBasePath: "/studio",
       stega: {
-        studioUrl: '/studio',
+        studioUrl: "/studio",
       },
     }),
     metaTags(),
     sitemap({
       filter: (page) =>
         // page !== this.site + this.integrations[sanity].studioBasePath + '/' &&
-        page !== 'https://astro-sanity-blueprint.vercel.app/studio/',
+        page !== "https://astro-sanity-blueprint.vercel.app/studio/",
     }),
     robotsTxt({
       policy: [
         {
-          userAgent: ['*'],
-          allow: ['/'],
-          disallow: ['/studio'],
+          userAgent: ["*"],
+          allow: ["/"],
+          disallow: ["/studio"],
           crawlDelay: 15,
         },
       ],
@@ -95,7 +96,7 @@ export default defineConfig({
       // this package ships the island inside `dist/`. It is also realpath'd
       // because pnpm symlinks the package.
       entries: [
-        'src/**/*.{jsx,tsx,vue,svelte,html}',
+        "src/**/*.{jsx,tsx,vue,svelte,html}",
         ...(existsSync(visualEditingIsland) ? [realpathSync(visualEditingIsland)] : []),
       ],
     },
@@ -103,4 +104,4 @@ export default defineConfig({
     //   exclude: ['date-fns', '@sanity/icons', 'lightningcss', 'fsevents', '@sanity/astro', 'sanity', 'sanity/structure'],
     // },
   },
-})
+});
