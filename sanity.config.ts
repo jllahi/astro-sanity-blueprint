@@ -80,4 +80,7 @@ export default defineConfig({
   tasks: {
     enabled: false,
   },
+  releases: {
+    enabled: true,
+  },
 });
