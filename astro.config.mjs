@@ -11,6 +11,11 @@ import metaTags from "astro-meta-tags";
 import { defineConfig } from "astro/config";
 // import { loadEnv } from 'vite'
 
+const sanityDataset =
+  process.env.VERCEL_ENV === "production" || process.env.VERCEL_ENV === "preview"
+    ? "production"
+    : "development";
+
 // Loading environment variables from .env files
 // https://docs.astro.build/en/guides/configuring-astro/#environment-variables
 
@@ -52,7 +57,7 @@ export default defineConfig({
     react(),
     sanity({
       projectId: "3q0ng9ao",
-      dataset: "development",
+      dataset: sanityDataset,
       useCdn: true, // `false` if you want to ensure fresh data
       apiVersion: "2025-08-10", // Set to date of setup to use the latest API version
       studioBasePath: "/studio",
