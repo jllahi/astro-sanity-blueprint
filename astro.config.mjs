@@ -8,7 +8,6 @@ import sanity from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
 import { imageService } from "@unpic/astro/service";
 import metaTags from "astro-meta-tags";
-import robotsTxt from "astro-robots-txt";
 import { defineConfig } from "astro/config";
 // import { loadEnv } from 'vite'
 
@@ -67,16 +66,16 @@ export default defineConfig({
         // page !== this.site + this.integrations[sanity].studioBasePath + '/' &&
         page !== "https://astro-sanity-blueprint.vercel.app/studio/",
     }),
-    robotsTxt({
-      policy: [
-        {
-          userAgent: ["*"],
-          allow: ["/"],
-          disallow: ["/studio"],
-          crawlDelay: 15,
-        },
-      ],
-    }),
+    // robotsTxt({
+    //   policy: [
+    //     {
+    //       userAgent: ["*"],
+    //       allow: ["/"],
+    //       disallow: ["/studio"],
+    //       crawlDelay: 15,
+    //     },
+    //   ],
+    // }),
   ],
   vite: {
     plugins: [tailwindcss()],
