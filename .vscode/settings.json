@@ -24,7 +24,8 @@
     "GEMINI.md": true,
     ".gitignore": true,
     ".env.local": true,
-    "src/env.d.ts": true
+    "src/env.d.ts": true,
+    ".gga": true
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
