@@ -214,8 +214,8 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       '@sanity/astro':
-        specifier: ^3.6.2
-        version: 3.6.2(ae2a675a927be08deb70f114d1c4ebad)
+        specifier: ^4.1.0
+        version: 4.1.0(ae2a675a927be08deb70f114d1c4ebad)
       '@sanity/client':
         specifier: ^8.16.0
         version: 8.16.0(vitest@5.1.0)
@@ -2864,17 +2864,21 @@ packages:
     resolution: {integrity: sha512-dlEmALjQ5iyQG0O8ZVmkkE3wUYCKfRmiyMvuuGN5SF9buAHxmseBOKJ/Iy2DU/8ef70mtUXlzeCRSlTN/nmZsg==}
     engines: {node: '>=18'}
 
-  '@sanity/astro@3.6.2':
-    resolution: {integrity: sha512-NMSvHlIui+0Ev7kil00RO7kXhoou9RLZlEioPlKR1zwpx1VZkVelFcvZ2i8YjO2COTuCauy9X/YW68Xwg+mQHA==}
+  '@sanity/astro@4.1.0':
+    resolution: {integrity: sha512-oRB8tLoMyaYl80JrdyDKzefuDpC8LSiElZd3+c5aDk6+w/2pg9BtMo/tbaIsF6gu0iEJziPl8bk8Q0XFQeOjLw==}
     engines: {node: '>=20.19.0 || >=22.12.0'}
     peerDependencies:
       '@sanity/client': ^7.28.0 || ^8.11.0
+      '@sanity/visual-editing-standalone': ^2.0.2
       astro: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
       react: ^18.2.0 || ^19.0.0
       react-dom: ^18.2.0 || ^19.0.0
       react-is: ^18.2.0 || ^19.0.0
       sanity: ^3.99.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
       styled-components: ^6.1.19
+    peerDependenciesMeta:
+      '@sanity/visual-editing-standalone':
+        optional: true
 
   '@sanity/bifur-client@2.0.2':
     resolution: {integrity: sha512-TL37rSZLXAcjGCAVuGXXatvFhfwLaGlxKK5ghBdQJ0ZvilmXt2AYSp/ww3/AhWH3/9afayaJ/mFs3d1fl1UWwg==}
@@ -5295,6 +5299,9 @@ packages:
   iconv-lite@0.7.3:
     resolution: {integrity: sha512-IKXpvIzjnC9XTAUbVBcMfGS0EPaIXtW6v+zr+RRp+hqULEpo0owZax6wyRwPOJbWbzjYspQwusTsfVr0ifh4uQ==}
     engines: {node: '>=0.10.0'}
+
+  idiomorph@0.7.4:
+    resolution: {integrity: sha512-uCdSpLo3uMfqOmrwXTpR1k/sq4sSmKC7l4o/LdJOEU+MMMq+wkevRqOQYn3lP7vfz9Mv+USBEqPvi0XhdL9ENw==}
 
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
@@ -10260,12 +10267,16 @@ snapshots:
 
   '@sanity/asset-utils@2.3.0': {}
 
-  '@sanity/astro@3.6.2(ae2a675a927be08deb70f114d1c4ebad)':
+  '@sanity/astro@4.1.0(ae2a675a927be08deb70f114d1c4ebad)':
     dependencies:
       '@sanity/client': 8.16.0(vitest@5.1.0)
+      '@sanity/image-url': 2.2.0
       '@sanity/visual-editing': 6.2.0(@sanity/client@8.16.0(vitest@5.1.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(typescript@6.0.3)(vitest@5.1.0)
+      '@vercel/stega': 1.1.0
       astro: 7.4.12(@types/node@26.6.6)(@vercel/functions@3.11.1(ws@8.22.2))(@volar/typescript@2.4.31(typescript@6.0.3))(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.1)
+      groq-js: 2.0.1
       history: 5.3.0
+      idiomorph: 0.7.4
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
       react-is: 19.3.1
@@ -13348,6 +13359,8 @@ snapshots:
   iconv-lite@0.7.3:
     dependencies:
       safer-buffer: 2.1.2
+
+  idiomorph@0.7.4: {}
 
   ignore@5.3.2: {}
 
