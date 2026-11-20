@@ -5,14 +5,18 @@ import { sanityClient } from "sanity:client";
 
 type BlogPost = {
   _id: string;
+  _type: "post";
   _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
   title: string;
-  slug: string;
+  slug: { current: string };
   excerpt?: string;
   coverImage?: unknown;
   content?: unknown;
   date?: string;
   author?: unknown;
+  lqip?: string | null;
 };
 
 const posts = defineCollection({
@@ -21,21 +25,44 @@ const posts = defineCollection({
     query: `*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
       _id,
       _createdAt,
+      _updatedAt,
+      _type,
+      _rev,
       title,
-      "slug": slug.current,
+      slug,
       excerpt,
-      coverImage,
-      content,
+      "lqip": coverImage.asset->metadata.lqip,
+      coverImage {
+        ...,
+        asset->{
+          ...,
+          metadata
+        }
+      },
+      content[]{
+        ...,
+        image{
+          ...,
+          asset->{
+            ...,
+            metadata
+          }
+        }
+      },
       date,
       author
     }`,
-    id: (post) => post.slug,
+    id: (post) => post.slug.current,
   }),
   schema: z.object({
     _id: z.string(),
     _createdAt: z.string(),
+    _updatedAt: z.string(),
     title: z.string(),
-    slug: z.string(),
+    slug: z.object({
+      current: z.string(),
+      _type: z.string().optional(),
+    }),
     excerpt: z.string().optional(),
     coverImage: z.unknown().optional(),
     content: z.unknown().optional(),

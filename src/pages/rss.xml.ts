@@ -1,16 +1,13 @@
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
+import { getCollection } from "astro:content";
 
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
-import { loadQuery } from "@/sanity/load-query";
-import { queryAllPosts } from "@/sanity/queries/post.groq";
 import type { Post } from "@/sanity/types";
 
 export async function GET(context: APIContext) {
-  // const posts = await queryAllPosts()
-  const { data: posts } = await loadQuery<Post[]>({
-    query: queryAllPosts,
-  });
+  const entries = await getCollection("posts");
+  const posts = entries.map(({ data }) => data as unknown as Post);
 
   return rss({
     title: SITE_TITLE,

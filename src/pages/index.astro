@@ -1,13 +1,18 @@
 ---
+import { getCollection } from "astro:content";
+
 import NoPosts from "@/components/NoPosts.astro";
 import Card from "@/components/ui/Card.astro";
 import Welcome from "@/components/Welcome.astro";
 import Layout from "@/layouts/Layout.astro";
-import { getAllPosts } from "@/sanity/queries/post.groq";
+import type { QueryAllPostsResult } from "@/sanity/types";
 
 export const prerender = true;
 
-const posts = await getAllPosts();
+const entries = await getCollection("posts");
+const posts = entries.map(
+  ({ data }) => data as unknown as NonNullable<QueryAllPostsResult[number]>,
+);
 // console.log('POSTS->', posts.length)
 ---
 
