@@ -4,9 +4,8 @@ import { existsSync, realpathSync } from "node:fs";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
-import sanity from "@sanity/astro";
+import sanity, { sanityImageService } from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
-import { imageService } from "@unpic/astro/service";
 import metaTags from "astro-meta-tags";
 import { defineConfig } from "astro/config";
 // import { loadEnv } from 'vite'
@@ -51,7 +50,7 @@ export default defineConfig({
   adapter: vercel(),
 
   image: {
-    service: imageService(),
+    service: sanityImageService(),
   },
   integrations: [
     react(),

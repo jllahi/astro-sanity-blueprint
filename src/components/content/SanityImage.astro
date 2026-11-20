@@ -1,26 +1,16 @@
 ---
-import { createImageUrlBuilder } from "@sanity/image-url";
-import { Image } from "@unpic/astro";
-import { sanityClient } from "sanity:client";
-
-const builder = createImageUrlBuilder(sanityClient);
+import { isImageWithAsset, SanityImage as SanityImageComponent } from "@sanity/astro/image";
 
 const { node } = Astro.props;
 const { width = 960 } = Astro.props;
-let image: ReturnType<typeof builder.image> | undefined;
-
-// See https://www.sanity.io/docs/presenting-images for general documentation on
-// presenting images, and https://www.sanity.io/docs/image-url for specifics on
-// this builder API
-try {
-  image =
-    node &&
-    node.image &&
-    node.image.asset &&
-    builder.image(node.image).width(width).fit("max").auto("format");
-} catch (error) {
-  console.error(error);
-}
 ---
 
-{image && <Image src={image.url()} alt={node.alt || ""} title={node.alt} />}
+{isImageWithAsset(node?.image) && (
+  <SanityImageComponent
+    src={node.image}
+    width={Number(width)}
+    alt={node.alt || ""}
+    title={node.alt}
+    placeholder="blur"
+  />
+)}

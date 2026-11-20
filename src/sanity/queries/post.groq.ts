@@ -20,6 +20,16 @@ export const queryAllPosts =
 					metadata
 				}
 			},
+			content[]{
+				...,
+				image{
+					...,
+					asset->{
+						...,
+						metadata
+					}
+				}
+			},
 		}`);
 
 export const querySlugsAllPosts =
@@ -36,6 +46,16 @@ export const queryPostBySlug = defineQuery(`*[_type == "post" && slug.current ==
 				asset->{
 					...,
 					metadata
+				}
+			},
+			content[]{
+				...,
+				image{
+					...,
+					asset->{
+						...,
+						metadata
+					}
 				}
 			},
 		}`);

@@ -1,5 +1,5 @@
 ---
-import { Image } from "@unpic/astro";
+import { SanityImage } from "@sanity/astro/image";
 
 import PortableText from "@/components/content/PortableText.astro";
 import Prose from "@/components/content/Prose.astro";
@@ -7,7 +7,6 @@ import Debug from "@/components/Debug.astro";
 // import type { InferGetStaticParamsType } from 'astro'
 import Layout from "@/layouts/Layout.astro";
 import { getPostBySlug, getSlugsAllPosts } from "@/sanity/queries/post.groq";
-import { urlForImage } from "@/sanity/url-image";
 import { formatDate } from "@/utils";
 
 export const prerender = true;
@@ -53,16 +52,15 @@ const post = await getPostBySlug(params.slug as string);
     </div>
     <div class="grid max-w-4xl gap-2">
       <div class="">
-        <Image
-          src={urlForImage(post.coverImage).width(800).height(480).url()}
-          alt={post.coverImage.alt}
+        <SanityImage
+          src={post.coverImage}
+          alt={post.coverImage.alt || post.title}
           class="w-full rounded-2xl"
           width={800}
           height={480}
-          loading={"eager"}
+          loading="eager"
           transition:name={`post-image-${post.slug.current}`}
-          placeholder={"lqip"}
-          background={post.coverImage?.asset?.metadata?.lqip}
+          placeholder="blur"
         />
       </div>
     </div>
